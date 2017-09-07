@@ -1,0 +1,13 @@
+platform :ios, '8.3'
+
+use_frameworks!
+
+target 'AnobiUIKit_Example' do
+  pod 'AnobiUIKit', :path => '../'
+
+  target 'AnobiUIKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

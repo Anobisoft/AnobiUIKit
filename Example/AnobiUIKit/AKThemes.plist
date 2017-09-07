@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Themes</key>
+	<dict>
+		<key>Example</key>
+		<dict>
+			<key>BarStyle</key>
+			<string>Default</string>
+			<key>KeyedColors</key>
+			<dict>
+				<key>mainBackground</key>
+				<string>#AAFFCC</string>
+				<key>mainTint</key>
+				<string>#DD0000</string>
+				<key>mainText</key>
+				<string>#880000</string>
+				<key>mainSubtext</key>
+				<string>#AAAAFF</string>
+				<key>naviBarTint</key>
+				<string>#AABBCC</string>
+				<key>naviTint</key>
+				<string>#332211</string>
+				<key>naviTitle</key>
+				<string>#FFCCFF</string>
+				<key>tableBackground</key>
+				<string>#3333AA</string>
+				<key>tableSeparator</key>
+				<string>#FF4477</string>
+				<key>tableCellBackground</key>
+				<string>#EEEEEE</string>
+				<key>tableSecondaryCellBackground</key>
+				<string>#AAAAAA</string>
+			</dict>
+			<key>IndexedColors</key>
+			<array>
+				<string>#6300FF</string>
+				<string>#FFB500</string>
+				<string>#ABA8B7 </string>
+				<string>#009BFF</string>
+				<string>#FF5D00</string>
+				<string>#60D800</string>
+				<string>#004EFF </string>
+				<string>#FF8B00</string>
+				<string>#F20046 </string>
+				<string>#00C1FF </string>
+				<string>#000F8A </string>
+				<string>#FF0076</string>
+				<string>#00D892</string>
+				<string>#00A3FF</string>
+			</array>
+		</dict>
+		<key>Dark</key>
+		<dict>
+			<key>BarStyle</key>
+			<string>Dark</string>
+			<key>KeyedColors</key>
+			<dict>
+				<key>mainBackground</key>
+				<string>#000000</string>
+				<key>mainTint</key>
+				<string>#6CC800</string>
+				<key>mainText</key>
+				<string>#FFFFFF</string>
+				<key>mainSubtext</key>
+				<string>#D0D0D0</string>
+				<key>naviBarTint</key>
+				<string>#121212</string>
+				<key>naviTint</key>
+				<string>#A9A9A9</string>
+				<key>naviTitle</key>
+				<string>#FFFFFF</string>
+				<key>tableBackground</key>
+				<string>#0E0E0E</string>
+				<key>tableSeparator</key>
+				<string>#2F2F2F</string>
+				<key>tableCellBackground</key>
+				<string>#555555</string>
+				<key>tableSecondaryCellBackground</key>
+				<string>#121212</string>
+			</dict>
+			<key>IndexedColors</key>
+			<array>
+				<string>#6300FF</string>
+				<string>#FFB500</string>
+				<string>#ABA8B7 </string>
+				<string>#009BFF</string>
+				<string>#FF5D00</string>
+				<string>#60D800</string>
+				<string>#004EFF </string>
+				<string>#FF8B00</string>
+				<string>#F20046 </string>
+				<string>#00C1FF </string>
+				<string>#000F8A </string>
+				<string>#FF0076</string>
+				<string>#00D892</string>
+				<string>#00A3FF</string>
+			</array>
+		</dict>
+		<key>Light</key>
+		<dict>
+			<key>BarStyle</key>
+			<string>Default</string>
+			<key>KeyedColors</key>
+			<dict>
+				<key>mainBackground</key>
+				<string>#FFFFFF</string>
+				<key>mainTint</key>
+				<string>#6CC800</string>
+				<key>mainText</key>
+				<string>#252525</string>
+				<key>mainSubtext</key>
+				<string>#B4B4B4</string>
+				<key>naviBarTint</key>
+				<string>#FFFFFF</string>
+				<key>naviTint</key>
+				<string>#A9A9A9</string>
+				<key>naviTitle</key>
+				<string>#252525</string>
+				<key>tableBackground</key>
+				<string>#F1F1F1 </string>
+				<key>tableSeparator</key>
+				<string>#EEEEEE</string>
+				<key>tableCellBackground</key>
+				<string>#FFFFFF</string>
+				<key>tableSecondaryCellBackground</key>
+				<string>#F8F8F8 </string>
+			</dict>
+			<key>IndexedColors</key>
+			<array>
+				<string>#6300FF</string>
+				<string>#FFB500</string>
+				<string>#ABA8B7 </string>
+				<string>#009BFF</string>
+				<string>#FF5D00</string>
+				<string>#60D800</string>
+				<string>#004EFF </string>
+				<string>#FF8B00</string>
+				<string>#F20046 </string>
+				<string>#00C1FF </string>
+				<string>#000F8A </string>
+				<string>#FF0076</string>
+				<string>#00D892</string>
+				<string>#00A3FF</string>
+			</array>
+		</dict>
+	</dict>
+	<key>DefaultTheme</key>
+	<string>Light</string>
+</dict>
+</plist>

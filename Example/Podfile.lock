@@ -1,0 +1,19 @@
+PODS:
+  - AnobiKit (0.0.27)
+  - AnobiUIKit (0.0.1):
+    - AnobiKit (~> 0.0.27)
+
+DEPENDENCIES:
+  - AnobiUIKit (from `../`)
+
+EXTERNAL SOURCES:
+  AnobiUIKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AnobiKit: 34b2abfede2cd473e79f0a878f3703e845181e97
+  AnobiUIKit: bc33b4546a1f397c3c5a7f73777070346edbac2d
+
+PODFILE CHECKSUM: 7b73a02bad133187f40174229af508b7c7198e21
+
+COCOAPODS: 1.3.1
