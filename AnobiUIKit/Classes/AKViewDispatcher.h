@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AKTypes.h"
+#import <AnobiKit/AKTypes.h>
 
 @protocol AKViewObserver <NSObject>
 @optional

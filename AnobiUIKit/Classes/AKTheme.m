@@ -7,7 +7,7 @@
 //
 
 #import "AKTheme.h"
-#import "AKConfig.h"
+#import <AnobiKit/AKConfig.h>
 #import "UIColor+AnobiUIKit.h"
 
 #define AKThemeConfigName @"AKThemes"

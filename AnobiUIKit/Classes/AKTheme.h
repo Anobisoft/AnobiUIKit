@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AKTypes.h"
+#import <AnobiKit/AKTypes.h>
 
 #define AKThemeColorKey_mainBackground @"mainBackground"
 #define AKThemeColorKey_mainTint @"mainTint"
