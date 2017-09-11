@@ -10,6 +10,10 @@
 
 @implementation UIColor (AnobiUIKit)
 
++ (instancetype)colorWithHexString:(NSString *)string {
+    return [self colorWithHexString:string alfa:1.0];
+}
+
 + (instancetype)colorWithHexString:(NSString *)string alfa:(CGFloat)alfa {
     NSString *trim = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *hex = [trim stringByReplacingOccurrencesOfString:@"#" withString:@"0x"];
@@ -17,10 +21,6 @@
     unsigned rgbColor = 0;
     [scanner scanHexInt:&rgbColor];
     return [self colorWithHexRGB:rgbColor alfa:alfa];
-}
-
-+ (instancetype)colorWithHexString:(NSString *)string {
-    return [self colorWithHexString:string alfa:1.0];
 }
 
 + (instancetype)colorWithHexRGB:(unsigned)rgbColor alfa:(CGFloat)alfa {
