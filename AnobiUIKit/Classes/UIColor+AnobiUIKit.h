@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#define UIColorWith(rgbHex, alfa) [UIColor colorWithHexRGB:rgbHex alpha:alfa]
+#define UIColorWith(rgbHex, alpha) [UIColor colorWithHexRGB:rgbHex alpha:alpha]
 
 @interface UIColor (AnobiUIKit)
 
 + (instancetype)colorWithHexString:(NSString *)string;
-+ (instancetype)colorWithHexString:(NSString *)string alfa:(CGFloat)alfa;
-+ (instancetype)colorWithHexRGB:(unsigned)icolor alfa:(CGFloat)alfa;
++ (instancetype)colorWithHexString:(NSString *)string alpha:(CGFloat)alpha;
++ (instancetype)colorWithHexRGB:(unsigned)icolor alpha:(CGFloat)alpha;
 
 @end
