@@ -22,9 +22,17 @@ To integrate **AnobiUIKit** into your Xcode project using CocoaPods, specify it 
 
 ```
 platform :ios, '8.3'
-use_frameworks!
-target 'TargetName' do
-pod 'AnobiUIKit'
+  use_frameworks!
+  target 'TargetName' do
+  pod 'AnobiUIKit'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['CONFIGURATION_BUILD_DIR'] = '$PODS_CONFIGURATION_BUILD_DIR'
+    end
+  end
 end
 ```
 Then, run the following command:

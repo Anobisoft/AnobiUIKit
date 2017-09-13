@@ -1,7 +1,7 @@
 PODS:
   - AnobiKit (0.0.28)
-  - AnobiUIKit (0.0.1):
-    - AnobiKit (~> 0.0.27)
+  - AnobiUIKit (0.0.3):
+    - AnobiKit (~> 0.0.28)
 
 DEPENDENCIES:
   - AnobiUIKit (from `../`)
@@ -12,8 +12,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AnobiKit: 53c26ba8cf32f714cb49e58927ab1f1d496d4feb
-  AnobiUIKit: 9f93ff263a8981f3ff23dd2db8f06cf5f47ae2cf
+  AnobiUIKit: 70f586b1bc7acd5e5b7b8f2d44720f1d8d6d8f5c
 
-PODFILE CHECKSUM: 7b73a02bad133187f40174229af508b7c7198e21
+PODFILE CHECKSUM: 75f050c3cd7b1e79c4c49ac6d7516ccd95a9f395
 
 COCOAPODS: 1.3.1
