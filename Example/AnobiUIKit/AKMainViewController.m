@@ -7,8 +7,8 @@
 //
 
 #import "AKMainViewController.h"
-#import "AKTheme.h"
-#import "AKAnimation.h"
+#import "AnobiUIKit/AKTheme.h"
+#import "AnobiUIKit/AKAnimation.h"
 
 @interface AKMainViewController() <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

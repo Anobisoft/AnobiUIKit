@@ -1,5 +1,5 @@
 //
-//  UIColor+AnobiUIKit.h
+//  UIColor+Hex.h
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 16.06.17.
@@ -10,7 +10,7 @@
 
 #define UIColorWith(rgbHex, alpha) [UIColor colorWithHexRGB:rgbHex alpha:alpha]
 
-@interface UIColor (AnobiUIKit)
+@interface UIColor (Hex)
 
 + (instancetype)colorWithHexString:(NSString *)string;
 + (instancetype)colorWithHexString:(NSString *)string alpha:(CGFloat)alpha;

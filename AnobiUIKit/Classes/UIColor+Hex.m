@@ -1,14 +1,14 @@
 //
-//  UIColor+AnobiUIKit.m
+//  UIColor+Hex.m
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 16.06.17.
 //  Copyright © 2017 Anobisoft. All rights reserved.
 //
 
-#import "UIColor+AnobiUIKit.h"
+#import "UIColor+Hex.h"
 
-@implementation UIColor (AnobiUIKit)
+@implementation UIColor (Hex)
 
 + (instancetype)colorWithHexString:(NSString *)string {
     return [self colorWithHexString:string alpha:1.0];

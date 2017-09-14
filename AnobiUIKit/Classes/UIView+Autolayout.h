@@ -1,17 +1,17 @@
 //
-//  UIView+AnobiUIKit.h
+//  UIView+Autolayout.h
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 2016-10-04
 //  Copyright © 2016 Anobisoft. All rights reserved.
 //
 
-#ifndef UIView_ASUtilities_h
-#define UIView_ASUtilities_h
+#ifndef UIView_Autolayout_h
+#define UIView_Autolayout_h
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (AnobiUIKit)
+@interface UIView (Autolayout)
 
 + (instancetype)autolayoutView;
 
