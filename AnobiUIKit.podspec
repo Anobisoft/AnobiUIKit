@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'AnobiUIKit'
-  s.version          = '0.0.4'
+  s.version          = '0.1.0'
   s.summary          = 'AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.'
 
   s.description      = <<-DESC
@@ -28,8 +28,8 @@ longer...
 # s.tvos.deployment_target = "9.0"
 
   s.source       = { :git => "https://github.com/Anobisoft/AnobiUIKit.git", :tag => "v#{s.version}" }
-  s.source_files  = "AnobiUIKit/Classes/*.{h,m}", "AnobiUIKit/Classes/**/*.{h,m}"
-# s.public_header_files = "Classes/*.h", "Classes/**/*.h"
+  s.source_files  = "AnobiUIKit/Classes/**/*.{h,m}"
+# s.public_header_files = "AnobiUIKit/Classes/**/*.h"
 # s.exclude_files = "Classes/Exclude"
 # s.resource  = "icon.png"
   s.resources = "AnobiUIKit/Resources/*.plist"
@@ -39,7 +39,7 @@ longer...
 # s.frameworks = "SomeFramework", "AnotherFramework"
 # s.library   = "iconv"
 # s.libraries = "iconv", "xml2"
-  s.dependency "AnobiKit", "~> 0.0.28"
+  s.dependency "AnobiKit", "~> 0.1.0"
 
   s.requires_arc = true
 # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }

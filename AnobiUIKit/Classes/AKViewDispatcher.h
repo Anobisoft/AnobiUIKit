@@ -24,7 +24,7 @@
 + (UIViewController *)visibleViewController;
 + (UIViewController *)visibleViewControllerFrom:(UIViewController *)vc;
 
-+ (void)addViewObserver:(id <AKViewObserver>)viewObserver;
-+ (void)removeViewObserver:(id <AKViewObserver>)viewObserver;
++ (void)addViewObserver:(id <AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes;
++ (void)removeViewObserver:(id <AKViewObserver>)viewObserver fromClasses:(NSArray<Class> *)classes;
 
 @end
