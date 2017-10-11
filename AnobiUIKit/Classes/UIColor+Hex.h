@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define UIColorWith(rgbHex, alpha) [UIColor colorWithHexRGB:rgbHex alpha:alpha]
+#define UIColorWith(rgbHex, _alpha) [UIColor colorWithHexRGB:rgbHex alpha:_alpha]
 
 @interface UIColor (Hex)
 
