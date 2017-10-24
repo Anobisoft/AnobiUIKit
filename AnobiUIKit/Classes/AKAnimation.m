@@ -18,7 +18,7 @@ AK3DVector AK3DVectorMake(float x, float y, float z) {
 	return v;
 }
 
-@implementation CAAnimation (AKFlipAnimation)
+@implementation CAAnimation (AnobiAnimation)
 
 + (instancetype)flipWithPiCoef:(float)piCoef rotationVector:(AK3DVector)vector {
 	return [self flipWithPiCoef:piCoef rotationVector:vector dutation:AKAnimationDefaultDuration];
@@ -38,9 +38,20 @@ AK3DVector AK3DVectorMake(float x, float y, float z) {
 	return animation;
 }
 
++ (instancetype)shakeAnimation {
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    animation.values = @[ [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-5.0f, 0.0f, 0.0f)],
+                          [NSValue valueWithCATransform3D:CATransform3DMakeTranslation( 5.0f, 0.0f, 0.0f)]
+                          ];
+    animation.autoreverses = YES;
+    animation.repeatCount = 3.0f;
+    animation.duration = 0.1f;
+    return animation;
+}
+
 @end
 
-@implementation CALayer(AKFlipAnimation)
+@implementation CALayer(AnobiAnimation)
 
 - (void)addFlipAnimation:(CAAnimation *)anim {
     self.zPosition = MAX(self.bounds.size.width, self.bounds.size.height) / 2 + 1;
@@ -51,7 +62,5 @@ AK3DVector AK3DVectorMake(float x, float y, float z) {
     anim.duration = duration;
     [self addFlipAnimation:anim];
 }
-
-
 
 @end

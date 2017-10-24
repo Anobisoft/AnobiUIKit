@@ -16,15 +16,16 @@ typedef struct {
 
 AK3DVector AK3DVectorMake(float x, float y, float z);
 
-@interface CAAnimation (AKFlipAnimation)
+@interface CAAnimation (AnobiAnimation)
 
 + (instancetype)flipWithPiCoef:(float)piCoef rotationVector:(AK3DVector)vector;
 + (instancetype)flipWithPiCoef:(float)piCoef rotationVector:(AK3DVector)vector dutation:(CGFloat)duration;
++ (instancetype)shakeAnimation;
 
 @end
 
 
-@interface CALayer (AKFlipAnimation)
+@interface CALayer (AnobiAnimation)
 
 - (void)addFlipAnimation:(CAAnimation *)animation;
 - (void)addFlipAnimation:(CAAnimation *)animation withDuration:(NSTimeInterval)duration;
