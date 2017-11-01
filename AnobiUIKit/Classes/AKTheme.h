@@ -52,7 +52,7 @@
 
 //#define AKThemeColorKey_ @""
 
-@interface AKTheme : NSObject <DisableStdInstantiating, KeyedSubscript, IndexedSubscript>
+@interface AKTheme : NSObject <DisableNSInit, KeyedSubscript, IndexedSubscript>
 
 @property (readonly) NSString *name;
 @property (readonly) NSDictionary *keyedColors;
