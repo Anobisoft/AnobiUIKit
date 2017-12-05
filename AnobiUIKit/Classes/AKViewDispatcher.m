@@ -141,12 +141,12 @@ static NSMutableDictionary <Class, NSPointerArray *> *observersByViewClass;
         return [self visibleViewControllerFrom:((UINavigationController *)vc).visibleViewController];
     } else if ([vc isKindOfClass:[UITabBarController class]]) {
         return [self visibleViewControllerFrom:((UITabBarController *)vc).selectedViewController];
+    } else if (vc.presentedViewController) {
+        return [self visibleViewControllerFrom:vc.presentedViewController];
+    } else if (vc.childViewControllers.count) {
+        return [self visibleViewControllerFrom:vc.childViewControllers.lastObject];
     } else {
-        if (vc.presentedViewController) {
-            return [self visibleViewControllerFrom:vc.presentedViewController];
-        } else {
-            return vc;
-        }
+        return vc;
     }
 }
 
