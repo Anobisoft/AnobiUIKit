@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AnobiKit/AKTypes.h>
+#import "UINavigationBar+AK.h"
 
 #define AKThemeColorKey_mainBackground @"mainBackground"
 #define AKThemeColorKey_mainTint @"mainTint"
@@ -49,21 +50,20 @@
 #define AKThemeColorKey_searchbar @"searchbar"
 #define AKThemeColorKey_searchbarTint @"searchbarTint"
 
-
-//#define AKThemeColorKey_ @""
-
 @interface AKTheme : NSObject <DisableNSInit, KeyedSubscript, IndexedSubscript>
 
++ (instancetype)currentTheme;
++ (void)setCurrentThemeName:(NSString *)name;
++ (instancetype)themeWithName:(NSString *)name;
++ (NSArray<NSString *> *)allNames;
+
 @property (readonly) NSString *name;
-@property (readonly) NSDictionary *keyedColors;
-@property (readonly) NSArray *indexedColors;
+@property (readonly) NSDictionary<NSString *, UIColor *> *keyedColors;
+@property (readonly) NSArray<UIColor *> *indexedColors;
 @property (readonly) UIBarStyle barStyle;
+@property (readonly) UIStatusBarStyle statusBarStyle;
+
 - (UIColor *)objectForKeyedSubscript:(NSString *)key;
 - (UIColor *)objectAtIndexedSubscript:(NSUInteger)idx;
-
-+ (instancetype)currentTheme;
-+ (void)setCurrentThemeNamed:(NSString *)name;
-+ (instancetype)themeNamed:(NSString *)name;
-+ (NSArray<NSString *> *)allNames;
 
 @end

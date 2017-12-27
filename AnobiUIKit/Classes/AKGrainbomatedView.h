@@ -12,8 +12,4 @@ IB_DESIGNABLE
 
 @interface AKGrainbomatedView : UIView
 
-@property (nonatomic) IBInspectable CGFloat blickWidth;
-@property (nonatomic) IBInspectable CGFloat blickDuration;
-@property IBInspectable BOOL vertical;
-
 @end

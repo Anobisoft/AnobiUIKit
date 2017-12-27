@@ -35,7 +35,7 @@
     NSUInteger newIndex = [[AKTheme allNames] indexOfObject:currentTheme.name];
     newIndex++;
     newIndex %= [AKTheme allNames].count;
-    [AKTheme setCurrentThemeNamed:[AKTheme allNames][newIndex]];
+    [AKTheme setCurrentThemeName:[AKTheme allNames][newIndex]];
     [self updateUIWithCurrentTheme];
 }
 
@@ -43,31 +43,23 @@
     [gridView.layer addFlipAnimation:flipAnimation];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return (UIStatusBarStyle)currentTheme.barStyle;
-}
-
 - (void)updateUIWithCurrentTheme {
     if (currentTheme != [AKTheme currentTheme]) {
         currentTheme = [AKTheme currentTheme];
-        [self setNeedsStatusBarAppearanceUpdate];
-        
-        self.navigationController.navigationBar.barStyle =
-        self.navigationController.toolbar.barStyle = currentTheme.barStyle;
-        
-        self.navigationController.navigationBar.barTintColor =
-        self.navigationController.toolbar.barTintColor = currentTheme[AKThemeColorKey_naviBarTint];
+
+        self.navigationController.toolbar.barStyle =
+        self.navigationController.navigationBar.barStyle = [AKTheme currentTheme].barStyle;
+        self.navigationController.toolbar.barTintColor =
+        self.navigationController.navigationBar.barTintColor = currentTheme[AKThemeColorKey_naviBarTint];
         self.navigationController.toolbar.translucent = false;
         self.navigationController.toolbar.clipsToBounds = false;
         
+        self.navigationController.toolbar.tintColor =
         self.navigationController.navigationBar.tintColor = currentTheme[AKThemeColorKey_naviTint];
-        
-        NSMutableDictionary *titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes.mutableCopy;
-        titleTextAttributes[NSForegroundColorAttributeName] = currentTheme[AKThemeColorKey_naviTitle];
-        self.navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
+        self.navigationController.navigationBar.titleTextColor = currentTheme[AKThemeColorKey_naviTitle];
         
         self.view.backgroundColor = currentTheme[AKThemeColorKey_mainBackground];
-        
+        self.view.tintColor = currentTheme[AKThemeColorKey_mainTint];
         themeNameLabel.textColor = currentTheme[AKThemeColorKey_mainText];
         themeNameLabel.text = [NSString stringWithFormat:@"Current Theme name: %@", currentTheme.name];
         
@@ -92,7 +84,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [AKTheme setCurrentThemeNamed:[AKTheme allNames][indexPath.row]];
+    [AKTheme setCurrentThemeName:[AKTheme allNames][indexPath.row]];
     [self updateUIWithCurrentTheme];
 }
 

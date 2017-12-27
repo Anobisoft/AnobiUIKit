@@ -10,12 +10,10 @@
 #import <AnobiKit/AKConfig.h>
 #import "UIColor+Hex.h"
 
-#define AKThemeConfigName @"AKThemes"
 #define AKThemeConfigKey_Themes @"Themes"
 #define AKThemeConfigKey_BarStyle @"BarStyle"
 #define AKThemeConfigKey_KeyedColors @"KeyedColors"
 #define AKThemeConfigKey_IndexedColors @"IndexedColors"
-#define AKThemeConfigKey_DefaultTheme @"DefaultTheme"
 
 #define AKThemeUDKey_CurrentThemeName @"AKThemeCurrentThemeName"
 
@@ -29,12 +27,11 @@ static NSString *currentThemeName;
 
 + (void)initialize {
     [super initialize];
-    NSDictionary *configThemes = [AKConfig<NSDictionary *> shared][AKThemeConfigName][AKThemeConfigKey_Themes];
+    NSDictionary *configThemes = [AKConfig configWithName:NSStringFromClass(self)][AKThemeConfigKey_Themes];
     NSMutableDictionary <NSString *, NSDictionary *> *themesMutable = [NSMutableDictionary new];
     NSMutableDictionary <NSString *, id> *themeMutable = [NSMutableDictionary new];
     NSMutableDictionary <NSString *, UIColor *> *colorsMutable = [NSMutableDictionary new];
     NSMutableArray <UIColor *> *iconColorsMutable = [NSMutableArray new];
-    
     for (NSString *themeName in configThemes.allKeys) {
         NSDictionary <NSString *, id> *configTheme = configThemes[themeName];
         for (NSString *key in configTheme.allKeys) {
@@ -65,26 +62,20 @@ static NSString *currentThemeName;
     themes = themesMutable.copy;
     
     currentThemeName = [[NSUserDefaults standardUserDefaults] objectForKey:AKThemeUDKey_CurrentThemeName];
-    if (!currentThemeName) currentThemeName = [AKConfig shared][AKThemeConfigName][AKThemeConfigKey_DefaultTheme];
-    if (!currentThemeName) currentThemeName = configThemes.allKeys.firstObject;
+    if (!currentThemeName) currentThemeName = themes.allKeys.firstObject;
     if (!currentThemeName) @throw NSUndefinedKeyException;
 }
 
-
 + (instancetype)currentTheme {
-    /* NSInteger hour = [[NSCalendar currentCalendar] component:NSCalendarUnitHour fromDate:[NSDate date]];
-    BOOL day = (hour > 10 && hour < 19);
-//    day = [[NSCalendar currentCalendar] component:NSCalendarUnitSecond fromDate:[NSDate date]] % 30 < 15;
-    if (day) return [self themeNamed:@"Light"];
-    else */ return [self themeNamed:currentThemeName];
+    return [self themeWithName:currentThemeName];
 }
 
-+ (void)setCurrentThemeNamed:(NSString *)name {
++ (void)setCurrentThemeName:(NSString *)name {
     currentThemeName = name;
     [[NSUserDefaults standardUserDefaults] setObject:currentThemeName forKey:AKThemeUDKey_CurrentThemeName];
 }
 
-+ (instancetype)themeNamed:(NSString *)name {
++ (instancetype)themeWithName:(NSString *)name {
     id instance = instances[name];
     if (!instance) {
         instance = [[self alloc] initWithName:name];
@@ -101,13 +92,17 @@ static NSString *currentThemeName;
 - (instancetype)initWithName:(NSString *)name {
     if (self = [super init]) {
         NSDictionary *themeDict = themes[name];
-        
-        if (!themeDict) return nil;
-        else {
+        if (themeDict) {
             _name = name;
             _keyedColors = themeDict[AKThemeConfigKey_KeyedColors];
-            _barStyle = [themeDict[AKThemeConfigKey_BarStyle] isEqualToString:@"Black"] || [themeDict[AKThemeConfigKey_BarStyle] isEqualToString:@"Dark"] ? UIBarStyleBlack : UIBarStyleDefault;
             _indexedColors = themeDict[AKThemeConfigKey_IndexedColors];
+            NSString *barStyleString = themeDict[AKThemeConfigKey_BarStyle];
+            BOOL black = [barStyleString isEqualToString:@"Black"] || [barStyleString isEqualToString:@"Dark"];
+            _barStyle = black ? UIBarStyleBlack : UIBarStyleDefault;
+            _statusBarStyle = black ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+            
+        } else {
+            return nil;
         }
     }
     return self;
