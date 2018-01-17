@@ -1,6 +1,6 @@
 //
 //  AKViewDispatcher.h
-//  ASUtilities
+//  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 2017-03-04
 //  Copyright © 2017 Anobisoft. All rights reserved.
@@ -26,5 +26,6 @@
 
 + (void)addViewObserver:(id <AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes;
 + (void)removeViewObserver:(id <AKViewObserver>)viewObserver fromClasses:(NSArray<Class> *)classes;
++ (void)cleanupObserversPool;
 
 @end

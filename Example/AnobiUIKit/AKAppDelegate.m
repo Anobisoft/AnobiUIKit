@@ -8,11 +8,29 @@
 
 #import "AKAppDelegate.h"
 @import AnobiUIKit;
+#import "AKMainViewController.h"
+#import "AKViewObserver.h"
 
-@implementation AKAppDelegate
+@implementation AKAppDelegate {
+    __strong AKViewObserver *observer;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    NSArray<Class> *classes = @[NSClassFromString(@"AKMainViewController")];
+    observer = [AKViewObserver new];
+    static int i = 0;
+    static NSArray *colors;
+    colors = @[@"FF0055", @"33FF55", @"0022FF"];
+    observer.callback = ^NSString *{
+        if (i == colors.count) {
+            observer = nil;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [AKViewDispatcher cleanupObserversPool];
+            });
+        }
+        return colors[i++%colors.count];
+    };
+    [AKViewDispatcher addViewObserver:observer forClasses:classes];
     return YES;
 }
 

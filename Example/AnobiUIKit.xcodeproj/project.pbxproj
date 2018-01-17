@@ -18,6 +18,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		6A98CC0C200F9CBE00485711 /* AKViewObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A98CC0B200F9CBE00485711 /* AKViewObserver.m */; };
 		6AA3B68C1F38AEFB001D70DD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA3B68B1F38AEFB001D70DD /* XCTest.framework */; };
 		6AC5EBB01F56F411009D8D02 /* AKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC5EBAF1F56F411009D8D02 /* AKMainViewController.m */; };
 		6AFBA68D1F34B05C00343DE1 /* AKTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AFBA68C1F34B05C00343DE1 /* AKTheme.plist */; };
@@ -56,6 +57,8 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		63142E5C9523AC112F4684DA /* Pods-AnobiUIKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnobiUIKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnobiUIKit_Tests/Pods-AnobiUIKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		6A98CC0A200F9CBE00485711 /* AKViewObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKViewObserver.h; sourceTree = "<group>"; };
+		6A98CC0B200F9CBE00485711 /* AKViewObserver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKViewObserver.m; sourceTree = "<group>"; };
 		6AA3B68B1F38AEFB001D70DD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6AC5EBAE1F56F411009D8D02 /* AKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainViewController.h; sourceTree = "<group>"; };
 		6AC5EBAF1F56F411009D8D02 /* AKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainViewController.m; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				6AFBA68C1F34B05C00343DE1 /* AKTheme.plist */,
 				6003F59C195388D20070C39A /* AKAppDelegate.h */,
 				6003F59D195388D20070C39A /* AKAppDelegate.m */,
+				6A98CC0A200F9CBE00485711 /* AKViewObserver.h */,
+				6A98CC0B200F9CBE00485711 /* AKViewObserver.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6AC5EBAE1F56F411009D8D02 /* AKMainViewController.h */,
@@ -420,6 +425,7 @@
 			files = (
 				6003F59E195388D20070C39A /* AKAppDelegate.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				6A98CC0C200F9CBE00485711 /* AKViewObserver.m in Sources */,
 				6AC5EBB01F56F411009D8D02 /* AKMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
