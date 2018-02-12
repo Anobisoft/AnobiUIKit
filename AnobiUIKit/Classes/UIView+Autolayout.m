@@ -1,5 +1,5 @@
 //
-//  UIView+Anobi.m
+//  UIView+Autolayout.m
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 2016-10-04

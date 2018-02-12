@@ -9,18 +9,22 @@
 #import <UIKit/UIKit.h>
 
 typedef struct {
-    float x;
-    float y;
-    float z;
+    CGFloat x;
+    CGFloat y;
+    CGFloat z;
 } AK3DVector;
 
-AK3DVector AK3DVectorMake(float x, float y, float z);
+AK3DVector AK3DVectorMake(CGFloat x, CGFloat y, CGFloat z);
+AK3DVector AK3DVectorReverse(AK3DVector vector);
+
+extern CFTimeInterval const AKAnimationDefaultDuration;
 
 @interface CAAnimation (AnobiAnimation)
 
-+ (instancetype)flipWithPiCoef:(float)piCoef rotationVector:(AK3DVector)vector;
-+ (instancetype)flipWithPiCoef:(float)piCoef rotationVector:(AK3DVector)vector dutation:(CGFloat)duration;
-+ (instancetype)shakeAnimation;
++ (instancetype)flipAngle:(CGFloat)rad vector:(AK3DVector)vector;
++ (instancetype)flipAngle:(CGFloat)rad vector:(AK3DVector)vector dutation:(CFTimeInterval)duration;
++ (instancetype)shakeVector:(AK3DVector)vector;
++ (instancetype)shakeVector:(AK3DVector)vector dutation:(CFTimeInterval)duration;
 
 @end
 

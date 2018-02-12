@@ -8,9 +8,7 @@
 
 #import "AKAnimation.h"
 
-#define AKAnimationDefaultDuration 0.6f
-
-AK3DVector AK3DVectorMake(float x, float y, float z) {
+AK3DVector AK3DVectorMake(CGFloat x, CGFloat y, CGFloat z) {
 	AK3DVector v;
 	v.x = x;
 	v.y = y;
@@ -18,34 +16,54 @@ AK3DVector AK3DVectorMake(float x, float y, float z) {
 	return v;
 }
 
+AK3DVector AK3DVectorReverse(AK3DVector vector) {
+    AK3DVector v;
+    v.x = -1.0 * vector.x;
+    v.y = -1.0 * vector.y;
+    v.z = -1.0 * vector.z;
+    return v;
+}
+
+CFTimeInterval const AKAnimationDefaultDuration = 0.6;
+double const AKAnimationDefaultFrameFrequency = 48;
+
 @implementation CAAnimation (AnobiAnimation)
 
-+ (instancetype)flipWithPiCoef:(float)piCoef rotationVector:(AK3DVector)vector {
-	return [self flipWithPiCoef:piCoef rotationVector:vector dutation:AKAnimationDefaultDuration];
+NSUInteger AKFrameCount(CFTimeInterval duration, double frameFrequency) {
+    return ceil(duration * frameFrequency);
 }
 
-+ (instancetype)flipWithPiCoef:(float)piCoef rotationVector:(AK3DVector)vector dutation:(CGFloat)duration {
-	CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-	NSMutableArray *mutableArray = [NSMutableArray new];
-	NSUInteger framesCount = (NSUInteger)ceil(duration * 48.f);
-	for (int i = 1; i <= framesCount; i++) {
-		[mutableArray addObject:[NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI * piCoef * i / framesCount, vector.x, vector.y, vector.z)]];
-	}
-	animation.values = mutableArray.copy;
-	animation.autoreverses = NO;
-	animation.repeatCount = 1.0f;
-	animation.duration = duration;
-	return animation;
++ (instancetype)flipAngle:(CGFloat)rad vector:(AK3DVector)vector {
+    return [self flipAngle:rad vector:vector dutation:AKAnimationDefaultDuration];
 }
 
-+ (instancetype)shakeAnimation {
++ (instancetype)flipAngle:(CGFloat)rad vector:(AK3DVector)vector dutation:(CFTimeInterval)duration {
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    animation.values = @[ [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-5.0f, 0.0f, 0.0f)],
-                          [NSValue valueWithCATransform3D:CATransform3DMakeTranslation( 5.0f, 0.0f, 0.0f)]
+    NSMutableArray *mutableArray = [NSMutableArray new];
+    NSUInteger frameCount = AKFrameCount(duration, AKAnimationDefaultFrameFrequency);
+    for (int i = 1; i <= frameCount; i++) {
+        [mutableArray addObject:[NSValue valueWithCATransform3D:CATransform3DMakeRotation(rad * i / frameCount, vector.x, vector.y, vector.z)]];
+    }
+    animation.values = mutableArray.copy;
+    animation.autoreverses = false;
+    animation.repeatCount = 1.0f;
+    animation.duration = duration;
+    return animation;
+}
+
++ (instancetype)shakeVector:(AK3DVector)vector {
+    return [self shakeVector:vector dutation:AKAnimationDefaultDuration * 2.0];
+}
+
++ (instancetype)shakeVector:(AK3DVector)vector dutation:(CFTimeInterval)duration {
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    AK3DVector reverseVector = AK3DVectorReverse(vector);
+    animation.values = @[ [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(vector.x, vector.y, vector.z)],
+                          [NSValue valueWithCATransform3D:CATransform3DMakeTranslation(reverseVector.x, reverseVector.y, reverseVector.z)]
                           ];
-    animation.autoreverses = YES;
+    animation.autoreverses = true;
     animation.repeatCount = 3.0f;
-    animation.duration = 0.1f;
+    animation.duration = duration;
     return animation;
 }
 

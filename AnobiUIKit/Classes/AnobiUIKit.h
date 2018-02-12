@@ -10,7 +10,7 @@
 #import <AnobiUIKit/AKGradientView.h>
 #import <AnobiUIKit/AKGrainbomatedView.h>
 #import <AnobiUIKit/AKGridView.h>
-#import <AnobiUIKit/AKTheme.h>
+#import <AnobiUIKit/AKThemeManager.h>
 #import <AnobiUIKit/AKViewDispatcher.h>
 #import <AnobiUIKit/CALayer+XibConfiguration.h>
 #import <AnobiUIKit/UIColor+Hex.h>

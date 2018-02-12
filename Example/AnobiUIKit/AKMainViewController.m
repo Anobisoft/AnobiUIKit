@@ -7,8 +7,7 @@
 //
 
 #import "AKMainViewController.h"
-#import "AnobiUIKit/AKTheme.h"
-#import "AnobiUIKit/AKAnimation.h"
+@import AnobiUIKit;
 
 @interface AKMainViewController() <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,18 +23,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [AKThemeManager managerWithConfigName:@"AKThemes"];
     self.tableView.tableFooterView = [UIView new];
     [self updateUIWithCurrentTheme];
-    
-    flipAnimation = [CAAnimation flipWithPiCoef:2.0 rotationVector:AK3DVectorMake(0.3, 0.5, 0)];
-    
+    flipAnimation = [CAAnimation flipAngle:2.0 * M_PI vector:AK3DVectorMake(0.3, 0.5, 0)];
 }
 
 - (IBAction)nextThemeTap:(id)sender {
-    NSUInteger newIndex = [[AKTheme allNames] indexOfObject:currentTheme.name];
+    NSUInteger newIndex = [[AKThemeManager manager].allNames indexOfObject:currentTheme.name];
     newIndex++;
-    newIndex %= [AKTheme allNames].count;
-    [AKTheme setCurrentThemeName:[AKTheme allNames][newIndex]];
+    newIndex %= [AKThemeManager manager].allNames.count;
+    [[AKThemeManager manager] setCurrentThemeName:[AKThemeManager manager].allNames[newIndex]];
     [self updateUIWithCurrentTheme];
 }
 
@@ -44,11 +42,12 @@
 }
 
 - (void)updateUIWithCurrentTheme {
-    if (currentTheme != [AKTheme currentTheme]) {
-        currentTheme = [AKTheme currentTheme];
+    AKTheme *theme = [AKThemeManager manager].currentTheme;
+    if (currentTheme != theme) {
+        currentTheme = theme;
 
         self.navigationController.toolbar.barStyle =
-        self.navigationController.navigationBar.barStyle = [AKTheme currentTheme].barStyle;
+        self.navigationController.navigationBar.barStyle = currentTheme.barStyle;
         self.navigationController.toolbar.barTintColor =
         self.navigationController.navigationBar.barTintColor = currentTheme[AKThemeColorKey_naviBarTint];
         self.navigationController.toolbar.translucent = false;
@@ -72,19 +71,19 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [AKTheme allNames].count;
+    return [AKThemeManager manager].allNames.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.backgroundColor = currentTheme[indexPath.row % 2 ? AKThemeColorKey_tableCellBackground : AKThemeColorKey_tableSecondaryCellBackground];
     cell.textLabel.textColor = currentTheme[indexPath.row % 2 ? AKThemeColorKey_mainText : AKThemeColorKey_mainSubtext ];
-    cell.textLabel.text = [AKTheme allNames][indexPath.row];
+    cell.textLabel.text = [AKThemeManager manager].allNames[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [AKTheme setCurrentThemeName:[AKTheme allNames][indexPath.row]];
+    [[AKThemeManager manager] setCurrentThemeName:[AKThemeManager manager].allNames[indexPath.row]];
     [self updateUIWithCurrentTheme];
 }
 

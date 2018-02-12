@@ -10,12 +10,13 @@
 #import <AnobiKit/AKTypes.h>
 #import "UINavigationBar+AK.h"
 
+#define AKThemeConfigKey_KeyedColors @"KeyedColors"
+#define AKThemeConfigKey_IndexedColors @"IndexedColors"
+#define AKThemeConfigKey_BarStyle @"BarStyle"
+
 @interface AKTheme : NSObject <DisableNSInit, KeyedSubscript, IndexedSubscript>
 
-+ (instancetype)currentTheme;
-+ (void)setCurrentThemeName:(NSString *)name;
-+ (instancetype)themeWithName:(NSString *)name;
-+ (NSArray<NSString *> *)allNames;
++ (instancetype)themeNamed:(NSString *)name withConfig:(NSDictionary *)config;
 
 @property (readonly) NSString *name;
 @property (readonly) NSDictionary<NSString *, UIColor *> *keyedColors;
