@@ -32,6 +32,10 @@
     return self;
 }
 
+- (NSString *)pattern {
+    return _pattern ?: @"[*]+";
+}
+
 - (void)setDelegate:(id<UITextFieldDelegate>)delegate {
     __delegate = delegate;
 }
