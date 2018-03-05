@@ -44,8 +44,5 @@ $ pod install
 ## Requirements
 Minimum iOS Target is ios **8.3**.
 
-## Usage
-Any way you can.
-
 ## License
 AnobiUIKit is released under the MIT license. See LICENSE for details.
