@@ -15,7 +15,6 @@
 @implementation AKFormattedField {
     __weak id<UITextFieldDelegate> __delegate;
     NSString *__text;
-    NSString *maskPattern;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
