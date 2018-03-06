@@ -10,6 +10,9 @@
 @import AnobiUIKit;
 
 typedef NSString * (^Callback)(void);
+
 @interface AKViewObserver : NSObject <AKViewObserver>
+
 @property Callback callback;
+
 @end

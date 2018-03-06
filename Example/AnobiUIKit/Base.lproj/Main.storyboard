@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -147,7 +148,32 @@
                     <view key="view" contentMode="scaleToFill" id="6T0-UK-Hze">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#8*8# -123- a, aa, aaa, [aaaaa] &lt;aaaa&gt;$" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e5s-4K-L0O" customClass="AKFormattedField">
+                                <rect key="frame" x="16" y="117" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="format" value="#8*8# -123- a, aa, aaa, [aaaaa] &lt;aaaa&gt;$"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pattern" value="([#T*\d]+)|([a]{2,3})"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pattern: '([#T*\d]+)|([a]{2,3})'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="893-Oy-CiX">
+                                <rect key="frame" x="16" y="80" width="226" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="893-Oy-CiX" firstAttribute="top" secondItem="Smk-GX-zha" secondAttribute="bottom" constant="16" id="5Oa-gA-iWm"/>
+                            <constraint firstItem="e5s-4K-L0O" firstAttribute="leading" secondItem="6T0-UK-Hze" secondAttribute="leadingMargin" id="Nf6-sk-9O3"/>
+                            <constraint firstItem="e5s-4K-L0O" firstAttribute="top" secondItem="893-Oy-CiX" secondAttribute="bottom" constant="16" id="V0v-qj-1mH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e5s-4K-L0O" secondAttribute="trailing" id="kkg-kR-si9"/>
+                            <constraint firstItem="893-Oy-CiX" firstAttribute="leading" secondItem="6T0-UK-Hze" secondAttribute="leadingMargin" id="ygM-ss-BlN"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="40c-YL-XaD" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -20,7 +20,7 @@
     observer = [AKViewObserver new];
     static int i = 0;
     static NSArray *colors;
-    colors = @[@"FF0055", @"33FF55", @"0022FF"];
+    colors = @[@"#FF0055", @"#33FF55", @"#0022FF"];
     observer.callback = ^NSString *{
         if (i == colors.count) {
             observer = nil;

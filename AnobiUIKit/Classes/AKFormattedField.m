@@ -44,7 +44,7 @@
 }
 
 - (NSString *)text {
-    return __text;
+    return __text ?: @"";
 }
 
 - (void)setText:(NSString *)text {
@@ -55,7 +55,7 @@
         return ;
     }
     NSUInteger tl = text.length;
-    NSString *output = self.format.copy;
+    NSString *output = self.format;
     NSUInteger i = 0;
     NSUInteger j = 0;
     while (i < fl && j < tl) {
@@ -63,14 +63,18 @@
         NSRange foundrange = [self.format rangeOfString:self.pattern options:NSRegularExpressionSearch range:formatrange];
         i = NSMaxRange(foundrange);
         NSRange textmask;
-        if (j + foundrange.length > tl) {
-            textmask = NSMakeRange(j, tl - j);
-            i -= foundrange.length - textmask.length;
+        if (i != NSNotFound) {
+            if (j + foundrange.length > tl) {
+                textmask = NSMakeRange(j, tl - j);
+                i -= foundrange.length - textmask.length;
+            } else {
+                textmask = NSMakeRange(j, foundrange.length);
+            }
+            j += textmask.length;
+            output = [output stringByReplacingCharactersInRange:foundrange withString:[text substringWithRange:textmask]];
         } else {
-            textmask = NSMakeRange(j, foundrange.length);
+            i = fl;
         }
-        j += textmask.length;
-        output = [output stringByReplacingCharactersInRange:foundrange withString:[text substringWithRange:textmask]];
     }
     __text = [text substringWithRange:NSMakeRange(0, j)];
     super.text = [output substringToIndex:i];
@@ -88,7 +92,7 @@
     return should;
 }
 
-- (NSRange)unformattedRange:(NSRange)range {
+- (NSRange)uniform:(NSRange)range {
     NSUInteger fl = self.format.length;
     if (!fl) {
         return range;
@@ -135,11 +139,12 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     BOOL should = true;
+    range = [self uniform:range];
     if (self.delegate && [self.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
         should = [self.delegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
     }
     if (should) {
-        NSString *chtext = [textField.text stringByReplacingCharactersInRange:[self unformattedRange:range] withString:string];
+        NSString *chtext = [textField.text stringByReplacingCharactersInRange:range withString:string];
         self.text = chtext;
     }
     return false;

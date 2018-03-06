@@ -12,10 +12,12 @@
 #import <AnobiUIKit/AKGridView.h>
 #import <AnobiUIKit/AKThemeManager.h>
 #import <AnobiUIKit/AKViewDispatcher.h>
+#import <AnobiUIKit/AKFormattedField.h>
 #import <AnobiUIKit/CALayer+XibConfiguration.h>
 #import <AnobiUIKit/UIColor+Hex.h>
 #import <AnobiUIKit/UIImage+Resize.h>
 #import <AnobiUIKit/UIView+Autolayout.h>
 #import <AnobiUIKit/UIViewController+AK.h>
+
 
 
