@@ -10,7 +10,7 @@
 
 @interface AKTableViewController : UITableViewController
 
-- (void)becomeFirstResponderIndexPath:(NSIndexPath *)indexPath;
+- (void)becomeFirstResponderTextFieldAtIndexPath:(NSIndexPath *)indexPath;
 - (void)scrollToIndexPath:(NSIndexPath *)ip completion:(dispatch_block_t)completion;
 
 @end

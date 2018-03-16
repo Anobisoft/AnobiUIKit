@@ -26,10 +26,12 @@
     return nil;
 }
 
-- (void)becomeFirstResponderIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    UITextField *tf = [self findSubviewTextField:cell];
-    [tf becomeFirstResponder];
+- (void)becomeFirstResponderTextFieldAtIndexPath:(NSIndexPath *)indexPath {
+    [self scrollToIndexPath:indexPath completion:^{
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        UITextField *tf = [self findSubviewTextField:cell];
+        [tf becomeFirstResponder];
+    }];
 }
 
 - (void)scrollToIndexPath:(NSIndexPath *)ip completion:(dispatch_block_t)completion {

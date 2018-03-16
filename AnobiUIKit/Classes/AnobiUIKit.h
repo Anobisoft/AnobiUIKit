@@ -19,5 +19,8 @@
 #import <AnobiUIKit/UIView+Autolayout.h>
 #import <AnobiUIKit/UIViewController+AK.h>
 
+#import <AnobiUIKit/AKTableViewController.h>
+#import <AnobiUIKit/AKImagePicker.h>
+
 
 
