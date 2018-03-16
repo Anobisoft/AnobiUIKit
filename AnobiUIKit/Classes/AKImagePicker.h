@@ -27,6 +27,10 @@ typedef enum : NSUInteger {
 @property (nonatomic) UIImagePickerControllerCameraDevice cameraDevice;
 @property (nonatomic) UIImagePickerControllerCameraFlashMode   cameraFlashMode;
 
+@property (nonatomic) NSString *alertTitle;
+@property (nonatomic) NSString *alertMessage;
+@property (nonatomic) UIAlertControllerStyle alertPreferredStyle;
+
 @end
 
 @interface UIViewController(AKImagePicker)

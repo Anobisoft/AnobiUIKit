@@ -46,6 +46,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 
 - (instancetype)initWithSourceOptions:(AKImagePickerSourceOption)options completion:(void (^)(UIImage *image))completion {
     if (self = [super init]) {
+        self.alertPreferredStyle = UIAlertControllerStyleActionSheet;
         completionBlock = completion;
         availableCount = 0;
         for (int sourceType = 0; sourceType < 3; sourceType++) {
@@ -59,6 +60,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 
 - (instancetype)initWithCompletion:(void (^)(UIImage *image))completion {
     if (self = [super init]) {
+        self.alertPreferredStyle = UIAlertControllerStyleActionSheet;
         completionBlock = completion;
         availableCount = 0;
         for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
@@ -73,10 +75,12 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
             sourceRect:(CGRect)sourceRect {
     if (availableCount > 1) {
         NSArray *sourceLocalizationKeys = @[@"Photo Library", @"Camera", @"Saved Photos Album"];
-        
-        UIAlertControllerStyle style = sourceView ? UIAlertControllerStyleActionSheet : UIAlertControllerStyleAlert;
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                       message:nil
+        UIAlertControllerStyle style = UIAlertControllerStyleAlert;
+        if (self.alertPreferredStyle == UIAlertControllerStyleActionSheet && sourceView) {
+            style = self.alertPreferredStyle;
+        }
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.alertTitle
+                                                                       message:self.alertMessage
                                                                 preferredStyle:style];
         
         for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
