@@ -50,7 +50,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
         completionBlock = completion;
         availableCount = 0;
         for (int sourceType = 0; sourceType < 3; sourceType++) {
-            if (options && (1 << sourceType)) {
+            if (options & (1 << sourceType)) {
                 availableCount += available[sourceType] = SourceAvailable(sourceType);
             }
         }
