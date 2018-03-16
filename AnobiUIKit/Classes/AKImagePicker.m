@@ -29,9 +29,9 @@ static id instance = nil;
 
 + (instancetype)pickerWithSourceOptions:(AKImagePickerSourceOption)options completion:(void (^)(UIImage *image))completion {
     if (options == AKImagePickerSourceOptionAuto) {
-        return [[self alloc] initWithCompletion:completion];
+        return [self pickerWithCompletion:completion];
     } else {
-        return [[self alloc] initWithSourceOptions:(AKImagePickerSourceOption)options completion:completion];
+        return instance = [[self alloc] initWithSourceOptions:(AKImagePickerSourceOption)options completion:completion];
     }
 }
 
