@@ -10,9 +10,9 @@
 
 typedef enum : NSUInteger {
     AKImagePickerSourceOptionAuto = 0,
-    AKImagePickerSourceOptionPhotoLibrary = 1 << 0,
-    AKImagePickerSourceOptionCamera = 1 << 1,
-    AKImagePickerSourceOptionSavedPhotosAlbum = 1 << 2,
+    AKImagePickerSourceOptionPhotoLibrary = 1 << UIImagePickerControllerSourceTypePhotoLibrary,
+    AKImagePickerSourceOptionCamera = 1 << UIImagePickerControllerSourceTypeCamera,
+    AKImagePickerSourceOptionSavedPhotosAlbum = 1 << UIImagePickerControllerSourceTypeSavedPhotosAlbum,
 } AKImagePickerSourceOption;
 
 @interface AKImagePicker : NSObject
