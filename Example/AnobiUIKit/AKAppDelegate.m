@@ -7,6 +7,7 @@
 //
 
 #import "AKAppDelegate.h"
+@import AnobiKit;
 @import AnobiUIKit;
 #import "AKMainViewController.h"
 #import "AKViewObserver.h"
@@ -16,6 +17,9 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSLog(@"%@", [NSBundle UIKitBundle].localizationKeys);
+    
     NSArray<Class> *classes = @[NSClassFromString(@"AKMainViewController")];
     observer = [AKViewObserver new];
     static int i = 0;
