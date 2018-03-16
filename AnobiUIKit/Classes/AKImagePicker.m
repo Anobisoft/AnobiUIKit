@@ -71,8 +71,6 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 - (void)viewController:(UIViewController *)viewController
             sourceView:(UIView *)sourceView
             sourceRect:(CGRect)sourceRect {
-    
-    
     if (availableCount > 1) {
         NSArray *sourceLocalizationKeys = @[@"Photo Library", @"Camera", @"Saved Photos Album"];
         
@@ -105,6 +103,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
         }
         alert.popoverPresentationController.sourceRect = sourceRect;
 //        alert.popoverPresentationController.permittedArrowDirections = UIMenuControllerArrowUp;
+        [viewController presentViewController:alert animated:true completion:nil];
     } else {
         for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
             if (available[sourceType]) {
@@ -119,12 +118,13 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 - (UIImagePickerController *)imagePickerControllerWithSourceType:(UIImagePickerControllerSourceType)sourceType {
     UIImagePickerController *picker = [UIImagePickerController new];
     picker.delegate = self;
-//    picker.allowsEditing = [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad || sourceType == UIImagePickerControllerSourceTypeCamera;
+    picker.allowsEditing = self.allowsEditing && ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad || sourceType == UIImagePickerControllerSourceTypeCamera);
     picker.sourceType = sourceType;
-//    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
-//        picker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-//        picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-//    }
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        picker.cameraDevice = self.cameraDevice;
+        picker.cameraCaptureMode = self.cameraCaptureMode;
+        picker.cameraFlashMode = self.cameraFlashMode;
+    }
     return picker;
 }
 

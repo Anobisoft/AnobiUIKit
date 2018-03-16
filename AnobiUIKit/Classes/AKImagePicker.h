@@ -21,6 +21,12 @@ typedef enum : NSUInteger {
 + (instancetype)pickerWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *image))completion;
 + (instancetype)pickerWithSourceOptions:(AKImagePickerSourceOption)options completion:(void (^)(UIImage *image))completion;
 
+@property (nonatomic) BOOL allowsEditing;
+
+@property (nonatomic) UIImagePickerControllerCameraCaptureMode cameraCaptureMode;
+@property (nonatomic) UIImagePickerControllerCameraDevice cameraDevice;
+@property (nonatomic) UIImagePickerControllerCameraFlashMode   cameraFlashMode;
+
 @end
 
 @interface UIViewController(AKImagePicker)
