@@ -15,20 +15,6 @@
             sourceRect:(CGRect)sourceRect;
 @end
 
-@implementation UIViewController(AKImagePicker)
-
-- (void)showImagePicker:(AKImagePicker *)picker {
-    [self showImagePicker:picker sourceView:nil sourceRect:CGRectNull];
-}
-
-- (void)showImagePicker:(AKImagePicker *)picker sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect {
-    [picker viewController:self sourceView:sourceView sourceRect:sourceRect];
-}
-
-@end
-
-
-
 @implementation AKImagePicker {
     BOOL available[3];
     NSInteger availableCount;
@@ -38,7 +24,15 @@
 static id instance = nil;
 
 + (instancetype)pickerWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *image))completion {
-    return [[self alloc] initWithSourceType:sourceType completion:completion];
+    return [self pickerWithSourceOptions:1 << sourceType completion:completion];
+}
+
++ (instancetype)pickerWithSourceOptions:(AKImagePickerSourceOption)options completion:(void (^)(UIImage *image))completion {
+    if (options == AKImagePickerSourceOptionAuto) {
+        return [[self alloc] initWithCompletion:completion];
+    } else {
+        return [[self alloc] initWithSourceOptions:(AKImagePickerSourceOption)options completion:completion];
+    }
 }
 
 + (instancetype)pickerWithCompletion:(void (^)(UIImage *image))completion {
@@ -50,10 +44,15 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
     return [UIImagePickerController isSourceTypeAvailable:sourceType];
 }
 
-- (instancetype)initWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *image))completion {
+- (instancetype)initWithSourceOptions:(AKImagePickerSourceOption)options completion:(void (^)(UIImage *image))completion {
     if (self = [super init]) {
         completionBlock = completion;
-        available[sourceType] = SourceAvailable(sourceType);
+        availableCount = 0;
+        for (int sourceType = 0; sourceType < 3; sourceType++) {
+            if (options && (1 << sourceType)) {
+                availableCount += available[sourceType] = SourceAvailable(sourceType);
+            }
+        }
     }
     return self;
 }
@@ -142,6 +141,20 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
         instance = nil;
         self->completionBlock(nil);
     }];
+}
+
+@end
+
+
+
+@implementation UIViewController(AKImagePicker)
+
+- (void)showImagePicker:(AKImagePicker *)picker {
+    [self showImagePicker:picker sourceView:nil sourceRect:CGRectNull];
+}
+
+- (void)showImagePicker:(AKImagePicker *)picker sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect {
+    [picker viewController:self sourceView:sourceView sourceRect:sourceRect];
 }
 
 @end

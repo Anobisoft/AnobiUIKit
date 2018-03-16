@@ -8,20 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-@class AKImagePicker;
+typedef enum : NSUInteger {
+    AKImagePickerSourceOptionAuto = 0,
+    AKImagePickerSourceOptionPhotoLibrary = 1 << 0,
+    AKImagePickerSourceOptionCamera = 1 << 1,
+    AKImagePickerSourceOptionSavedPhotosAlbum = 1 << 2,
+} AKImagePickerSourceOption;
+
+@interface AKImagePicker : NSObject
+
++ (instancetype)pickerWithCompletion:(void (^)(UIImage *image))completion;
++ (instancetype)pickerWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *image))completion;
++ (instancetype)pickerWithSourceOptions:(AKImagePickerSourceOption)options completion:(void (^)(UIImage *image))completion;
+
+@end
 
 @interface UIViewController(AKImagePicker)
 - (void)showImagePicker:(AKImagePicker *)picker;
 - (void)showImagePicker:(AKImagePicker *)picker
              sourceView:(UIView *)sourceView
              sourceRect:(CGRect)sourceRect;
-
-@end
-
-@interface AKImagePicker : NSObject
-
-+ (instancetype)pickerWithCompletion:(void (^)(UIImage *image))completion;
-+ (instancetype)pickerWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *image))completion;
 
 @end
 
