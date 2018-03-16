@@ -10,8 +10,12 @@
 
 @implementation UIViewController (AK)
 
-- (UIImage *)imageNamed:(NSString *)imnm {
-    return [UIImage imageNamed:imnm inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
++ (UIImage *)imageNamed:(NSString *)name {
+    return [UIImage imageNamed:name inBundle:[NSBundle bundleForClass:self] compatibleWithTraitCollection:nil];
+}
+
+- (UIImage *)imageNamed:(NSString *)name {
+    return [self.class imageNamed:name];
 }
 
 @end

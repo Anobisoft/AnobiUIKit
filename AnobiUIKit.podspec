@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'AnobiUIKit'
-  s.version          = '0.2.5'
+  s.version          = '0.2.6'
   s.summary          = 'AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.'
 
   s.description      = <<-DESC
@@ -39,7 +39,7 @@ longer...
 # s.frameworks = "SomeFramework", "AnotherFramework"
 # s.library   = "iconv"
 # s.libraries = "iconv", "xml2"
-  s.dependency "AnobiKit", "~> 0.2.4"
+  s.dependency "AnobiKit", "~> 0.2.17"
 
   s.requires_arc = true
 # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }

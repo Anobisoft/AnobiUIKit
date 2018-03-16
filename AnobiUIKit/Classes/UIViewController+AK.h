@@ -10,6 +10,7 @@
 
 @interface UIViewController (AK)
 
-- (UIImage *)imageNamed:(NSString *)imnm;
++ (UIImage *)imageNamed:(NSString *)name;
+- (UIImage *)imageNamed:(NSString *)name;
 
 @end
