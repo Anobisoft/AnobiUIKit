@@ -10,9 +10,8 @@
 #import <AnobiKit/AnobiKit.h>
 
 @interface AKImagePicker() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-- (void)viewController:(UIViewController *)viewController
-            sourceView:(UIView *)sourceView
-            sourceRect:(CGRect)sourceRect;
+- (void)viewController:(UIViewController *)viewController sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect;
+@property (nonatomic) UIImagePickerController *pickerController;
 @end
 
 @implementation AKImagePicker {
@@ -49,26 +48,45 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
         self.alertPreferredStyle = UIAlertControllerStyleActionSheet;
         completionBlock = completion;
         availableCount = 0;
-        for (int sourceType = 0; sourceType < 3; sourceType++) {
-            if (options & (1 << sourceType)) {
+        if (options != AKImagePickerSourceOptionAuto) {
+            for (int sourceType = 0; sourceType < 3; sourceType++) {
+                if (options & (1 << sourceType)) {
+                    availableCount += available[sourceType] = SourceAvailable(sourceType);
+                }
+            }
+        } else {
+            for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
                 availableCount += available[sourceType] = SourceAvailable(sourceType);
             }
         }
-    }
-    return self;
-}
-
-- (instancetype)initWithCompletion:(void (^)(UIImage *image))completion {
-    if (self = [super init]) {
-        self.alertPreferredStyle = UIAlertControllerStyleActionSheet;
-        completionBlock = completion;
-        availableCount = 0;
-        for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
-            availableCount += available[sourceType] = SourceAvailable(sourceType);
-        }
+        self.pickerController = [UIImagePickerController new];
+        self.pickerController.delegate = self;
     }
     return availableCount ? self : nil;
 }
+
+- (instancetype)initWithCompletion:(void (^)(UIImage *image))completion {
+    return [self initWithSourceOptions:AKImagePickerSourceOptionAuto completion:completion];
+}
+
+
+
+#pragma mark -
+#pragma mark - Properties forwarding
+
+@dynamic cameraCaptureMode;
+@dynamic cameraDevice;
+@dynamic cameraFlashMode;
+
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    if ([self respondsToSelector:aSelector]) return self;
+    else return self.pickerController;
+}
+
+
+
+#pragma mark -
+#pragma mark - Alert
 
 - (void)viewController:(UIViewController *)viewController
             sourceView:(UIView *)sourceView
@@ -89,8 +107,9 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
                 [UIAlertAction actionWithTitle:[[NSBundle UIKitBundle] localizedStringForKey:sourceLocalizationKeys[sourceType]]
                                          style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction * _Nonnull action) {
-                                           UIImagePickerController *pickerController = [self imagePickerControllerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-                                           [viewController presentViewController:pickerController animated:true completion:nil];
+                                           [self selectSource:sourceType];
+                                           [viewController presentViewController:self.pickerController
+                                                                        animated:true completion:nil];
                                        }];
                 [alert addAction:action];
             }
@@ -111,7 +130,8 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
     } else {
         for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
             if (available[sourceType]) {
-                [viewController presentViewController:[self imagePickerControllerWithSourceType:sourceType]
+                [self selectSource:sourceType];
+                [viewController presentViewController:self.pickerController
                                              animated:true completion:nil];
                 break;
             }
@@ -119,18 +139,15 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
     }
 }
 
-- (UIImagePickerController *)imagePickerControllerWithSourceType:(UIImagePickerControllerSourceType)sourceType {
-    UIImagePickerController *picker = [UIImagePickerController new];
-    picker.delegate = self;
-    picker.allowsEditing = self.allowsEditing && ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad || sourceType == UIImagePickerControllerSourceTypeCamera);
-    picker.sourceType = sourceType;
-    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
-        picker.cameraDevice = self.cameraDevice;
-        picker.cameraCaptureMode = self.cameraCaptureMode;
-        picker.cameraFlashMode = self.cameraFlashMode;
-    }
-    return picker;
+- (void)selectSource:(UIImagePickerControllerSourceType)sourceType {
+    self.pickerController.allowsEditing = self.allowsEditing && ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad || sourceType == UIImagePickerControllerSourceTypeCamera);
+    self.pickerController.sourceType = sourceType;
 }
+
+
+
+#pragma mark -
+#pragma mark - Delegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *image = picker.allowsEditing ? info[UIImagePickerControllerEditedImage] : info[UIImagePickerControllerOriginalImage];
@@ -150,6 +167,9 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 @end
 
 
+
+#pragma mark -
+#pragma mark -
 
 @implementation UIViewController(AKImagePicker)
 

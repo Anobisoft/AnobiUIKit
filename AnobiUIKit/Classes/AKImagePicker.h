@@ -20,6 +20,7 @@ typedef enum : NSUInteger {
 + (instancetype)pickerWithCompletion:(void (^)(UIImage *image))completion;
 + (instancetype)pickerWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *image))completion;
 + (instancetype)pickerWithSourceOptions:(AKImagePickerSourceOption)options completion:(void (^)(UIImage *image))completion;
+- (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic) BOOL allowsEditing;
 
