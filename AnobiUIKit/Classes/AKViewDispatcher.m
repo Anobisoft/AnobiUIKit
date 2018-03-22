@@ -12,64 +12,90 @@
 @implementation AKViewDispatcher
 
 - (void)swizzledDidLoad {
-    [AKViewDispatcher viewDidLoadViewController:(UIViewController *)self];
-    [self swizzledDidLoad];
+    [AKViewDispatcher viewDidLoadViewController:(UIViewController *)self originInvocation:^{
+        [self swizzledDidLoad];
+    }];
 }
 
 - (void)swizzledWillAppear:(BOOL)animated {
-    [AKViewDispatcher viewWillAppear:animated viewController:(UIViewController *)self];
-    [self swizzledWillAppear:animated];
+    [AKViewDispatcher viewWillAppear:animated viewController:(UIViewController *)self originInvocation:^{
+        [self swizzledWillAppear:animated];
+    }];
 }
 
 - (void)swizzledDidAppear:(BOOL)animated {
-    [AKViewDispatcher viewDidAppear:animated viewController:(UIViewController *)self];
-    [self swizzledDidAppear:animated];
+    [AKViewDispatcher viewDidAppear:animated viewController:(UIViewController *)self originInvocation:^{
+        [self swizzledDidAppear:animated];
+    }];
 }
 
 - (void)swizzledWillDisappear:(BOOL)animated {
-    [AKViewDispatcher viewWillDisappear:animated viewController:(UIViewController *)self];
-    [self swizzledWillDisappear:animated];
+    [AKViewDispatcher viewWillDisappear:animated viewController:(UIViewController *)self originInvocation:^{
+        [self swizzledWillDisappear:animated];
+    }];
 }
 
 - (void)swizzledDidDisappear:(BOOL)animated {
-    [AKViewDispatcher viewDidDisappear:animated viewController:(UIViewController *)self];
-    [self swizzledDidDisappear:animated];
+    [AKViewDispatcher viewDidDisappear:animated viewController:(UIViewController *)self originInvocation:^{
+        [self swizzledDidDisappear:animated];
+    }];    
 }
 
 
 
-+ (void)viewDidLoadViewController:(__kindof UIViewController *)viewController {
++ (void)viewDidLoadViewController:(__kindof UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation {
     for (id<AKViewObserver> observer in observersPoolByViewClass[viewController.class]) {
-        if (observer && [observer respondsToSelector:@selector(viewDidLoadViewController:)])
-            [observer viewDidLoadViewController:viewController];
+        if (observer) {
+            if ([observer respondsToSelector:@selector(viewDidLoadViewController:)])
+                [observer viewDidLoadViewController:viewController];
+            if ([observer respondsToSelector:@selector(viewDidLoadViewController:originInvocation:)])
+                [observer viewDidLoadViewController:viewController originInvocation:originInvocation];
+        }
     }
 }
 
-+ (void)viewWillAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
++ (void)viewWillAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation {
     for (id<AKViewObserver> observer in observersPoolByViewClass[viewController.class]) {
-        if (observer && [observer respondsToSelector:@selector(viewWillAppear:viewController:)])
-            [observer viewWillAppear:animated viewController:viewController];
+        if (observer) {
+            if ([observer respondsToSelector:@selector(viewWillAppear:viewController:)])
+                [observer viewWillAppear:animated viewController:viewController];
+            if ([observer respondsToSelector:@selector(viewWillAppear:viewController:originInvocation:)])
+                [observer viewWillAppear:animated viewController:viewController originInvocation:originInvocation];
+        }
+
     }
 }
 
-+ (void)viewDidAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
++ (void)viewDidAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation {
     for (id<AKViewObserver> observer in observersPoolByViewClass[viewController.class]) {
-        if (observer && [observer respondsToSelector:@selector(viewDidAppear:viewController:)])
-            [observer viewDidAppear:animated viewController:viewController];
+        if (observer) {
+            if ([observer respondsToSelector:@selector(viewDidAppear:viewController:)])
+                [observer viewDidAppear:animated viewController:viewController];
+            if ([observer respondsToSelector:@selector(viewDidAppear:viewController:originInvocation:)])
+                [observer viewDidAppear:animated viewController:viewController originInvocation:originInvocation];
+        }
     }
 }
 
-+ (void)viewWillDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
++ (void)viewWillDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation {
     for (id<AKViewObserver> observer in observersPoolByViewClass[viewController.class]) {
-        if (observer && [observer respondsToSelector:@selector(viewWillDisappear:viewController:)])
-            [observer viewWillDisappear:animated viewController:viewController];
+        if (observer) {
+            if ([observer respondsToSelector:@selector(viewWillDisappear:viewController:)])
+                [observer viewWillDisappear:animated viewController:viewController];
+            if ([observer respondsToSelector:@selector(viewWillDisappear:viewController:originInvocation:)])
+                [observer viewWillDisappear:animated viewController:viewController originInvocation:originInvocation];
+        }
     }
 }
 
-+ (void)viewDidDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
++ (void)viewDidDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation {
     for (id<AKViewObserver> observer in observersPoolByViewClass[viewController.class]) {
-        if (observer && [observer respondsToSelector:@selector(viewDidDisappear:viewController:)])
-            [observer viewDidDisappear:animated viewController:viewController];
+        if (observer) {
+            if ([observer respondsToSelector:@selector(viewDidDisappear:viewController:)])
+                [observer viewDidDisappear:animated viewController:viewController];
+            if ([observer respondsToSelector:@selector(viewDidDisappear:viewController:originInvocation:)])
+                [observer viewDidDisappear:animated viewController:viewController originInvocation:originInvocation];
+        }
     }
 }
 
@@ -96,6 +122,7 @@ static NSMutableDictionary <Class, NSPointerArray *> *observersPoolByViewClass;
 }
 
 + (void)addViewObserver:(id <AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes {
+    if (!viewObserver) return ;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         observersPoolByViewClass = [NSMutableDictionary new];
@@ -109,13 +136,31 @@ static NSMutableDictionary <Class, NSPointerArray *> *observersPoolByViewClass;
         
         [viewObserversPool addPointer:(__bridge void * _Nullable)(viewObserver)];
         
-        [self class:c swizzleSelector:@selector(viewDidLoad) withSelector:@selector(swizzledDidLoad)];
-        [self class:c swizzleSelector:@selector(viewWillAppear:) withSelector:@selector(swizzledWillAppear:)];
-        [self class:c swizzleSelector:@selector(viewDidAppear:) withSelector:@selector(swizzledDidAppear:)];
-        [self class:c swizzleSelector:@selector(viewWillDisappear:) withSelector:@selector(swizzledWillDisappear:)];
-        [self class:c swizzleSelector:@selector(viewDidDisappear:) withSelector:@selector(swizzledDidDisappear:)];
-    }
-    
+        if ([viewObserver respondsToSelector:@selector(viewDidLoadViewController:)] ||
+            [viewObserver respondsToSelector:@selector(viewDidLoadViewController:originInvocation:)]) {
+            [self class:c swizzleSelector:@selector(viewDidLoad) withSelector:@selector(swizzledDidLoad)];
+        }
+            
+        if ([viewObserver respondsToSelector:@selector(viewWillAppear:viewController:)] ||
+            [viewObserver respondsToSelector:@selector(viewWillAppear:viewController:originInvocation:)]) {
+            [self class:c swizzleSelector:@selector(viewWillAppear:) withSelector:@selector(swizzledWillAppear:)];
+        }
+        
+        if ([viewObserver respondsToSelector:@selector(viewDidAppear:viewController:)] ||
+            [viewObserver respondsToSelector:@selector(viewDidAppear:viewController:originInvocation:)]) {
+            [self class:c swizzleSelector:@selector(viewDidAppear:) withSelector:@selector(swizzledDidAppear:)];
+        }
+        
+        if ([viewObserver respondsToSelector:@selector(viewWillDisappear:viewController:)] ||
+            [viewObserver respondsToSelector:@selector(viewWillDisappear:viewController:originInvocation:)]) {
+            [self class:c swizzleSelector:@selector(viewWillDisappear:) withSelector:@selector(swizzledWillDisappear:)];
+        }
+        
+        if ([viewObserver respondsToSelector:@selector(viewDidDisappear:viewController:)] ||
+            [viewObserver respondsToSelector:@selector(viewDidDisappear:viewController:originInvocation:)]) {
+            [self class:c swizzleSelector:@selector(viewDidDisappear:) withSelector:@selector(swizzledDidDisappear:)];
+        }
+    }    
 }
 
 + (void)removeViewObserver:(id <AKViewObserver>)viewObserver fromClasses:(NSArray<Class> *)classes {

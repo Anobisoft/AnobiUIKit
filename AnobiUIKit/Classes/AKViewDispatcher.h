@@ -9,13 +9,21 @@
 #import <UIKit/UIKit.h>
 #import <AnobiKit/AKTypes.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol AKViewObserver <NSObject>
 @optional
 - (void)viewDidLoadViewController:(UIViewController *)viewController;
-- (void)viewWillAppear:(BOOL)animated viewController:(UIViewController *)viewController;
-- (void)viewDidAppear:(BOOL)animated viewController:(UIViewController *)viewController;
+- (void)viewWillAppear:(BOOL)animated    viewController:(UIViewController *)viewController;
+- (void)viewDidAppear:(BOOL)animated     viewController:(UIViewController *)viewController;
 - (void)viewWillDisappear:(BOOL)animated viewController:(UIViewController *)viewController;
-- (void)viewDidDisappear:(BOOL)animated viewController:(UIViewController *)viewController;
+- (void)viewDidDisappear:(BOOL)animated  viewController:(UIViewController *)viewController;
+
+- (void)viewDidLoadViewController:(UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation;
+- (void)viewWillAppear:(BOOL)animated    viewController:(UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation;
+- (void)viewDidAppear:(BOOL)animated     viewController:(UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation;
+- (void)viewWillDisappear:(BOOL)animated viewController:(UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation;
+- (void)viewDidDisappear:(BOOL)animated  viewController:(UIViewController *)viewController originInvocation:(dispatch_block_t)originInvocation;
 
 @end
 
@@ -29,3 +37,5 @@
 + (void)cleanupObserversPool;
 
 @end
+
+NS_ASSUME_NONNULL_END
