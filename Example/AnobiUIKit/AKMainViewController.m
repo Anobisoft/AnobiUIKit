@@ -3,7 +3,7 @@
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 08/02/2017.
-//  Copyright (c) 2017 Anobisoft. All rights reserved.
+//  Copyright © 2017 Anobisoft. All rights reserved.
 //
 
 #import "AKMainViewController.h"
@@ -27,6 +27,11 @@
     self.tableView.tableFooterView = [UIView new];
     [self updateUIWithCurrentTheme];
     flipAnimation = [CAAnimation flipAngle:2.0 * M_PI vector:AK3DVectorMake(0.3, 0.5, 0)];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"%s(origin)", __PRETTY_FUNCTION__);
 }
 
 - (IBAction)nextThemeTap:(id)sender {
