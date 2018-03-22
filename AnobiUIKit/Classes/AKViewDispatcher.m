@@ -109,11 +109,25 @@ static NSMutableDictionary <Class, NSPointerArray *> *observersPoolByViewClass;
         
         [viewObserversPool addPointer:(__bridge void * _Nullable)(viewObserver)];
         
-        [self class:c swizzleSelector:@selector(viewDidLoad) withSelector:@selector(swizzledDidLoad)];
-        [self class:c swizzleSelector:@selector(viewWillAppear:) withSelector:@selector(swizzledWillAppear:)];
-        [self class:c swizzleSelector:@selector(viewDidAppear:) withSelector:@selector(swizzledDidAppear:)];
-        [self class:c swizzleSelector:@selector(viewWillDisappear:) withSelector:@selector(swizzledWillDisappear:)];
-        [self class:c swizzleSelector:@selector(viewDidDisappear:) withSelector:@selector(swizzledDidDisappear:)];
+        if ([viewObserver respondsToSelector:@selector(viewDidLoadViewController:)]) {
+            [self class:c swizzleSelector:@selector(viewDidLoad) withSelector:@selector(swizzledDidLoad)];
+        }
+        
+        if ([viewObserver respondsToSelector:@selector(viewWillAppear:viewController:)]) {
+            [self class:c swizzleSelector:@selector(viewWillAppear:) withSelector:@selector(swizzledWillAppear:)];
+        }
+        
+        if ([viewObserver respondsToSelector:@selector(viewDidAppear:viewController:)]) {
+            [self class:c swizzleSelector:@selector(viewDidAppear:) withSelector:@selector(swizzledDidAppear:)];
+        }
+        
+        if ([viewObserver respondsToSelector:@selector(viewWillDisappear:viewController:)]) {
+            [self class:c swizzleSelector:@selector(viewWillDisappear:) withSelector:@selector(swizzledWillDisappear:)];
+        }
+        
+        if ([viewObserver respondsToSelector:@selector(viewDidDisappear:viewController:)]) {
+            [self class:c swizzleSelector:@selector(viewDidDisappear:) withSelector:@selector(swizzledDidDisappear:)];
+        }
     }
     
 }
