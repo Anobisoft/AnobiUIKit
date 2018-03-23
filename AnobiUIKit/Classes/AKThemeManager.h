@@ -20,8 +20,6 @@
 @property (readonly) AKTheme *currentTheme;
 - (void)setCurrentThemeName:(NSString *)name;
 
-
-
 - (AKTheme *)objectForKeyedSubscript:(NSString *)name;
 
 @end

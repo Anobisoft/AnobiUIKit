@@ -18,6 +18,10 @@
 
 - (instancetype)initWithName:(NSString *)name withConfig:(NSDictionary *)config {
     if (self = [super init]) {
+        if (![config isKindOfClass:NSDictionary.class]) {
+            @throw [NSException exceptionWithName:@"AKThemeInvalidConfig" reason:@"theme config must be Dictionary type" userInfo:@{@"name" : name, @"config" : config}];
+            return nil;
+        }
         _name = name;
         
         NSDictionary<NSString *, NSString *> *keyedColorsRepresentation = config[AKThemeConfigKey_KeyedColors];
@@ -40,6 +44,11 @@
         BOOL black = [barStyleString isEqualToString:@"Black"] || [barStyleString isEqualToString:@"Dark"];
         _barStyle = black ? UIBarStyleBlack : UIBarStyleDefault;
         _statusBarStyle = black ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+        
+        if (!barStyleString && !_keyedColors.count && !_indexedColors.count) {
+            @throw [NSException exceptionWithName:@"AKThemeEmptyConfig" reason:@"theme config is empty" userInfo:@{@"name" : name, @"config" : config}];
+            return nil;
+        }
     }
     return self;
 }
