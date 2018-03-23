@@ -8,6 +8,7 @@
 
 #import "AKImagePicker.h"
 #import <AnobiKit/AnobiKit.h>
+#import "UIViewController+AK.h"
 
 @interface AKImagePicker() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 - (void)viewController:(UIViewController *)viewController sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect;
@@ -88,6 +89,10 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 #pragma mark -
 #pragma mark - Alert
 
+UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t handler) {
+    return UIAlertActionDefaultStyleMake([NSBundle.UIKitBundle localizedStringForKey:localizationKey], handler);
+}
+
 - (void)viewController:(UIViewController *)viewController
             sourceView:(UIView *)sourceView
             sourceRect:(CGRect)sourceRect {
@@ -103,21 +108,18 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
         
         for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
             if (available[sourceType]) {
-                UIAlertAction *action =
-                [UIAlertAction actionWithTitle:[[NSBundle UIKitBundle] localizedStringForKey:sourceLocalizationKeys[sourceType]]
-                                         style:UIAlertActionStyleDefault
-                                       handler:^(UIAlertAction * _Nonnull action) {
-                                           [self selectSource:sourceType];
-                                           [viewController presentViewController:self.pickerController
-                                                                        animated:true completion:nil];
-                                       }];
-                [alert addAction:action];
+                [alert addAction:UILocalizedActionMake(sourceLocalizationKeys[sourceType], ^{
+                    [self selectSource:sourceType];
+                    [viewController presentViewController:self.pickerController
+                                                 animated:true completion:nil];
+                })];
             }
         }
         
-        [alert addAction:[UIAlertAction actionWithTitle:[[NSBundle UIKitBundle] localizedStringForKey:@"Cancel"]
-                                                  style:UIAlertActionStyleCancel
-                                                handler:^(UIAlertAction * _Nonnull action) { }]];
+        [alert addAction:UIAlertCancelAction(^{
+            instance = nil;
+            self->completionBlock(nil);
+        })];
         
         alert.popoverPresentationController.sourceView = sourceView;
         if (CGRectIsNull(sourceRect)) {

@@ -3,10 +3,13 @@
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 16.02.2018.
-//  Copyright © 2016 Anobisoft. All rights reserved.
+//  Copyright © 2018 Anobisoft. All rights reserved.
 //
 
 #import "UIViewController+AK.h"
+#import <AnobiKit/AnobiKit.h>
+
+#define UIAlertActionCancel 
 
 @implementation UIViewController (AK)
 
@@ -16,6 +19,72 @@
 
 - (UIImage *)imageNamed:(NSString *)name {
     return [self.class imageNamed:name];
+}
+
+@end
+
+UIAlertAction *UIAlertActionMake(NSString *title, UIAlertActionStyle style, dispatch_block_t handler) {
+    return [UIAlertAction actionWithTitle:title
+                                    style:style
+                                  handler:^(UIAlertAction *action) {
+                                      if (handler) handler();
+                                  }];
+}
+
+UIAlertAction *UIAlertActionDefaultStyleMake(NSString *title, dispatch_block_t handler) {
+    return UIAlertActionMake(title, UIAlertActionStyleDefault, handler);
+}
+
+UIAlertAction *UIAlertCancelAction(dispatch_block_t handler) {
+    return UIAlertActionMake([NSBundle.UIKitBundle localizedStringForKey:@"Cancel"], UIAlertActionStyleCancel, handler);
+}
+
+UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
+    return UIAlertActionDefaultStyleMake([NSBundle.UIKitBundle localizedStringForKey:@"Redo"], handler);
+}
+
+@implementation UIViewController (UIAlert)
+
+- (void)showAlert:(NSString *)title okHandler:(dispatch_block_t)okHandler {
+    [self showAlert:title message:nil okHandler:okHandler];
+}
+
+- (void)showAlert:(NSString *)title message:(NSString *)message okHandler:(dispatch_block_t)okHandler {
+    [self showAlert:title message:message
+            actions:@[ UIAlertActionMake([NSBundle.UIKitBundle localizedStringForKey:@"OK"], UIAlertActionStyleDefault, okHandler) ]];
+}
+
+- (void)showAlert:(NSString *)title
+             redo:(dispatch_block_t)redo cancel:(dispatch_block_t)cancel {
+    [self showAlert:title message:nil redo:redo cancel:cancel];
+}
+
+- (void)showAlert:(NSString *)title message:(NSString *)message
+             redo:(dispatch_block_t)redo cancel:(dispatch_block_t)cancel {
+    [self showAlert:title message:message actions:@[UIAlertRedoAction(redo), UIAlertCancelAction(cancel)]];
+}
+
+- (void)showAlert:(NSString *)title message:(NSString *)message
+          actions:(NSArray<UIAlertAction *> *)actions {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    for (UIAlertAction *action in actions) {
+        [alert addAction:action];
+    }
+    [self presentViewController:alert animated:true completion:nil];
+}
+
+- (void)showAlert:(NSString *)title message:(NSString *)message
+          actions:(NSArray<UIAlertAction *> *)actions cancel:(dispatch_block_t)cancel {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    for (UIAlertAction *action in actions) {
+        [alert addAction:action];
+    }
+    [alert addAction:UIAlertCancelAction(cancel)];
+    [self presentViewController:alert animated:true completion:nil];
 }
 
 @end
