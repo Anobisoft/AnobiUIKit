@@ -9,8 +9,6 @@
 #import "UIViewController+AK.h"
 #import <AnobiKit/AnobiKit.h>
 
-#define UIAlertActionCancel 
-
 @implementation UIViewController (AK)
 
 + (UIImage *)imageNamed:(NSString *)name {
