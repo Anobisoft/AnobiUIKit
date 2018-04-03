@@ -7,7 +7,7 @@
 //
 
 @import XCTest;
-#import <AnobiUIKit/AKTheme.h>
+#import <AnobiUIKit/AKThemeManager.h>
 
 @interface Tests : XCTestCase
 
@@ -25,7 +25,7 @@
 }
 
 - (void)testExample {
-    NSUInteger count = [AKTheme allNames].count;
+    NSUInteger count = AKThemeManager.manager.allNames.count;
     XCTAssertEqual(count, 3, @"count (%lu) equal to 3", (unsigned long)count);
 }
 

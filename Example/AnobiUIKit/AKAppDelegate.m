@@ -27,7 +27,7 @@
     colors = @[@"#FF0055", @"#33FF55", @"#0022FF"];
     observer.callback = ^NSString *{
         if (i == colors.count) {
-            observer = nil;
+            self->observer = nil;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [AKViewDispatcher cleanupObserversPool];
             });

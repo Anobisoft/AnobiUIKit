@@ -7,7 +7,8 @@
 //
 
 #import "UIViewController+AK.h"
-#import <AnobiKit/AnobiKit.h>
+
+#define UIBundleLocalizedString(key) [[NSBundle bundleForClass:UIApplication.class] localizedStringForKey:key value:nil table:nil]
 
 @implementation UIViewController (AK)
 
@@ -34,11 +35,11 @@ UIAlertAction *UIAlertActionDefaultStyleMake(NSString *title, dispatch_block_t h
 }
 
 UIAlertAction *UIAlertCancelAction(dispatch_block_t handler) {
-    return UIAlertActionMake([NSBundle.UIKitBundle localizedStringForKey:@"Cancel"], UIAlertActionStyleCancel, handler);
+    return UIAlertActionMake(UIBundleLocalizedString(@"Cancel"), UIAlertActionStyleCancel, handler);
 }
 
 UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
-    return UIAlertActionDefaultStyleMake([NSBundle.UIKitBundle localizedStringForKey:@"Redo"], handler);
+    return UIAlertActionDefaultStyleMake(UIBundleLocalizedString(@"Redo"), handler);
 }
 
 @implementation UIViewController (UIAlert)
@@ -49,7 +50,7 @@ UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
 
 - (void)showAlert:(NSString *)title message:(NSString *)message okHandler:(dispatch_block_t)okHandler {
     [self showAlert:title message:message
-            actions:@[ UIAlertActionMake([NSBundle.UIKitBundle localizedStringForKey:@"OK"], UIAlertActionStyleDefault, okHandler) ]];
+            actions:@[ UIAlertActionMake(UIBundleLocalizedString(@"OK"), UIAlertActionStyleDefault, okHandler) ]];
 }
 
 - (void)showAlert:(NSString *)title

@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AnobiKit/AKTypes.h>
 #import "UINavigationBar+AK.h"
 
 #define AKThemeConfigKey_KeyedColors @"KeyedColors"
 #define AKThemeConfigKey_IndexedColors @"IndexedColors"
 #define AKThemeConfigKey_BarStyle @"BarStyle"
 
-@interface AKTheme : NSObject <DisableNSInit, KeyedSubscript, IndexedSubscript>
+@interface AKTheme : NSObject
 
 + (instancetype)themeNamed:(NSString *)name withConfig:(NSDictionary *)config;
 

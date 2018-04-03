@@ -73,7 +73,7 @@
     }
 }
 
-static NSMutableDictionary <Class, NSPointerArray *> *observersPoolByViewClass;
+static NSMutableDictionary<Class, NSPointerArray *> *observersPoolByViewClass;
 
 + (void)class:(Class)c swizzleSelector:(SEL)originalSelector withSelector:(SEL)swizzledSelector {
     Method originalMethod = class_getInstanceMethod(c, originalSelector);
@@ -92,58 +92,69 @@ static NSMutableDictionary <Class, NSPointerArray *> *observersPoolByViewClass;
                                 method_getImplementation(swizzledMethod),
                                 method_getTypeEncoding(swizzledMethod));
         }
-    }    
+    }
 }
 
-+ (void)addViewObserver:(id <AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes {
++ (void)addViewObserver:(id<AKViewObserver>)viewObserver forClass:(Class)c {
+    if ([c isKindOfClass:NSString.class]) {
+        c = NSClassFromString((NSString *)c);
+    }
+    
+    NSPointerArray *viewObserversPool = observersPoolByViewClass[c];
+    if (!viewObserversPool) {
+        viewObserversPool = [NSPointerArray weakObjectsPointerArray];
+        observersPoolByViewClass[(id<NSCopying>)c] = viewObserversPool;
+    }
+    
+    [viewObserversPool addPointer:(__bridge void * _Nullable)(viewObserver)];
+    
+    if ([viewObserver respondsToSelector:@selector(viewDidLoadViewController:)]) {
+        [self class:c swizzleSelector:@selector(viewDidLoad) withSelector:@selector(swizzledDidLoad)];
+    }
+    
+    if ([viewObserver respondsToSelector:@selector(viewWillAppear:viewController:)]) {
+        [self class:c swizzleSelector:@selector(viewWillAppear:) withSelector:@selector(swizzledWillAppear:)];
+    }
+    
+    if ([viewObserver respondsToSelector:@selector(viewDidAppear:viewController:)]) {
+        [self class:c swizzleSelector:@selector(viewDidAppear:) withSelector:@selector(swizzledDidAppear:)];
+    }
+    
+    if ([viewObserver respondsToSelector:@selector(viewWillDisappear:viewController:)]) {
+        [self class:c swizzleSelector:@selector(viewWillDisappear:) withSelector:@selector(swizzledWillDisappear:)];
+    }
+    
+    if ([viewObserver respondsToSelector:@selector(viewDidDisappear:viewController:)]) {
+        [self class:c swizzleSelector:@selector(viewDidDisappear:) withSelector:@selector(swizzledDidDisappear:)];
+    }
+}
+
++ (void)addViewObserver:(id<AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         observersPoolByViewClass = [NSMutableDictionary new];
     });    
     for (Class c in classes) {
-        NSPointerArray *viewObserversPool = observersPoolByViewClass[c];
-        if (!viewObserversPool) {
-            viewObserversPool = [NSPointerArray weakObjectsPointerArray];
-            observersPoolByViewClass[(id<NSCopying>)c] = viewObserversPool;
-        }
-        
-        [viewObserversPool addPointer:(__bridge void * _Nullable)(viewObserver)];
-        
-        if ([viewObserver respondsToSelector:@selector(viewDidLoadViewController:)]) {
-            [self class:c swizzleSelector:@selector(viewDidLoad) withSelector:@selector(swizzledDidLoad)];
-        }
-        
-        if ([viewObserver respondsToSelector:@selector(viewWillAppear:viewController:)]) {
-            [self class:c swizzleSelector:@selector(viewWillAppear:) withSelector:@selector(swizzledWillAppear:)];
-        }
-        
-        if ([viewObserver respondsToSelector:@selector(viewDidAppear:viewController:)]) {
-            [self class:c swizzleSelector:@selector(viewDidAppear:) withSelector:@selector(swizzledDidAppear:)];
-        }
-        
-        if ([viewObserver respondsToSelector:@selector(viewWillDisappear:viewController:)]) {
-            [self class:c swizzleSelector:@selector(viewWillDisappear:) withSelector:@selector(swizzledWillDisappear:)];
-        }
-        
-        if ([viewObserver respondsToSelector:@selector(viewDidDisappear:viewController:)]) {
-            [self class:c swizzleSelector:@selector(viewDidDisappear:) withSelector:@selector(swizzledDidDisappear:)];
-        }
+        [self addViewObserver:viewObserver forClass:c];
     }
-    
 }
 
-+ (void)removeViewObserver:(id <AKViewObserver>)viewObserver fromClasses:(NSArray<Class> *)classes {
-    for (Class c in classes) {
-        NSPointerArray *viewObserversPool = observersPoolByViewClass[c];
-        if (viewObserversPool) {
-            NSUInteger indx = 0;
-            for (; indx < viewObserversPool.count; indx++) {
-                if ([viewObserversPool pointerAtIndex:indx] == (__bridge void * _Nullable)(viewObserver)) break;
-            }
-            if (indx < viewObserversPool.count) {
-                [viewObserversPool removePointerAtIndex:indx];
-            }
++ (void)removeViewObserver:(id<AKViewObserver>)viewObserver fromClass:(Class)c {
+    NSPointerArray *viewObserversPool = observersPoolByViewClass[c];
+    if (viewObserversPool) {
+        NSUInteger indx = 0;
+        for (; indx < viewObserversPool.count; indx++) {
+            if ([viewObserversPool pointerAtIndex:indx] == (__bridge void * _Nullable)(viewObserver)) break;
         }
+        if (indx < viewObserversPool.count) {
+            [viewObserversPool removePointerAtIndex:indx];
+        }
+    }
+}
+
++ (void)removeViewObserver:(id<AKViewObserver>)viewObserver fromClasses:(NSArray<Class> *)classes {
+    for (Class c in classes) {
+        [self removeViewObserver:viewObserver fromClass:c];
     }
 }
 
@@ -169,6 +180,18 @@ static NSMutableDictionary <Class, NSPointerArray *> *observersPoolByViewClass;
     } else {
         return vc;
     }
+}
+
++ (instancetype)observerForClass:(Class)c {
+    id instance = [self new];
+    [self addViewObserver:instance forClass:c];
+    return instance;
+}
+
++ (instancetype)observerForClasses:(NSArray<Class> *)classes {
+    id instance = [self new];
+    [self addViewObserver:instance forClasses:classes];
+    return instance;
 }
 
 @end

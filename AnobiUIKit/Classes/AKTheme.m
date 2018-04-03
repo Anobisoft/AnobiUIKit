@@ -7,7 +7,6 @@
 //
 
 #import "AKTheme.h"
-#import <AnobiKit/AKConfigManager.h>
 #import "UIColor+Hex.h"
 
 @implementation AKTheme

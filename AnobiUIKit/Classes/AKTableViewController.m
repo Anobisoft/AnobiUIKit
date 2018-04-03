@@ -7,7 +7,6 @@
 //
 
 #import "AKTableViewController.h"
-#import <AnobiKit/AnobiKit.h>
 
 @implementation AKTableViewController {
     dispatch_semaphore_t scroll_sema;
@@ -51,7 +50,7 @@
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
             dispatch_semaphore_wait(self->scroll_sema, DISPATCH_TIME_FOREVER);
             self->scroll_sema = nil;
-            dispatch_asyncmain(completion);
+            dispatch_async(dispatch_get_main_queue(), completion);
         });
     } else {
         completion();

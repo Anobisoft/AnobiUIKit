@@ -6,20 +6,17 @@
 //  Copyright © 2018 Anobisoft. All rights reserved.
 //
 
-#import <AnobiKit/AnobiKit.h>
 #import "AKTheme.h"
 
-@interface AKThemeManager : NSObject <DisableNSInit, KeyedSubscript>
+@interface AKThemeManager : NSObject
 
-+ (instancetype)managerWithConfigName:(NSString *)configName;
++ (instancetype)managerWithConfig:(NSDictionary *)config;
 + (instancetype)manager;
 
-- (NSArray<NSString *> *)allNames;
+@property (nonatomic, readonly) NSArray<AKTheme *> *allThemes;
+@property (nonatomic, readonly) NSArray<NSString *> *allNames;
+@property (nonatomic) AKTheme *currentTheme;
 - (AKTheme *)themeWithName:(NSString *)name;
-@property NSUInteger cacheCostLimit;
-@property (readonly) AKTheme *currentTheme;
-- (void)setCurrentThemeName:(NSString *)name;
-
 - (AKTheme *)objectForKeyedSubscript:(NSString *)name;
 
 @end

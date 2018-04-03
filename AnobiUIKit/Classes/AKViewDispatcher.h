@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AnobiKit/AKTypes.h>
 
 @protocol AKViewObserver <NSObject>
 @optional
@@ -19,13 +18,18 @@
 
 @end
 
-@interface AKViewDispatcher : NSObject <Abstract>
+@interface AKViewDispatcher : NSObject <AKViewObserver>
 
 + (UIViewController *)visibleViewController;
 + (UIViewController *)visibleViewControllerFrom:(UIViewController *)vc;
 
-+ (void)addViewObserver:(id <AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes;
-+ (void)removeViewObserver:(id <AKViewObserver>)viewObserver fromClasses:(NSArray<Class> *)classes;
++ (void)addViewObserver:(id<AKViewObserver>)viewObserver forClass:(Class)c;
++ (void)removeViewObserver:(id<AKViewObserver>)viewObserver fromClass:(Class)c;
++ (void)addViewObserver:(id<AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes;
++ (void)removeViewObserver:(id<AKViewObserver>)viewObserver fromClasses:(NSArray<Class> *)classes;
 + (void)cleanupObserversPool;
+
++ (instancetype)observerForClass:(Class)c;
++ (instancetype)observerForClasses:(NSArray<Class> *)classes;
 
 @end

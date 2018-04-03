@@ -8,73 +8,63 @@
 
 #import "AKThemeManager.h"
 
-#define AKThemeUDKey_CurrentThemeName @"AKThemeCurrentThemeName"
+#define AKThemeUDKey_CurrentThemeName @"AKThemeManager.currentThemeName"
 
 @implementation AKThemeManager {
-    NSDictionary<NSString *, NSDictionary *> *themesConfig;
-    NSArray<NSString *> *allNames;
-    NSCache<NSString *, AKTheme *> *themesCache;
+    NSDictionary<NSString *, AKTheme *> *themes;
     NSString *currentThemeName;
 }
 
 static id instance;
-+ (instancetype)managerWithConfigName:(NSString *)configName {
-    instance = [[self alloc] initWithConfigName:configName];
++ (instancetype)managerWithConfig:(NSDictionary *)config {
+    instance = [[self alloc] initWithConfig:config];
     return instance;
 }
 
 + (instancetype)manager {
-    if (!instance) {
-        instance = [self managerWithConfigName:@"AKThemes"];
-    }
     return instance;
 }
 
-- (instancetype)initWithConfigName:(NSString *)configName {
+- (instancetype)initWithConfig:(NSDictionary *)config {
     if (self = [super init]) {
-        @try {
-            themesConfig = [AKConfigManager manager][configName];
-        } @catch (NSException *e) {
-            @throw e;
+        if (![config isKindOfClass:NSDictionary.class]) {
+            @throw [NSException exceptionWithName:@"AKThemeManagerInvalidConfigTypeException"
+                                           reason:@"unexpected config type" userInfo:@{@"сonfig class" : [config class]}];
             return nil;
         }
-        if (![themesConfig isKindOfClass:NSDictionary.class]) {
-            @throw [NSException exceptionWithName:@"AKThemeManagerInvalidConfigTypeException"
-                                           reason:@"unexpected config type" userInfo:@{@"themesConfig class" : [themesConfig class]}];
+
+        NSMutableDictionary<NSString *, AKTheme *> *tmp = [NSMutableDictionary new];
+        for (NSString *themeName in config.allKeys) {
+            AKTheme *theme = [AKTheme themeNamed:themeName withConfig:config[themeName]];
+            if (theme) {
+                tmp[themeName] = theme;
+            }
         }
-        allNames = themesConfig.allKeys;
-        if (!allNames.count) {
+        if (!tmp.allKeys.count) {
             @throw [NSException exceptionWithName:@"AKThemeManagerEmptyConfigException" reason:@"no themes configured" userInfo:nil];
+            return nil;
         }
-        themesCache = [NSCache new];
-        themesCache.totalCostLimit = 0x4000; //16KB
+        themes = tmp.copy;
+        
         currentThemeName = [[NSUserDefaults standardUserDefaults] objectForKey:AKThemeUDKey_CurrentThemeName];
-        if (!(currentThemeName && [allNames containsObject:currentThemeName])) {
-            currentThemeName = allNames.firstObject;
+        if (!(currentThemeName && [self.allNames containsObject:currentThemeName])) {
+            currentThemeName = self.allNames.firstObject;
         }
+        
     }
     return self;
 }
 
-- (NSUInteger)cacheCostLimit {
-    return themesCache.totalCostLimit;
-}
-
-- (void)setCacheCostLimit:(NSUInteger)cacheCostLimit {
-    themesCache.totalCostLimit = cacheCostLimit;
+- (NSArray<AKTheme *> *)allThemes {
+    return themes.allValues;
 }
 
 - (NSArray<NSString *> *)allNames {
-    return allNames;
+    return themes.allKeys;
 }
 
 - (AKTheme *)themeWithName:(NSString *)name {
-    AKTheme *theme = [themesCache objectForKey:name];
-    if (!theme) {
-        theme = [AKTheme themeNamed:name withConfig:themesConfig[name]];
-        if (theme) [themesCache setObject:theme forKey:name];
-    }
-    return theme;
+    return themes[name];
 }
 
 - (AKTheme *)objectForKeyedSubscript:(NSString *)name {
@@ -82,8 +72,12 @@ static id instance;
 }
 
 - (void)setCurrentThemeName:(NSString *)name {
-    currentThemeName = name;
-    [[NSUserDefaults standardUserDefaults] setObject:currentThemeName forKey:AKThemeUDKey_CurrentThemeName];
+    if ([self.allNames containsObject:name]) {
+        currentThemeName = name;
+        [[NSUserDefaults standardUserDefaults] setObject:currentThemeName forKey:AKThemeUDKey_CurrentThemeName];
+    } else {
+        @throw [NSException exceptionWithName:@"AKThemeManagerInvalidConfigName" reason:@"" userInfo:nil];
+    }
 }
 
 - (AKTheme *)currentTheme {

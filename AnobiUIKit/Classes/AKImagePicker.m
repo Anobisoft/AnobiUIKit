@@ -7,7 +7,6 @@
 //
 
 #import "AKImagePicker.h"
-#import <AnobiKit/AnobiKit.h>
 #import "UIViewController+AK.h"
 
 @interface AKImagePicker() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -90,7 +89,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 #pragma mark - Alert
 
 UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t handler) {
-    return UIAlertActionDefaultStyleMake([NSBundle.UIKitBundle localizedStringForKey:localizationKey], handler);
+    return UIAlertActionDefaultStyleMake([[NSBundle bundleForClass:UIApplication.class] localizedStringForKey:localizationKey value:nil table:nil], handler);
 }
 
 - (void)viewController:(UIViewController *)viewController

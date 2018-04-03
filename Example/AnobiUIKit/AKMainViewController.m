@@ -7,6 +7,7 @@
 //
 
 #import "AKMainViewController.h"
+@import AnobiKit;
 @import AnobiUIKit;
 
 @interface AKMainViewController() <UITableViewDataSource, UITableViewDelegate>
@@ -23,7 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [AKThemeManager managerWithConfigName:@"AKThemes"];
+    NSDictionary *config = [AKConfigManager manager][@"AKThemes"];
+    [AKThemeManager managerWithConfig:config];
     self.tableView.tableFooterView = [UIView new];
     [self updateUIWithCurrentTheme];
     flipAnimation = [CAAnimation flipAngle:2.0 * M_PI vector:AK3DVectorMake(0.3, 0.5, 0)];
@@ -38,7 +40,7 @@
     NSUInteger newIndex = [[AKThemeManager manager].allNames indexOfObject:currentTheme.name];
     newIndex++;
     newIndex %= [AKThemeManager manager].allNames.count;
-    [[AKThemeManager manager] setCurrentThemeName:[AKThemeManager manager].allNames[newIndex]];
+    [AKThemeManager manager].currentTheme = [AKThemeManager manager].allThemes[newIndex];
     [self updateUIWithCurrentTheme];
 }
 
@@ -88,7 +90,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[AKThemeManager manager] setCurrentThemeName:[AKThemeManager manager].allNames[indexPath.row]];
+    [AKThemeManager manager].currentTheme = [AKThemeManager manager].allThemes[indexPath.row];
     [self updateUIWithCurrentTheme];
 }
 
