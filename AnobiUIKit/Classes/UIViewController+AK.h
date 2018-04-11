@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIImage *)imageNamed:(NSString *)name;
 - (UIImage *)imageNamed:(NSString *)name;
++ (NSString *)localized:(NSString *)key;
+- (NSString *)localized:(NSString *)key;
 
 @end
 

@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+AK.h"
+#import ""
 
 #define UIBundleLocalizedString(key) [[NSBundle bundleForClass:UIApplication.class] localizedStringForKey:key value:nil table:nil]
 
@@ -18,6 +19,14 @@
 
 - (UIImage *)imageNamed:(NSString *)name {
     return [self.class imageNamed:name];
+}
+
++ (NSString *)localized:(NSString *)key {
+    return [[NSBundle bundleForClass:self] localizedStringForKey:key value:nil table:nil];
+}
+
+- (NSString *)localized:(NSString *)key {
+    return [self.class localized:key];
 }
 
 @end
