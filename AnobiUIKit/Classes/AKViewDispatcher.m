@@ -130,10 +130,6 @@ static NSMutableDictionary<Class, NSPointerArray *> *observersPoolByViewClass;
 }
 
 + (void)addViewObserver:(id<AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        observersPoolByViewClass = [NSMutableDictionary new];
-    });    
     for (Class c in classes) {
         [self addViewObserver:viewObserver forClass:c];
     }
@@ -192,6 +188,11 @@ static NSMutableDictionary<Class, NSPointerArray *> *observersPoolByViewClass;
     id instance = [self new];
     [self addViewObserver:instance forClasses:classes];
     return instance;
+}
+
++ (void)initialize {
+    [super initialize];
+    observersPoolByViewClass = [NSMutableDictionary new];
 }
 
 @end
