@@ -27,7 +27,6 @@
 + (void)removeViewObserver:(id<AKViewObserver>)viewObserver fromClass:(Class)c;
 + (void)addViewObserver:(id<AKViewObserver>)viewObserver forClasses:(NSArray<Class> *)classes;
 + (void)removeViewObserver:(id<AKViewObserver>)viewObserver fromClasses:(NSArray<Class> *)classes;
-+ (void)cleanupObserversPool;
 
 + (instancetype)observerForClass:(Class)c;
 + (instancetype)observerForClasses:(NSArray<Class> *)classes;

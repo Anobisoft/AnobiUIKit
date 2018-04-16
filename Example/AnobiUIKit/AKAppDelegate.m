@@ -28,9 +28,6 @@
     observer.callback = ^NSString *{
         if (i == colors.count) {
             self->observer = nil;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [AKViewDispatcher cleanupObserversPool];
-            });
         }
         return colors[i++%colors.count];
     };
