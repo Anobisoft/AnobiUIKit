@@ -96,14 +96,18 @@ static NSMutableDictionary<NSString *, NSHashTable *> *observersPoolByViewClass;
 }
 
 + (void)addViewObserver:(id<AKViewObserver>)viewObserver forClass:(Class)c {
+    NSString *className;
     if ([c isKindOfClass:NSString.class]) {
-        c = NSClassFromString((NSString *)c);
+        className = (NSString *)c;
+        c = NSClassFromString(className);
+    } else {
+        className = NSStringFromClass(c);
     }
     
-    NSHashTable *viewObserversPool = observersPoolByViewClass[NSStringFromClass(c)];
+    NSHashTable *viewObserversPool = observersPoolByViewClass[className];
     if (!viewObserversPool) {
         viewObserversPool = [NSHashTable weakObjectsHashTable];
-        observersPoolByViewClass[NSStringFromClass(c)] = viewObserversPool;
+        observersPoolByViewClass[className] = viewObserversPool;
     }
     
     [viewObserversPool addObject:viewObserver];
