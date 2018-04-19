@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17D93E4953C09EA52249EBF3 /* Pods_AnobiUIKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDB9AE44CF1D95799ADAE1F /* Pods_AnobiUIKit_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -24,8 +25,7 @@
 		6AFBA68D1F34B05C00343DE1 /* AKThemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AFBA68C1F34B05C00343DE1 /* AKThemes.plist */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		99D8CF2EF244D53B2D7E0BCD /* Pods_AnobiUIKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D18DD175A1FE9606AB74E0 /* Pods_AnobiUIKit_Example.framework */; };
-		DB2086B99AB821AA3F2F150C /* Pods_AnobiUIKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D01881DFB904A1FE204CDB1 /* Pods_AnobiUIKit_Tests.framework */; };
+		F5F931F852DC2D646C9FCECD /* Pods_AnobiUIKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C5F08B0892BEA13D732BBE /* Pods_AnobiUIKit_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		1C07732A05147DA8198E89D4 /* Pods-AnobiUIKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnobiUIKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		3CDB9AE44CF1D95799ADAE1F /* Pods_AnobiUIKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnobiUIKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* AnobiUIKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnobiUIKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,9 +65,8 @@
 		6AC5EBAF1F56F411009D8D02 /* AKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainViewController.m; sourceTree = "<group>"; };
 		6AFBA68C1F34B05C00343DE1 /* AKThemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AKThemes.plist; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		83D18DD175A1FE9606AB74E0 /* Pods_AnobiUIKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnobiUIKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8D01881DFB904A1FE204CDB1 /* Pods_AnobiUIKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnobiUIKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2C5F08B0892BEA13D732BBE /* Pods_AnobiUIKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnobiUIKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB32140E5F2541820504F40 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D444B4AE0DC96771BFA86FF9 /* Pods-AnobiUIKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnobiUIKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D6DCF70DDD885358887892C0 /* Pods-AnobiUIKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnobiUIKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnobiUIKit_Tests/Pods-AnobiUIKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				99D8CF2EF244D53B2D7E0BCD /* Pods_AnobiUIKit_Example.framework in Frameworks */,
+				17D93E4953C09EA52249EBF3 /* Pods_AnobiUIKit_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +93,7 @@
 				6AA3B68C1F38AEFB001D70DD /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				DB2086B99AB821AA3F2F150C /* Pods_AnobiUIKit_Tests.framework in Frameworks */,
+				F5F931F852DC2D646C9FCECD /* Pods_AnobiUIKit_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,8 +128,8 @@
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
-				83D18DD175A1FE9606AB74E0 /* Pods_AnobiUIKit_Example.framework */,
-				8D01881DFB904A1FE204CDB1 /* Pods_AnobiUIKit_Tests.framework */,
+				3CDB9AE44CF1D95799ADAE1F /* Pods_AnobiUIKit_Example.framework */,
+				A2C5F08B0892BEA13D732BBE /* Pods_AnobiUIKit_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -215,8 +215,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				33EB54D2806ED45B97EB2A98 /* [CP] Embed Pods Frameworks */,
-				CDCF5DE481D402B128639CEA /* [CP] Copy Pods Resources */,
+				BC804EAE47092666F40023D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,8 +234,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				0012C5378D2806B2441D73F6 /* [CP] Embed Pods Frameworks */,
-				5F80AF07C012624EA8F50656 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -310,22 +307,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0012C5378D2806B2441D73F6 /* [CP] Embed Pods Frameworks */ = {
+		6CDDA1F9538FB50D4BDEC4EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AnobiUIKit_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnobiUIKit_Tests/Pods-AnobiUIKit_Tests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		33EB54D2806ED45B97EB2A98 /* [CP] Embed Pods Frameworks */ = {
+		BC804EAE47092666F40023D6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -345,39 +345,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5F80AF07C012624EA8F50656 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnobiUIKit_Tests/Pods-AnobiUIKit_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6CDDA1F9538FB50D4BDEC4EE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AnobiUIKit_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C14A88D75157512471124043 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,26 +361,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CDCF5DE481D402B128639CEA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example-resources.sh",
-				"${PODS_ROOT}/../../AnobiUIKit/Resources/AKMainConfigExample.plist",
-				"${PODS_ROOT}/../../AnobiUIKit/Resources/AKThemesExample.plist",
-				"${PODS_ROOT}/../../AnobiUIKit/Resources/AKViewDispatcherConfigExample.plist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'AnobiUIKit'
-  s.version          = '0.3.5'
+  s.version          = '0.3.6'
   s.summary          = 'AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.'
 
   s.description      = <<-DESC
@@ -14,7 +14,6 @@ longer...
                        DESC
 
   s.homepage     = "https://github.com/Anobisoft/AnobiUIKit"
-# s.screenshots  = "www.example.com/screenshots_1.gif"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Stanislav Pletnev" => "anobisoft@gmail.com" }
   s.social_media_url   = "https://twitter.com/Anobisoft"
@@ -29,20 +28,9 @@ longer...
 
   s.source       = { :git => "https://github.com/Anobisoft/AnobiUIKit.git", :tag => "v#{s.version}" }
   s.source_files  = "AnobiUIKit/Classes/**/*.{h,m}"
-# s.public_header_files = "AnobiUIKit/Classes/**/*.h"
-# s.exclude_files = "Classes/Exclude"
-# s.resource  = "icon.png"
   s.resources = "AnobiUIKit/Resources/*.plist"
-# s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
   s.framework  = "UIKit"
-# s.frameworks = "SomeFramework", "AnotherFramework"
-# s.library   = "iconv"
-# s.libraries = "iconv", "xml2"
-# s.dependency "AnobiKit", "~> 0.2.21"
-
   s.requires_arc = true
-# s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.pod_target_xcconfig = { 'LD_RUNPATH_SEARCH_PATHS' => '$(FRAMEWORK_SEARCH_PATHS)' }
 
 end
