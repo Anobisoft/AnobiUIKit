@@ -12,27 +12,27 @@
 @implementation AKViewDispatcher
 
 - (void)swizzledDidLoad {
-    [AKViewDispatcher viewDidLoadViewController:(UIViewController *)self];
+    [AKViewDispatcher viewDidLoadViewController:(__kindof UIViewController *)self];
     [self swizzledDidLoad];
 }
 
 - (void)swizzledWillAppear:(BOOL)animated {
-    [AKViewDispatcher viewWillAppear:animated viewController:(UIViewController *)self];
+    [AKViewDispatcher viewWillAppear:animated viewController:(__kindof UIViewController *)self];
     [self swizzledWillAppear:animated];
 }
 
 - (void)swizzledDidAppear:(BOOL)animated {
-    [AKViewDispatcher viewDidAppear:animated viewController:(UIViewController *)self];
+    [AKViewDispatcher viewDidAppear:animated viewController:(__kindof UIViewController *)self];
     [self swizzledDidAppear:animated];
 }
 
 - (void)swizzledWillDisappear:(BOOL)animated {
-    [AKViewDispatcher viewWillDisappear:animated viewController:(UIViewController *)self];
+    [AKViewDispatcher viewWillDisappear:animated viewController:(__kindof UIViewController *)self];
     [self swizzledWillDisappear:animated];
 }
 
 - (void)swizzledDidDisappear:(BOOL)animated {
-    [AKViewDispatcher viewDidDisappear:animated viewController:(UIViewController *)self];
+    [AKViewDispatcher viewDidDisappear:animated viewController:(__kindof UIViewController *)self];
     [self swizzledDidDisappear:animated];
 }
 
@@ -152,15 +152,17 @@ static NSMutableDictionary<NSString *, NSHashTable *> *observersPoolByViewClass;
     }
 }
 
-+ (UIViewController *)visibleViewController {
-    return [self visibleViewControllerFrom:[UIApplication sharedApplication].keyWindow.rootViewController];
++ (__kindof UIViewController *)visibleViewController {
+    return [self visibleViewControllerFrom:UIApplication.sharedApplication.keyWindow.rootViewController];
 }
 
-+ (UIViewController *)visibleViewControllerFrom:(UIViewController *)vc {
-    if ([vc isKindOfClass:[UINavigationController class]]) {
-        return [self visibleViewControllerFrom:((UINavigationController *)vc).visibleViewController];
-    } else if ([vc isKindOfClass:[UITabBarController class]]) {
-        return [self visibleViewControllerFrom:((UITabBarController *)vc).selectedViewController];
++ (__kindof UIViewController *)visibleViewControllerFrom:(__kindof UIViewController *)vc {
+    if ([vc isKindOfClass:UINavigationController.class]) {
+        __kindof UINavigationController *nc = vc;
+        return [self visibleViewControllerFrom:nc.visibleViewController];
+    } else if ([vc isKindOfClass:UITabBarController.class]) {
+        __kindof UITabBarController *tbc = vc;
+        return [self visibleViewControllerFrom:tbc.selectedViewController];
     } else if (vc.presentedViewController) {
         return [self visibleViewControllerFrom:vc.presentedViewController];
     } else if (vc.childViewControllers.count) {

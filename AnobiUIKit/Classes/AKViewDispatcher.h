@@ -10,18 +10,18 @@
 
 @protocol AKViewObserver <NSObject>
 @optional
-- (void)viewDidLoadViewController:(UIViewController *)viewController;
-- (void)viewWillAppear:(BOOL)animated viewController:(UIViewController *)viewController;
-- (void)viewDidAppear:(BOOL)animated viewController:(UIViewController *)viewController;
-- (void)viewWillDisappear:(BOOL)animated viewController:(UIViewController *)viewController;
-- (void)viewDidDisappear:(BOOL)animated viewController:(UIViewController *)viewController;
+- (void)viewDidLoadViewController:(__kindof UIViewController *)viewController;
+- (void)viewWillAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController;
+- (void)viewDidAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController;
+- (void)viewWillDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController;
+- (void)viewDidDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController;
 
 @end
 
 @interface AKViewDispatcher : NSObject <AKViewObserver>
 
-+ (UIViewController *)visibleViewController;
-+ (UIViewController *)visibleViewControllerFrom:(UIViewController *)vc;
++ (__kindof UIViewController *)visibleViewController;
++ (__kindof UIViewController *)visibleViewControllerFrom:(__kindof UIViewController *)vc;
 
 + (void)addViewObserver:(id<AKViewObserver>)viewObserver forClass:(Class)c;
 + (void)removeViewObserver:(id<AKViewObserver>)viewObserver fromClass:(Class)c;
