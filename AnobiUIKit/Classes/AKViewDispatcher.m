@@ -185,7 +185,9 @@ static NSMutableDictionary<NSString *, NSHashTable *> *observersPoolByViewClass;
 }
 
 + (void)initialize {
-    observersPoolByViewClass = [NSMutableDictionary new];
+    if (!observersPoolByViewClass) {
+        observersPoolByViewClass = [NSMutableDictionary new];
+    }    
 }
 
 @end
