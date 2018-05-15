@@ -62,4 +62,20 @@
     if (scroll_sema) dispatch_semaphore_signal(scroll_sema);
 }
 
+- (CGRect)contentBounds {
+    CGRect result = self.tableView.bounds;
+    CGFloat topInset;
+    CGFloat bottomInset;
+    if (@available(iOS 11.0, *)) {
+        topInset = self.tableView.adjustedContentInset.top;
+        bottomInset = self.tableView.adjustedContentInset.bottom;        
+    } else {
+        topInset = self.tableView.contentInset.top;
+        bottomInset = self.tableView.contentInset.bottom;
+    }
+    result.origin.y += topInset;
+    result.size.height -= bottomInset + topInset;
+    return result;
+}
+
 @end

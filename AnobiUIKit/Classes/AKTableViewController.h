@@ -12,5 +12,6 @@
 
 - (void)becomeFirstResponderTextFieldAtIndexPath:(NSIndexPath *)indexPath;
 - (void)scrollToIndexPath:(NSIndexPath *)ip completion:(dispatch_block_t)completion;
+@property (readonly, assign) CGRect contentBounds;
 
 @end
