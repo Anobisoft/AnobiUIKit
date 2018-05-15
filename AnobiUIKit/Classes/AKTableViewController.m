@@ -45,7 +45,8 @@
             [self.tableView scrollRectToVisible:[self.tableView rectForRowAtIndexPath:ip] animated:true];
         }
     }
-    if (willScroll && completion) {
+    if (!completion) return ;
+    if (willScroll) {
         scroll_sema = dispatch_semaphore_create(0);
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
             dispatch_semaphore_wait(self->scroll_sema, DISPATCH_TIME_FOREVER);
