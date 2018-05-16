@@ -40,7 +40,7 @@
         [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionNone animated:true];
         
     } else {
-        if (!CGRectContainsRect(self.tableView.bounds, [self.tableView rectForRowAtIndexPath:ip])) {
+        if (!CGRectContainsRect(self.contentBounds, [self.tableView rectForRowAtIndexPath:ip])) {
             willScroll = true;
             [self.tableView scrollRectToVisible:[self.tableView rectForRowAtIndexPath:ip] animated:true];
         }
