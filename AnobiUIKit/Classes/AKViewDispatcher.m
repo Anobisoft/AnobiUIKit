@@ -39,35 +39,40 @@
 
 
 + (void)viewDidLoadViewController:(__kindof UIViewController *)viewController {
-    for (id<AKViewObserver> observer in observersPoolByViewClass[NSStringFromClass(viewController.class)]) {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
         if (observer && [observer respondsToSelector:@selector(viewDidLoadViewController:)])
             [observer viewDidLoadViewController:viewController];
     }
 }
 
 + (void)viewWillAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
-    for (id<AKViewObserver> observer in observersPoolByViewClass[NSStringFromClass(viewController.class)]) {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
         if (observer && [observer respondsToSelector:@selector(viewWillAppear:viewController:)])
             [observer viewWillAppear:animated viewController:viewController];
     }
 }
 
 + (void)viewDidAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
-    for (id<AKViewObserver> observer in observersPoolByViewClass[NSStringFromClass(viewController.class)]) {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
         if (observer && [observer respondsToSelector:@selector(viewDidAppear:viewController:)])
             [observer viewDidAppear:animated viewController:viewController];
     }
 }
 
 + (void)viewWillDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
-    for (id<AKViewObserver> observer in observersPoolByViewClass[NSStringFromClass(viewController.class)]) {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
         if (observer && [observer respondsToSelector:@selector(viewWillDisappear:viewController:)])
             [observer viewWillDisappear:animated viewController:viewController];
     }
 }
 
 + (void)viewDidDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
-    for (id<AKViewObserver> observer in observersPoolByViewClass[NSStringFromClass(viewController.class)]) {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
         if (observer && [observer respondsToSelector:@selector(viewDidDisappear:viewController:)])
             [observer viewDidDisappear:animated viewController:viewController];
     }
