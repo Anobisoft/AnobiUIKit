@@ -20,7 +20,7 @@
     void (^completionBlock)(UIImage *image);
 }
 
-static id instance = nil;
+static AKImagePicker *instance = nil;
 
 + (instancetype)pickerWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *image))completion {
     return [self pickerWithSourceOptions:1 << sourceType completion:completion];
@@ -35,7 +35,10 @@ static id instance = nil;
 }
 
 + (instancetype)pickerWithCompletion:(void (^)(UIImage *image))completion {
-    if (instance) return instance;
+    if (instance) {
+        instance->completionBlock = completion;
+        return instance;
+    }
     return instance = [[self alloc] initWithCompletion:completion];
 }
 
@@ -126,7 +129,7 @@ UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t
             sourceRect.size = CGSizeMake(1, 1);
         }
         alert.popoverPresentationController.sourceRect = sourceRect;
-//        alert.popoverPresentationController.permittedArrowDirections = UIMenuControllerArrowUp;
+        alert.popoverPresentationController.permittedArrowDirections = self.permittedArrowDirections;
         [viewController presentViewController:alert animated:true completion:nil];
     } else {
         for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
@@ -141,7 +144,9 @@ UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t
 }
 
 - (void)selectSource:(UIImagePickerControllerSourceType)sourceType {
-    self.pickerController.allowsEditing = self.allowsEditing && ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad || sourceType == UIImagePickerControllerSourceTypeCamera);
+    BOOL iPad = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
+    BOOL sourceIsCamera = sourceType == UIImagePickerControllerSourceTypeCamera;
+    self.pickerController.allowsEditing = self.allowsEditing && (!iPad || sourceIsCamera);
     self.pickerController.sourceType = sourceType;
 }
 
@@ -170,7 +175,7 @@ UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t
 
 
 #pragma mark -
-#pragma mark -
+#pragma mark - UIViewController
 
 @implementation UIViewController(AKImagePicker)
 

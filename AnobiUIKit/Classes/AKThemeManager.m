@@ -8,7 +8,7 @@
 
 #import "AKThemeManager.h"
 
-#define AKThemeUDKey_CurrentThemeName @"AKThemeManager.currentThemeName"
+static NSString * const UDKey_AKTheme_CurrentThemeName = @"AKThemeManager.currentThemeName";
 
 @implementation AKThemeManager {
     NSDictionary<NSString *, AKTheme *> *themes;
@@ -40,17 +40,17 @@ static id instance;
                 tmp[themeName] = theme;
             }
         }
-        if (!tmp.allKeys.count) {
+        NSArray<NSString *> *allKeys = tmp.allKeys;
+        if (!allKeys.count) {
             @throw [NSException exceptionWithName:@"AKThemeManagerEmptyConfigException" reason:@"no themes configured" userInfo:nil];
             return nil;
         }
         themes = tmp.copy;
         
-        currentThemeName = [[NSUserDefaults standardUserDefaults] objectForKey:AKThemeUDKey_CurrentThemeName];
-        if (!(currentThemeName && [self.allNames containsObject:currentThemeName])) {
-            currentThemeName = self.allNames.firstObject;
+        currentThemeName = [[NSUserDefaults standardUserDefaults] objectForKey:UDKey_AKTheme_CurrentThemeName];
+        if (!(currentThemeName && [allKeys containsObject:currentThemeName])) {
+            currentThemeName = allKeys.firstObject;
         }
-        
     }
     return self;
 }
@@ -72,9 +72,10 @@ static id instance;
 }
 
 - (void)setCurrentThemeName:(NSString *)name {
-    if ([self.allNames containsObject:name]) {
+    NSArray<NSString *> *allNames = self.allNames;
+    if ([allNames containsObject:name]) {
         currentThemeName = name;
-        [[NSUserDefaults standardUserDefaults] setObject:currentThemeName forKey:AKThemeUDKey_CurrentThemeName];
+        [[NSUserDefaults standardUserDefaults] setObject:currentThemeName forKey:UDKey_AKTheme_CurrentThemeName];
     } else {
         @throw [NSException exceptionWithName:@"AKThemeManagerInvalidConfigName" reason:@"" userInfo:nil];
     }

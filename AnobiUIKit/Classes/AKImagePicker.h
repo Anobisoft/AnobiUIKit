@@ -31,6 +31,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) NSString *alertTitle;
 @property (nonatomic) NSString *alertMessage;
 @property (nonatomic) UIAlertControllerStyle alertPreferredStyle;
+@property (nonatomic) UIPopoverArrowDirection permittedArrowDirections;
 
 @end
 
