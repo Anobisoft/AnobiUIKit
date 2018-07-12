@@ -101,9 +101,19 @@ UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t
     if (availableCount > 1) {
         NSArray *sourceLocalizationKeys = @[@"Photo Library", @"Camera", @"Saved Photos Album"];
         UIAlertControllerStyle style = UIAlertControllerStyleAlert;
-        if (self.alertPreferredStyle == UIAlertControllerStyleActionSheet && sourceView) {
+        BOOL iPhone = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone;
+        if (iPhone) {
             style = self.alertPreferredStyle;
+        } else {
+            if (self.alertPreferredStyle == UIAlertControllerStyleActionSheet && sourceView) {
+                style = UIAlertControllerStyleActionSheet;
+                if (CGRectIsNull(sourceRect)) {
+                    CGPoint centerPoint = sourceView.center;
+                    sourceRect = CGRectMake(centerPoint.x, centerPoint.y, 1, 1);
+                }
+            }
         }
+
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.alertTitle
                                                                        message:self.alertMessage
                                                                 preferredStyle:style];
@@ -124,10 +134,6 @@ UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t
         })];
         
         alert.popoverPresentationController.sourceView = sourceView;
-        if (CGRectIsNull(sourceRect)) {
-            sourceRect.origin = sourceView.center;
-            sourceRect.size = CGSizeMake(1, 1);
-        }
         alert.popoverPresentationController.sourceRect = sourceRect;
         alert.popoverPresentationController.permittedArrowDirections = self.permittedArrowDirections;
         [viewController presentViewController:alert animated:true completion:nil];
