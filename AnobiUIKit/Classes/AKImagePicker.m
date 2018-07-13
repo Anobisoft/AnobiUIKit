@@ -15,7 +15,8 @@
 @end
 
 @implementation AKImagePicker {
-    BOOL available[3];
+    NSDictionary *sourceLocalizationMap;
+    BOOL available[supportedImageSourcesCount];
     NSInteger availableCount;
     void (^completionBlock)(UIImage *image);
 }
@@ -48,18 +49,27 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 
 - (instancetype)initWithSourceOptions:(AKImagePickerSourceOption)options completion:(void (^)(UIImage *image))completion {
     if (self = [super init]) {
+        sourceLocalizationMap =
+        @{
+          @(UIImagePickerControllerSourceTypePhotoLibrary) : @"Photo Library",
+          @(UIImagePickerControllerSourceTypeCamera) : @"Camera",
+          @(UIImagePickerControllerSourceTypeSavedPhotosAlbum) : @"Saved Photos Album",
+          };
+        
         self.alertPreferredStyle = UIAlertControllerStyleActionSheet;
         completionBlock = completion;
         availableCount = 0;
         if (options != AKImagePickerSourceOptionAuto) {
-            for (int sourceType = 0; sourceType < 3; sourceType++) {
+            for (int sourceTypeIndex = 0; sourceTypeIndex < supportedImageSourcesCount; sourceTypeIndex++) {
+                UIImagePickerControllerSourceType sourceType = supportedImageSources[sourceTypeIndex];
                 if (options & (1 << sourceType)) {
-                    availableCount += available[sourceType] = SourceAvailable(sourceType);
+                    availableCount += available[sourceTypeIndex] = SourceAvailable(sourceType);
                 }
             }
         } else {
-            for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
-                availableCount += available[sourceType] = SourceAvailable(sourceType);
+            for (NSInteger sourceTypeIndex = 0; sourceTypeIndex < supportedImageSourcesCount; sourceTypeIndex++) {
+                UIImagePickerControllerSourceType sourceType = supportedImageSources[sourceTypeIndex];
+                availableCount += available[sourceTypeIndex] = SourceAvailable(sourceType);
             }
         }
         self.pickerController = [UIImagePickerController new];
@@ -91,55 +101,16 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 #pragma mark -
 #pragma mark - Alert
 
-UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t handler) {
-    return UIAlertActionDefaultStyleMake([[NSBundle bundleForClass:UIApplication.class] localizedStringForKey:localizationKey value:nil table:nil], handler);
-}
-
 - (void)viewController:(UIViewController *)viewController
             sourceView:(UIView *)sourceView
             sourceRect:(CGRect)sourceRect {
+    
     if (availableCount > 1) {
-        NSArray *sourceLocalizationKeys = @[@"Photo Library", @"Camera", @"Saved Photos Album"];
-        UIAlertControllerStyle style = UIAlertControllerStyleAlert;
-        BOOL iPhone = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone;
-        if (iPhone) {
-            style = self.alertPreferredStyle;
-        } else {
-            if (self.alertPreferredStyle == UIAlertControllerStyleActionSheet && sourceView) {
-                style = UIAlertControllerStyleActionSheet;
-                if (CGRectIsNull(sourceRect)) {
-                    CGPoint centerPoint = sourceView.center;
-                    sourceRect = CGRectMake(centerPoint.x, centerPoint.y, 1, 1);
-                }
-            }
-        }
-
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.alertTitle
-                                                                       message:self.alertMessage
-                                                                preferredStyle:style];
-        
-        for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
-            if (available[sourceType]) {
-                [alert addAction:UILocalizedActionMake(sourceLocalizationKeys[sourceType], ^{
-                    [self selectSource:sourceType];
-                    [viewController presentViewController:self.pickerController
-                                                 animated:true completion:nil];
-                })];
-            }
-        }
-        
-        [alert addAction:UIAlertCancelAction(^{
-            instance = nil;
-            self->completionBlock(nil);
-        })];
-        
-        alert.popoverPresentationController.sourceView = sourceView;
-        alert.popoverPresentationController.sourceRect = sourceRect;
-        alert.popoverPresentationController.permittedArrowDirections = self.permittedArrowDirections;
-        [viewController presentViewController:alert animated:true completion:nil];
+        [self showAlertOnViewController:viewController sourceView:sourceView sourceRect:sourceRect];
     } else {
-        for (NSInteger sourceType = 0; sourceType < 3; sourceType++) {
-            if (available[sourceType]) {
+        for (NSInteger sourceTypeIndex = 0; sourceTypeIndex < supportedImageSourcesCount; sourceTypeIndex++) {
+            if (available[sourceTypeIndex]) {
+                UIImagePickerControllerSourceType sourceType = supportedImageSources[sourceTypeIndex];
                 [self selectSource:sourceType];
                 [viewController presentViewController:self.pickerController
                                              animated:true completion:nil];
@@ -147,6 +118,51 @@ UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t
             }
         }
     }
+}
+
+- (void)showAlertOnViewController:(UIViewController *)viewController
+                       sourceView:(UIView *)sourceView
+                       sourceRect:(CGRect)sourceRect {
+    
+    UIAlertControllerStyle style = UIAlertControllerStyleAlert;
+    BOOL iPhone = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone;
+    if (iPhone) {
+        style = self.alertPreferredStyle;
+    } else {
+        if (self.alertPreferredStyle == UIAlertControllerStyleActionSheet && sourceView) {
+            style = UIAlertControllerStyleActionSheet;
+            if (CGRectIsNull(sourceRect)) {
+                CGPoint centerPoint = sourceView.center;
+                sourceRect = CGRectMake(centerPoint.x, centerPoint.y, 1, 1);
+            }
+        }
+    }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.alertTitle
+                                                                   message:self.alertMessage
+                                                            preferredStyle:style];
+    
+    for (NSInteger sourceTypeIndex = 0; sourceTypeIndex < supportedImageSourcesCount; sourceTypeIndex++) {
+        if (available[sourceTypeIndex]) {
+            UIImagePickerControllerSourceType sourceType = supportedImageSources[sourceTypeIndex];
+            NSString *localizationKey = sourceLocalizationMap[@(sourceType)];
+            [alert addAction:UILocalizedActionMake(localizationKey, ^{
+                [self selectSource:sourceType];
+                [viewController presentViewController:self.pickerController
+                                             animated:true completion:nil];
+            })];
+        }
+    }
+    
+    [alert addAction:UIAlertCancelAction(^{
+        instance = nil;
+        self->completionBlock(nil);
+    })];
+    
+    alert.popoverPresentationController.sourceView = sourceView;
+    alert.popoverPresentationController.sourceRect = sourceRect;
+    alert.popoverPresentationController.permittedArrowDirections = self.permittedArrowDirections;
+    [viewController presentViewController:alert animated:true completion:nil];
 }
 
 - (void)selectSource:(UIImagePickerControllerSourceType)sourceType {

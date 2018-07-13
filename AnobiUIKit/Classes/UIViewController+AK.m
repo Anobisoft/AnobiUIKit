@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+AK.h"
+#import "NSBundle+AKUI.h"
 
 #define UIBundleLocalizedString(key) [[NSBundle bundleForClass:UIApplication.class] localizedStringForKey:key value:nil table:nil]
 
@@ -29,6 +30,10 @@
 }
 
 @end
+
+UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t handler) {
+    return UIAlertActionDefaultStyleMake([[NSBundle UIBundle] localizedStringForKey:localizationKey], handler);
+}
 
 UIAlertAction *UIAlertActionMake(NSString *title, UIAlertActionStyle style, dispatch_block_t handler) {
     return [UIAlertAction actionWithTitle:title

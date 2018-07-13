@@ -6,6 +6,7 @@
 //  Copyright © 2017 Anobisoft. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
 
 typedef enum : NSUInteger {
@@ -14,6 +15,15 @@ typedef enum : NSUInteger {
     AKImagePickerSourceOptionCamera = 1 << UIImagePickerControllerSourceTypeCamera,
     AKImagePickerSourceOptionSavedPhotosAlbum = 1 << UIImagePickerControllerSourceTypeSavedPhotosAlbum,
 } AKImagePickerSourceOption;
+
+#define supportedImageSourcesCount 3
+static NSInteger supportedImageSources[] = {
+    UIImagePickerControllerSourceTypePhotoLibrary,
+    UIImagePickerControllerSourceTypeCamera,
+    UIImagePickerControllerSourceTypeSavedPhotosAlbum,
+};
+
+
 
 @interface AKImagePicker : NSObject
 
@@ -34,6 +44,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) UIPopoverArrowDirection permittedArrowDirections;
 
 @end
+
 
 @interface UIViewController(AKImagePicker)
 - (void)showImagePicker:(AKImagePicker *)picker;
