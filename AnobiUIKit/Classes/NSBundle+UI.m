@@ -1,14 +1,14 @@
 //
-//  NSBundle+AKUI.m
+//  NSBundle+UI.m
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 14/07/2018.
 //  Copyright © 2018 Anobisoft. All rights reserved.
 //
 
-#import "NSBundle+AKUI.h"
+#import "NSBundle+UI.h"
 
-@implementation NSBundle (AKUI)
+@implementation NSBundle (UI)
 
 + (instancetype)UIBundle {
     return [self bundleForClass:UIApplication.class];
