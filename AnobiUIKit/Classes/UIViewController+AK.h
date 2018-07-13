@@ -25,22 +25,44 @@ UIAlertAction *UIAlertActionDefaultStyleMake(NSString *title, __nullable dispatc
 UIAlertAction *UIAlertCancelAction(__nullable dispatch_block_t handler);
 UIAlertAction *UIAlertRedoAction(dispatch_block_t handler);
 
-@interface UIViewController (UIAlert)
+@protocol UIAlertConfigurator <NSObject>
+@optional
+- (UIAlertControllerStyle)alertControllerPreferredStyle;
+- (UIView *)alertControllerPresentationSourceView;
+- (CGRect)alertControllerPresentationSourceRect;
+- (UIPopoverArrowDirection)alertControllerPresentationPermittedArrowDirections;
+@end
+
+@interface UIViewController (UIAlert) <UIAlertConfigurator>
 
 - (void)showAlert:(NSString *)title
         okHandler:(__nullable dispatch_block_t)okHandler;
 - (void)showAlert:(NSString *)title message:(NSString  * _Nullable)message
         okHandler:(__nullable dispatch_block_t)okHandler;
 
+
 - (void)showAlert:(NSString *)title
              redo:(dispatch_block_t)redo cancel:(__nullable dispatch_block_t)cancel;
 - (void)showAlert:(NSString *)title message:(NSString  * _Nullable)message
              redo:(dispatch_block_t)redo cancel:(__nullable dispatch_block_t)cancel;
 
+
+- (void)showAlert:(NSString *)title
+          actions:(NSArray<UIAlertAction *> *)actions;
 - (void)showAlert:(NSString *)title message:(NSString * _Nullable)message
           actions:(NSArray<UIAlertAction *> *)actions;
 - (void)showAlert:(NSString *)title message:(NSString * _Nullable)message
           actions:(NSArray<UIAlertAction *> *)actions cancel:(__nullable dispatch_block_t)cancel;
+- (void)showAlert:(NSString *)title
+          actions:(NSArray<UIAlertAction *> *)actions cancel:(__nullable dispatch_block_t)cancel;
+
+
+- (void)showAlert:(NSString *)title message:(NSString * _Nullable)message
+          actions:(NSArray<UIAlertAction *> *)actions
+     configurator:(id<UIAlertConfigurator>)configurator;
+- (void)showAlert:(NSString *)title message:(NSString * _Nullable)message
+          actions:(NSArray<UIAlertAction *> *)actions cancel:(__nullable dispatch_block_t)cancel
+     configurator:(id<UIAlertConfigurator>)configurator;
 
 @end
 
