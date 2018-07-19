@@ -19,7 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t handler);
+UIAlertAction *UILocalizedActionMake(NSString *localizationKey, UIAlertActionStyle style, dispatch_block_t handler);
+UIAlertAction *UILocalizedActionDefaultStyleMake(NSString *localizationKey, dispatch_block_t handler);
+
 UIAlertAction *UIAlertActionMake(NSString *title, UIAlertActionStyle style, __nullable dispatch_block_t handler);
 UIAlertAction *UIAlertActionDefaultStyleMake(NSString *title, __nullable dispatch_block_t handler);
 UIAlertAction *UIAlertCancelAction(__nullable dispatch_block_t handler);

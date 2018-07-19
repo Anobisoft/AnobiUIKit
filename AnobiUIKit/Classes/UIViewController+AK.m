@@ -29,8 +29,12 @@
 
 @end
 
-UIAlertAction *UILocalizedActionMake(NSString *localizationKey, dispatch_block_t handler) {
-    return UIAlertActionDefaultStyleMake([[NSBundle UIBundle] localizedStringForKey:localizationKey], handler);
+UIAlertAction *UILocalizedActionMake(NSString *localizationKey, UIAlertActionStyle style, dispatch_block_t handler) {
+    return UIAlertActionMake([[NSBundle UIBundle] localizedStringForKey:localizationKey], style, handler);
+}
+
+UIAlertAction *UILocalizedActionDefaultStyleMake(NSString *localizationKey, dispatch_block_t handler) {
+    return UILocalizedActionMake(localizationKey, UIAlertActionStyleDefault, handler);
 }
 
 UIAlertAction *UIAlertActionMake(NSString *title, UIAlertActionStyle style, dispatch_block_t handler) {
