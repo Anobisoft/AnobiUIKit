@@ -58,11 +58,11 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
        
         self.alertPreferredStyle = UIAlertControllerStyleActionSheet;
         completionBlock = completion;
-        availableCount = 0;
+        
         if (options == AKImagePickerSourceOptionAuto) {
             options = AKImagePickerSourceOptionPhotoLibrary + AKImagePickerSourceOptionCamera + AKImagePickerSourceOptionSavedPhotosAlbum;
         }
-        
+        availableCount = 0;
         for (int sourceTypeIndex = 0; sourceTypeIndex < supportedImageSourcesCount; sourceTypeIndex++) {
             UIImagePickerControllerSourceType sourceType = supportedImageSources[sourceTypeIndex];
             if (options & (1 << sourceType)) {
@@ -74,12 +74,15 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
                 }
             }
         }
+        if (availableCount == 0) {
+            return nil;
+        }
         
         self.pickerController = [UIImagePickerController new];
         self.pickerController.delegate = self;
         self.alertPreferredStyle = -1;
     }
-    return availableCount ? self : nil;
+    return self;
 }
 
 - (instancetype)initWithCompletion:(void (^)(UIImage *image))completion {
