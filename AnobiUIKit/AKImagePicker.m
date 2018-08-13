@@ -7,6 +7,7 @@
 //
 
 #import "AKImagePicker.h"
+#import "AKAlert.h"
 
 @interface AKImagePicker() <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertConfigurator>
 

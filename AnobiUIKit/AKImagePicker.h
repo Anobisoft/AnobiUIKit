@@ -7,8 +7,6 @@
 //
 
 
-#import "UIViewController+AK.h"
-
 typedef enum : NSUInteger {
     AKImagePickerSourceOptionAuto = 0,
     AKImagePickerSourceOptionPhotoLibrary = 1 << UIImagePickerControllerSourceTypePhotoLibrary,

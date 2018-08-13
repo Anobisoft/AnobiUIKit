@@ -6,7 +6,7 @@
 //  Copyright © 2018 Anobisoft. All rights reserved.
 //
 
-#import "AKTheme.h"
+#import <AnobiUIKit/AKTheme.h>
 
 @interface AKThemeManager : NSObject
 

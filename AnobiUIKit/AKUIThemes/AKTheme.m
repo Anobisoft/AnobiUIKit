@@ -23,7 +23,7 @@
         }
         _name = name;
         
-        NSDictionary<NSString *, NSString *> *keyedColorsRepresentation = config[AKThemeConfigKey_KeyedColors];
+        NSDictionary<NSString *, NSString *> *keyedColorsRepresentation = config[AKThemeConfigKeyedColorsKey];
         NSMutableDictionary<NSString *, UIColor *> *keyedColorsM = [NSMutableDictionary new];
         for (NSString *key in keyedColorsRepresentation) {
             UIColor *color = [UIColor colorWithHexString:keyedColorsRepresentation[key]];
@@ -31,7 +31,7 @@
         }
         _keyedColors = keyedColorsM.copy;
         
-        NSArray<NSString *> *indexedColorsRepresentation = config[AKThemeConfigKey_IndexedColors];
+        NSArray<NSString *> *indexedColorsRepresentation = config[AKThemeConfigIndexedColorsKey];
         NSMutableArray<UIColor *> *indexedColorsM = [NSMutableArray new];
         for (NSString *colorHexRepresentation in indexedColorsRepresentation) {
             UIColor *color = [UIColor colorWithHexString:colorHexRepresentation];
@@ -39,7 +39,7 @@
         }
         _indexedColors = indexedColorsM.copy;
         
-        NSString *barStyleString = config[AKThemeConfigKey_BarStyle];
+        NSString *barStyleString = config[AKThemeConfigBarStyleKey];
         BOOL black = [barStyleString isEqualToString:@"Black"] || [barStyleString isEqualToString:@"Dark"];
         _barStyle = black ? UIBarStyleBlack : UIBarStyleDefault;
         _statusBarStyle = black ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;

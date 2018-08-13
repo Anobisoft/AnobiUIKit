@@ -1,36 +1,18 @@
 //
-//  UIViewController+AK.m
+//  AKAlert.m
 //  AnobiUIKit
 //
-//  Created by Stanislav Pletnev on 16.02.2018.
+//  Created by Stanislav Pletnev on 13/08/2018.
 //  Copyright © 2018 Anobisoft. All rights reserved.
 //
 
-#import "UIViewController+AK.h"
-#import "NSBundle+UI.h"
+#import "AKAlert.h"
+#import <AnobiKit/AKBundle.h>
 
-@implementation UIViewController (AK)
-
-+ (UIImage *)imageNamed:(NSString *)name {
-    return [UIImage imageNamed:name inBundle:[NSBundle bundleForClass:self] compatibleWithTraitCollection:nil];
-}
-
-- (UIImage *)imageNamed:(NSString *)name {
-    return [self.class imageNamed:name];
-}
-
-+ (NSString *)localized:(NSString *)key {
-    return [[NSBundle bundleForClass:self] localizedStringForKey:key];
-}
-
-- (NSString *)localized:(NSString *)key {
-    return [self.class localized:key];
-}
-
-@end
+#pragma mark -
 
 UIAlertAction *UILocalizedActionMake(NSString *localizationKey, UIAlertActionStyle style, dispatch_block_t handler) {
-    return UIAlertActionMake([[NSBundle UIBundle] localizedStringForKey:localizationKey], style, handler);
+    return UIAlertActionMake(UIKitLocalizedString(localizationKey), style, handler);
 }
 
 UIAlertAction *UILocalizedActionDefaultStyleMake(NSString *localizationKey, dispatch_block_t handler) {
@@ -38,7 +20,7 @@ UIAlertAction *UILocalizedActionDefaultStyleMake(NSString *localizationKey, disp
 }
 
 UIAlertAction *UIAlertActionMake(NSString *title, UIAlertActionStyle style, dispatch_block_t handler) {
-    return [UIAlertAction actionWithTitle:title
+    return [UIAlertAction actionWithTitle:AKLocalizedString(title)
                                     style:style
                                   handler:^(UIAlertAction *action) {
                                       if (handler) handler();
@@ -50,25 +32,46 @@ UIAlertAction *UIAlertActionDefaultStyleMake(NSString *title, dispatch_block_t h
 }
 
 UIAlertAction *UIAlertCancelAction(dispatch_block_t handler) {
-    return UIAlertActionMake(UIBundleLocalizedString(@"Cancel"), UIAlertActionStyleCancel, handler);
+    return UILocalizedActionMake(@"Cancel", UIAlertActionStyleCancel, handler);
 }
 
 UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
-    return UIAlertActionDefaultStyleMake(UIBundleLocalizedString(@"Redo"), handler);
+    return UILocalizedActionDefaultStyleMake(@"Redo", handler);
 }
 
+UIAlertAction *UIAlertOKAction(dispatch_block_t handler) {
+    return UILocalizedActionDefaultStyleMake(@"OK", handler);
+}
+
+#pragma mark -
+
 @implementation UIViewController (UIAlert)
+
+
 
 #pragma mark -
 #pragma mark - OK
 
-- (void)showAlert:(NSString *)title okHandler:(dispatch_block_t)okHandler {
-    [self showAlert:title message:nil okHandler:okHandler];
+- (void)showNotice:(NSString *)title
+        completion:(__nullable dispatch_block_t)completion {
+    [self showNotice:title message:nil completion:completion];
+}
+- (void)showNotice:(NSString *)title message:(NSString  * _Nullable)message
+        completion:(__nullable dispatch_block_t)completion {
+    [self showAlert:title message:message
+            actions:@[UIAlertOKAction(completion)]];
 }
 
-- (void)showAlert:(NSString *)title message:(NSString *)message okHandler:(dispatch_block_t)okHandler {
-    [self showAlert:title message:message
-            actions:@[UIAlertActionDefaultStyleMake(UIBundleLocalizedString(@"OK"), okHandler)]];
+- (void)showDialog:(NSString *)title
+                ok:(dispatch_block_t)ok
+            cancel:(__nullable dispatch_block_t)cancel {
+    [self showDialog:title message:nil ok:ok cancel:cancel];
+}
+
+- (void)showDialog:(NSString *)title message:(NSString  * _Nullable)message
+                ok:(dispatch_block_t)ok
+            cancel:(__nullable dispatch_block_t)cancel {
+    [self showAlert:title message:message actions:@[UIAlertOKAction(ok), UIAlertCancelAction(cancel)]];
 }
 
 
@@ -76,13 +79,14 @@ UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
 #pragma mark -
 #pragma mark - Redo
 
-- (void)showAlert:(NSString *)title
-             redo:(dispatch_block_t)redo cancel:(dispatch_block_t)cancel {
-    [self showAlert:title message:nil redo:redo cancel:cancel];
+- (void)showDialog:(NSString *)title
+              redo:(dispatch_block_t)redo cancel:(__nullable dispatch_block_t)cancel {
+    [self showDialog:title message:nil redo:redo cancel:cancel];
 }
 
-- (void)showAlert:(NSString *)title message:(NSString *)message
-             redo:(dispatch_block_t)redo cancel:(dispatch_block_t)cancel {
+- (void)showDialog:(NSString *)title message:(NSString  * _Nullable)message
+              redo:(dispatch_block_t)redo
+            cancel:(__nullable dispatch_block_t)cancel {
     [self showAlert:title message:message actions:@[UIAlertRedoAction(redo), UIAlertCancelAction(cancel)]];
 }
 
@@ -91,12 +95,12 @@ UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
 #pragma mark -
 #pragma mark - Universal
 
-- (void)showAlert:(NSString *)title message:(NSString *)message
+- (void)showAlert:(NSString *)title message:(NSString * _Nullable)message
           actions:(NSArray<UIAlertAction *> *)actions {
     
     [self showAlert:title message:message
             actions:actions
-       configurator:self];
+       configurator:nil];
 }
 
 - (void)showAlert:(NSString *)title
@@ -106,15 +110,15 @@ UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
             actions:actions];
 }
 
-- (void)showAlert:(NSString *)title message:(NSString *)message
-          actions:(NSArray<UIAlertAction *> *)actions cancel:(dispatch_block_t)cancel {
+- (void)showAlert:(NSString *)title message:(NSString * _Nullable)message
+          actions:(NSArray<UIAlertAction *> *)actions cancel:(__nullable dispatch_block_t)cancel {
     
     [self showAlert:title message:message
             actions:[actions arrayByAddingObject:UIAlertCancelAction(cancel)]];
 }
 
 - (void)showAlert:(NSString *)title
-          actions:(NSArray<UIAlertAction *> *)actions cancel:(dispatch_block_t)cancel {
+          actions:(NSArray<UIAlertAction *> *)actions cancel:(__nullable dispatch_block_t)cancel {
     
     [self showAlert:title message:nil
             actions:actions cancel:cancel];
@@ -127,7 +131,7 @@ UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
 
 - (void)showAlert:(NSString *)title message:(NSString * _Nullable)message
           actions:(NSArray<UIAlertAction *> *)actions
-     configurator:(id<UIAlertConfigurator>)configurator {
+     configurator:(id<UIAlertConfigurator> _Nullable)configurator {
     
     if (!configurator) {
         configurator = self;
@@ -180,7 +184,7 @@ UIAlertAction *UIAlertRedoAction(dispatch_block_t handler) {
 
 - (void)showAlert:(NSString *)title message:(NSString * _Nullable)message
           actions:(NSArray<UIAlertAction *> *)actions cancel:(__nullable dispatch_block_t)cancel
-     configurator:(id<UIAlertConfigurator>)configurator {
+     configurator:(id<UIAlertConfigurator> _Nullable)configurator {
     
     [self showAlert:title message:message
             actions:[actions arrayByAddingObject:UIAlertCancelAction(cancel)]
