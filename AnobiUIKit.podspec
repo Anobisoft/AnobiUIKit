@@ -6,11 +6,27 @@ Pod::Spec.new do |s|
   s.summary          = 'AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
-Description should be longer than summary.
-more longer
-much more longer
-longer...
+AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.
+---
+AKAlert
+AKAnimation
+AKFormattedField
+AKImagePicker
+AKTableViewController
+AKViewDispatcher
+---
+AKThemeManager
+---
+AKGradientView
+AKGrainbomatedView
+AKGridView
+---
+CALayer+XibConfiguration
+UIColor+Hex
+UIImage+Resize
+UINavigationBar+AK
+UIView+Autolayout
+UIViewController+AK
                        DESC
 
   s.homepage     = "https://github.com/Anobisoft/AnobiUIKit"
@@ -27,6 +43,5 @@ longer...
   s.dependency "AnobiKit", '~> 0.5.0'
   
   s.requires_arc = true
-  s.pod_target_xcconfig = { 'LD_RUNPATH_SEARCH_PATHS' => '$(FRAMEWORK_SEARCH_PATHS)' }
 
 end
