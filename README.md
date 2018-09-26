@@ -24,8 +24,9 @@ To integrate **AnobiUIKit** into your Xcode project using CocoaPods, specify it 
 
 ```
 platform :ios, '8.3'
-  use_frameworks!
-  target 'TargetName' do
+use_frameworks!
+
+target 'TargetName' do
   pod 'AnobiUIKit'
 end
 
@@ -47,5 +48,4 @@ Minimum iOS Target is ios **8.3**.
 AnobiUIKit is released under the MIT license. See LICENSE for details.
 
 ## Author
-
 Stanislav Pletnev, anobisoft@gmail.com
