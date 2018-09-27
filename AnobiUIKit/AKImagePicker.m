@@ -109,8 +109,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 @dynamic cameraFlashMode;
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
-    if ([self respondsToSelector:aSelector]) return self;
-    else return self.pickerController;
+    return self.pickerController;
 }
 
 
