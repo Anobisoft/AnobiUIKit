@@ -85,4 +85,8 @@ static id instance;
     return [self themeWithName:currentThemeName];
 }
 
+- (void)setCurrentTheme:(AKTheme *)currentTheme {
+    currentThemeName = currentTheme.name;
+}
+
 @end
