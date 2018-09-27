@@ -11,9 +11,14 @@
 @implementation UIView (Autolayout)
 
 + (instancetype)autolayoutView {
-    UIView *view = [self new];
-    view.translatesAutoresizingMaskIntoConstraints = NO;
-    return view;
+    return [[self alloc] initAutolayout:YES];
+}
+
+- (instancetype)initAutolayout:(BOOL)value {
+    if (self = [self init]) {
+        self.translatesAutoresizingMaskIntoConstraints = !value;
+    }
+    return self;
 }
 
 @end

@@ -10,6 +10,6 @@
 
 @interface UINavigationBar (AK)
 
-@property UIColor *titleTextColor;
+@property (assign) UIColor *titleTextColor;
 
 @end
