@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UINavigationBar+AK.h"
 
+static NSString * const AKThemeConfigAppearanceSchemaKey = @"AppearanceSchema";
+static NSString * const AKThemeConfigAppearanceContainedInInstancesOfClassesKey = @"ContainedInInstancesOfClasses";
+static NSString * const AKThemeConfigAppearanceColorSchemaKey = @"ColorSchema";
+
 static NSString * const AKThemeConfigKeyedColorsKey = @"KeyedColors";
 static NSString * const AKThemeConfigIndexedColorsKey = @"IndexedColors";
 static NSString * const AKThemeConfigBarStyleKey = @"BarStyle";
@@ -22,6 +26,8 @@ static NSString * const AKThemeConfigBarStyleKey = @"BarStyle";
 @property (readonly) NSArray<UIColor *> *indexedColors;
 @property (readonly) UIBarStyle barStyle;
 @property (readonly) UIStatusBarStyle statusBarStyle;
+
+- (void)applyAppearanceSchema;
 
 - (UIColor *)objectForKeyedSubscript:(NSString *)key;
 - (UIColor *)objectAtIndexedSubscript:(NSUInteger)idx;

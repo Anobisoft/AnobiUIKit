@@ -9,6 +9,12 @@
 #import "AKTheme.h"
 #import "UIColor+Hex.h"
 
+@interface AKTheme ()
+
+@property (readonly) NSDictionary<NSString *, NSDictionary *> *appearanceSchema;
+
+@end
+
 @implementation AKTheme
 
 + (instancetype)themeNamed:(NSString *)name withConfig:(NSDictionary *)config {
@@ -39,6 +45,8 @@
         }
         _indexedColors = indexedColorsM.copy;
         
+        _appearanceSchema = config[AKThemeConfigAppearanceSchemaKey];
+        
         NSString *barStyleString = config[AKThemeConfigBarStyleKey];
         BOOL black = [barStyleString isEqualToString:@"Black"] || [barStyleString isEqualToString:@"Dark"];
         _barStyle = black ? UIBarStyleBlack : UIBarStyleDefault;
@@ -58,6 +66,48 @@
 
 - (UIColor *)objectAtIndexedSubscript:(NSUInteger)idx {
     return _indexedColors[idx];
+}
+
+- (void)applyAppearanceSchema {    
+    Protocol *appearanceProtocol = @protocol(UIAppearance);
+    [self.appearanceSchema enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary * _Nonnull obj, BOOL * _Nonnull stop) {
+        Class<UIAppearance> viewClass = NSClassFromString(key);
+        if ([viewClass conformsToProtocol:appearanceProtocol]) {
+            NSArray *containedIn = obj[AKThemeConfigAppearanceContainedInInstancesOfClassesKey];
+            id appearanceInstance;
+            if (containedIn.count) {
+                appearanceInstance = [viewClass appearanceWhenContainedInInstancesOfClasses:containedIn];
+            } else {
+                appearanceInstance = [viewClass appearance];
+            }
+            NSDictionary<NSString *, NSString *> *colorSchema = obj[AKThemeConfigAppearanceColorSchemaKey];
+            [colorSchema enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull property, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+                UIColor *color = [UIColor colorWithHexString:obj];
+
+                NSString *firstSymbol = [property substringToIndex:1].uppercaseString;
+                NSString *other = [property substringFromIndex:1];
+                NSString *setter = [@[@"set", firstSymbol, other, @":"] componentsJoinedByString:@""];
+                SEL selector = NSSelectorFromString(setter);
+                NSMethodSignature *methodSignature = [appearanceInstance methodSignatureForSelector:selector];
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+                invocation.target = appearanceInstance;
+                invocation.selector = selector;
+                [invocation setArgument:&color atIndex:2];
+                [invocation invoke];
+            }];
+        }
+    }];
+    [self reloadAppearance];
+}
+
+- (void)reloadAppearance {
+    NSArray * windows = [UIApplication sharedApplication].windows;
+    for (UIWindow *window in windows) {
+        for (UIView *view in window.subviews) {
+            [view removeFromSuperview];
+            [window addSubview:view];
+        }
+    }
 }
 
 @end
