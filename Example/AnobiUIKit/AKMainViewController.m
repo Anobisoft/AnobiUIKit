@@ -53,25 +53,26 @@
     if (currentTheme != theme) {
         currentTheme = theme;
 
+        [theme applyAppearanceSchema];
         self.navigationController.toolbar.barStyle =
-        self.navigationController.navigationBar.barStyle = currentTheme.barStyle;
+        self.navigationController.navigationBar.barStyle = theme.barStyle;
         self.navigationController.toolbar.barTintColor =
-        self.navigationController.navigationBar.barTintColor = currentTheme[AKThemeColorKey_naviBarTint];
+        self.navigationController.navigationBar.barTintColor = theme[@"naviBarTint"];
         self.navigationController.toolbar.translucent = false;
         self.navigationController.toolbar.clipsToBounds = false;
         
         self.navigationController.toolbar.tintColor =
-        self.navigationController.navigationBar.tintColor = currentTheme[AKThemeColorKey_naviTint];
-        self.navigationController.navigationBar.titleTextColor = currentTheme[AKThemeColorKey_naviTitle];
+        self.navigationController.navigationBar.tintColor = theme[@"naviTint"];
+        self.navigationController.navigationBar.titleTextColor = theme[@"naviTitle"];
         
-        self.view.backgroundColor = currentTheme[AKThemeColorKey_mainBackground];
-        self.view.tintColor = currentTheme[AKThemeColorKey_mainTint];
-        themeNameLabel.textColor = currentTheme[AKThemeColorKey_mainText];
-        themeNameLabel.text = [NSString stringWithFormat:@"Current Theme name: %@", currentTheme.name];
+        self.view.backgroundColor = theme[@"mainBackground"];
+        self.view.tintColor = theme[@"mainTint"];
+        themeNameLabel.textColor = theme[@"mainText"];
+        themeNameLabel.text = [NSString stringWithFormat:@"Current Theme name: %@", theme.name];
         
-        self.tableView.tableFooterView.backgroundColor = self.tableView.backgroundColor = currentTheme[AKThemeColorKey_tableBackground];
-        self.tableView.separatorColor = currentTheme[AKThemeColorKey_tableSeparator];
-        self.tableView.tintColor = currentTheme[AKThemeColorKey_mainTint];
+        self.tableView.tableFooterView.backgroundColor = self.tableView.backgroundColor = theme[@"tableBackground"];
+        self.tableView.separatorColor = theme[@"tableSeparator"];
+        self.tableView.tintColor = theme[@"mainTint"];
         [self.tableView reloadData];
     }
 
@@ -83,8 +84,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = currentTheme[indexPath.row % 2 ? AKThemeColorKey_tableCellBackground : AKThemeColorKey_tableSecondaryCellBackground];
-    cell.textLabel.textColor = currentTheme[indexPath.row % 2 ? AKThemeColorKey_mainText : AKThemeColorKey_mainSubtext ];
+    cell.backgroundColor = currentTheme[indexPath.row % 2 ? @"tableCellBackground" : @"tableSecondaryCellBackground"];
+    cell.textLabel.textColor = currentTheme[indexPath.row % 2 ? @"mainText" : @"mainSubtext" ];
     cell.textLabel.text = [AKThemeManager manager].allNames[indexPath.row];
     return cell;
 }

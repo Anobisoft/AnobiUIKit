@@ -18,7 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSLog(@"%@", [NSBundle UIKitBundle].localizationKeys);
+    NSLog(@"%@", [NSBundle UIKitBundle].localizationTable.allKeys);
+    
+    UIButton *button = [UIButton appearance];
+    button.tintColor = [UIColor greenColor];
     
     NSArray<Class> *classes = @[NSClassFromString(@"AKMainViewController")];
     observer = [AKViewObserver new];
@@ -32,6 +35,7 @@
         return colors[i++%colors.count];
     };
     [AKViewDispatcher addViewObserver:observer forClasses:classes];
+    
     return YES;
 }
 

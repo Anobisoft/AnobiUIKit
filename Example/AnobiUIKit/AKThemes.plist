@@ -4,6 +4,19 @@
 <dict>
 	<key>Example</key>
 	<dict>
+		<key>AppearanceSchema</key>
+		<dict>
+			<key>UIButton</key>
+			<dict>
+				<key>ColorSchema</key>
+				<dict>
+					<key>tintColor</key>
+					<string>#FF0000</string>
+				</dict>
+				<key>ContainedInInstancesOfClasses</key>
+				<array/>
+			</dict>
+		</dict>
 		<key>BarStyle</key>
 		<string>Default</string>
 		<key>KeyedColors</key>
@@ -41,6 +54,19 @@
 	</dict>
 	<key>Dark</key>
 	<dict>
+		<key>AppearanceSchema</key>
+		<dict>
+			<key>UIButton</key>
+			<dict>
+				<key>ColorSchema</key>
+				<dict>
+					<key>tintColor</key>
+					<string>#FFBBEE</string>
+				</dict>
+				<key>ContainedInInstancesOfClasses</key>
+				<array/>
+			</dict>
+		</dict>
 		<key>BarStyle</key>
 		<string>Dark</string>
 		<key>KeyedColors</key>
