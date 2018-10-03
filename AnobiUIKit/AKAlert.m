@@ -74,7 +74,17 @@ UIAlertAction *UIAlertOKAction(dispatch_block_t handler) {
     [self showAlert:title message:message actions:@[UIAlertOKAction(ok), UIAlertCancelAction(cancel)]];
 }
 
+- (void)showDialog:(NSString *)title
+            action:(UIAlertAction *)action
+            cancel:(__nullable dispatch_block_t)cancel {
+    [self showDialog:title message:nil action:action cancel:cancel];
+}
 
+- (void)showDialog:(NSString *)title message:(NSString  * _Nullable)message
+            action:(UIAlertAction *)action
+            cancel:(__nullable dispatch_block_t)cancel {
+    [self showAlert:title message:message actions:@[action, UIAlertCancelAction(cancel)]];
+}
 
 #pragma mark -
 #pragma mark - Redo

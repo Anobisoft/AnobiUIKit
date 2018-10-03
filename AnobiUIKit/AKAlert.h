@@ -6,7 +6,7 @@
 //  Copyright © 2018 Anobisoft. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,6 +44,13 @@ UIAlertAction *UIAlertActionDefaultStyleMake(NSString *title, __nullable dispatc
             cancel:(__nullable dispatch_block_t)cancel;
 - (void)showDialog:(NSString *)title message:(NSString  * _Nullable)message
                 ok:(dispatch_block_t)ok
+            cancel:(__nullable dispatch_block_t)cancel;
+
+- (void)showDialog:(NSString *)title
+            action:(UIAlertAction *)action
+            cancel:(__nullable dispatch_block_t)cancel;
+- (void)showDialog:(NSString *)title message:(NSString  * _Nullable)message
+            action:(UIAlertAction *)action
             cancel:(__nullable dispatch_block_t)cancel;
 
 - (void)showDialog:(NSString *)title
