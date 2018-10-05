@@ -8,11 +8,12 @@
 
 #import "AKGrainbomatedView.h"
 
-
-
 @interface AKGrainbomatedView ()
+
 @property CAGradientLayer *gradientLayer;
+
 @end
+
 
 @implementation AKGrainbomatedView {
 	NSUInteger colorsCount;

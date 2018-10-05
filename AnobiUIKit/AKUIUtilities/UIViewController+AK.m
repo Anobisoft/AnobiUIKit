@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+AK.h"
-#import <AnobiKit/AKBundle.h>
+#import <AnobiKit/AnobiKit.h>
 
 @implementation UIViewController (AK)
 

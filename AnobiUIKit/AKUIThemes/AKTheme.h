@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UINavigationBar+AK.h"
 
 static NSString * const AKThemeConfigAppearanceSchemaKey = @"AppearanceSchema";
 static NSString * const AKThemeConfigAppearanceContainedInInstancesOfClassesKey = @"ContainedInInstancesOfClasses";
