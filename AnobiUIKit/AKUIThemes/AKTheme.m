@@ -83,7 +83,6 @@
             NSDictionary<NSString *, NSString *> *colorSchema = obj[AKThemeConfigAppearanceColorSchemaKey];
             [colorSchema enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull property, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
                 UIColor *color = [UIColor colorWithHexString:obj];
-
                 NSString *firstSymbol = [property substringToIndex:1].uppercaseString;
                 NSString *other = [property substringFromIndex:1];
                 NSString *setter = [@[@"set", firstSymbol, other, @":"] componentsJoinedByString:@""];
