@@ -36,7 +36,7 @@ DESC
 
   s.platform     = :ios, "8.3"
 
-  s.source        = { :git => "https://github.com/Anobisoft/AnobiUIKit.git", :tag => "v#{s.version}" }
+  s.source        = { :git => "https://github.com/Anobisoft/AnobiUIKit.git", :tag => s.version.to_s }
   s.source_files  = "AnobiUIKit/**/*.{h,m}"
   s.framework     = "UIKit"
   
