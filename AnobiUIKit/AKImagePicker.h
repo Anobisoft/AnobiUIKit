@@ -6,7 +6,6 @@
 //  Copyright © 2017 Anobisoft. All rights reserved.
 //
 
-
 typedef enum : NSUInteger {
     AKImagePickerSourceOptionAuto = 0,
     AKImagePickerSourceOptionPhotoLibrary = 1 << UIImagePickerControllerSourceTypePhotoLibrary,
@@ -51,4 +50,3 @@ static NSInteger supportedImageSources[] = {
              sourceRect:(CGRect)sourceRect;
 
 @end
-

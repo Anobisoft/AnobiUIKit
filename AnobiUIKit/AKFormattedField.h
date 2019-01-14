@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AKFormattedField : UITextField
+
 @property (nonatomic) IBInspectable NSString *format;
 @property (nonatomic) IBInspectable NSString *pattern;
 @property (readonly) NSString *formattedText;
+
 @end

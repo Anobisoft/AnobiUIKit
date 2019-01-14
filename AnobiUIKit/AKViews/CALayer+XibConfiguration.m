@@ -18,5 +18,4 @@
     return [UIColor colorWithCGColor:self.borderColor];
 }
 
-
 @end

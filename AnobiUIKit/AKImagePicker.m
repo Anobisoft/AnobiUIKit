@@ -12,11 +12,11 @@
 @interface AKImagePicker() <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertConfigurator>
 
 @property (nonatomic, weak) UIView *sourceView;
-@property (nonatomic, assign) CGRect sourceRect;
-- (void)showOnViewController:(__kindof UIViewController *)viewController;
-
+@property (nonatomic) CGRect sourceRect;
 @property (nonatomic) UIImagePickerController *pickerController;
 @property (nonatomic) NSDictionary *sourceLocalizationMap;
+
+- (void)showOnViewController:(__kindof UIViewController *)viewController;
 
 @end
 
@@ -115,7 +115,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 
 
 #pragma mark -
-#pragma mark - Alert
+#pragma mark - UIAlertConfigurator
 
 - (UIAlertControllerStyle)alertControllerPreferredStyle {
     if (self.alertPreferredStyle >= 0) {
@@ -138,6 +138,10 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
     return self.permittedArrowDirections;
 }
 
+
+#pragma mark -
+#pragma mark - Protected
+
 - (void)showOnViewController:(__kindof UIViewController *)viewController {
     
     if (availableCount > 1) {
@@ -157,7 +161,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
         if (availableIndexes[sourceTypeIndex]) {
             UIImagePickerControllerSourceType sourceType = supportedImageSources[sourceTypeIndex];
             NSString *localizationKey = self.sourceLocalizationMap[@(sourceType)];
-            UIAlertAction *action = UILocalizedActionDefaultStyleMake(localizationKey, ^{
+            UIAlertAction *action = UIKitLocalizedActionDefaultStyleMake(localizationKey, ^{
                 [self selectSource:sourceType];
                 [viewController presentViewController:self.pickerController
                                              animated:true completion:nil];
@@ -184,7 +188,7 @@ BOOL SourceAvailable(UIImagePickerControllerSourceType sourceType) {
 
 
 #pragma mark -
-#pragma mark - Delegate
+#pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *image = picker.allowsEditing ? info[UIImagePickerControllerEditedImage] : info[UIImagePickerControllerOriginalImage];

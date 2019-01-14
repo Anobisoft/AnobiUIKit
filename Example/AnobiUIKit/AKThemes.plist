@@ -6,6 +6,16 @@
 	<dict>
 		<key>AppearanceSchema</key>
 		<dict>
+			<key>AKGradientView</key>
+			<dict>
+				<key>ColorSchema</key>
+				<dict>
+					<key>backgroundColor</key>
+					<string>#FFBBEE</string>
+					<key>tintColor</key>
+					<string>#3333AA</string>
+				</dict>
+			</dict>
 			<key>UIButton</key>
 			<dict>
 				<key>ColorSchema</key>
@@ -56,6 +66,16 @@
 	<dict>
 		<key>AppearanceSchema</key>
 		<dict>
+			<key>AKGradientView</key>
+			<dict>
+				<key>ColorSchema</key>
+				<dict>
+					<key>backgroundColor</key>
+					<string>#00BBEE</string>
+					<key>tintColor</key>
+					<string>#11FFAA</string>
+				</dict>
+			</dict>
 			<key>UIButton</key>
 			<dict>
 				<key>ColorSchema</key>
@@ -104,6 +124,29 @@
 	</dict>
 	<key>Light</key>
 	<dict>
+		<key>AppearanceSchema</key>
+		<dict>
+			<key>AKGradientView</key>
+			<dict>
+				<key>ColorSchema</key>
+				<dict>
+					<key>backgroundColor</key>
+					<string>#FFEE00</string>
+					<key>tintColor</key>
+					<string>#115522</string>
+				</dict>
+			</dict>
+			<key>UIButton</key>
+			<dict>
+				<key>ColorSchema</key>
+				<dict>
+					<key>tintColor</key>
+					<string>#0000FF</string>
+				</dict>
+				<key>ContainedInInstancesOfClasses</key>
+				<array/>
+			</dict>
+		</dict>
 		<key>BarStyle</key>
 		<string>Default</string>
 		<key>KeyedColors</key>

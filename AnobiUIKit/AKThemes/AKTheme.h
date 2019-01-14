@@ -23,13 +23,14 @@ static NSString * const AKThemeConfigBarStyleKey = @"BarStyle";
 @property (readonly) NSString *name;
 @property (readonly) NSDictionary<NSString *, UIColor *> *keyedColors;
 @property (readonly) NSArray<UIColor *> *indexedColors;
+
+- (UIColor *)objectForKeyedSubscript:(NSString *)key;
+- (UIColor *)objectAtIndexedSubscript:(NSUInteger)idx;
+
 @property (readonly) UIBarStyle barStyle;
 @property (readonly) UIStatusBarStyle statusBarStyle;
 
 - (void)applyAppearanceSchema;
-
-- (UIColor *)objectForKeyedSubscript:(NSString *)key;
-- (UIColor *)objectAtIndexedSubscript:(NSUInteger)idx;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  UIViewController+AK.h
+//  UIViewController+AnobiKit.h
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 16.02.2018.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (AK)
+@interface UIViewController (AnobiKit)
 
 + (UIImage *)imageNamed:(NSString *)name;
 - (UIImage *)imageNamed:(NSString *)name;
@@ -20,4 +20,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-

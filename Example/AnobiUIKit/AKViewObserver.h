@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-@import AnobiUIKit;
+#import <AnobiUIKit/AnobiUIKit.h>
 
 typedef NSString * (^Callback)(void);
 
-@interface AKViewObserver : NSObject <AKViewObserver>
+@interface AKViewObserver : AKViewDispatcher
 
 @property Callback callback;
 

@@ -1,14 +1,14 @@
 //
-//  UINavigationBar+AK.m
+//  UINavigationBar+AnobiKit.m
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 27.12.2017.
 //  Copyright © 2017 Anobisoft. All rights reserved.
 //
 
-#import "UINavigationBar+AK.h"
+#import "UINavigationBar+AnobiKit.h"
 
-@implementation UINavigationBar (AK)
+@implementation UINavigationBar (AnobiKit)
 
 - (UIColor *)titleTextColor {
     return self.titleTextAttributes[NSForegroundColorAttributeName];
@@ -22,7 +22,5 @@
     titleTextAttributes[NSForegroundColorAttributeName] = titleTextColor;
     self.titleTextAttributes = titleTextAttributes;
 }
-
-
 
 @end

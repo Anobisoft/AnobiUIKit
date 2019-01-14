@@ -11,94 +11,29 @@
 
 @implementation AKViewDispatcher
 
-- (void)swizzledDidLoad {
-    [AKViewDispatcher viewDidLoadViewController:(__kindof UIViewController *)self];
-    [self swizzledDidLoad];
-}
-
-- (void)swizzledWillAppear:(BOOL)animated {
-    [AKViewDispatcher viewWillAppear:animated viewController:(__kindof UIViewController *)self];
-    [self swizzledWillAppear:animated];
-}
-
-- (void)swizzledDidAppear:(BOOL)animated {
-    [AKViewDispatcher viewDidAppear:animated viewController:(__kindof UIViewController *)self];
-    [self swizzledDidAppear:animated];
-}
-
-- (void)swizzledWillDisappear:(BOOL)animated {
-    [AKViewDispatcher viewWillDisappear:animated viewController:(__kindof UIViewController *)self];
-    [self swizzledWillDisappear:animated];
-}
-
-- (void)swizzledDidDisappear:(BOOL)animated {
-    [AKViewDispatcher viewDidDisappear:animated viewController:(__kindof UIViewController *)self];
-    [self swizzledDidDisappear:animated];
-}
-
-
-
-+ (void)viewDidLoadViewController:(__kindof UIViewController *)viewController {
-    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
-    for (id<AKViewObserver> observer in observers) {
-        if (observer && [observer respondsToSelector:@selector(viewDidLoadViewController:)])
-            [observer viewDidLoadViewController:viewController];
-    }
-}
-
-+ (void)viewWillAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
-    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
-    for (id<AKViewObserver> observer in observers) {
-        if (observer && [observer respondsToSelector:@selector(viewWillAppear:viewController:)])
-            [observer viewWillAppear:animated viewController:viewController];
-    }
-}
-
-+ (void)viewDidAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
-    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
-    for (id<AKViewObserver> observer in observers) {
-        if (observer && [observer respondsToSelector:@selector(viewDidAppear:viewController:)])
-            [observer viewDidAppear:animated viewController:viewController];
-    }
-}
-
-+ (void)viewWillDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
-    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
-    for (id<AKViewObserver> observer in observers) {
-        if (observer && [observer respondsToSelector:@selector(viewWillDisappear:viewController:)])
-            [observer viewWillDisappear:animated viewController:viewController];
-    }
-}
-
-+ (void)viewDidDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
-    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
-    for (id<AKViewObserver> observer in observers) {
-        if (observer && [observer respondsToSelector:@selector(viewDidDisappear:viewController:)])
-            [observer viewDidDisappear:animated viewController:viewController];
-    }
-}
-
 static NSMutableDictionary<NSString *, NSHashTable *> *observersPoolByViewClass;
 
-+ (void)class:(Class)c swizzleSelector:(SEL)originalSelector withSelector:(SEL)swizzledSelector {
-    Method originalMethod = class_getInstanceMethod(c, originalSelector);
-    if (originalMethod) {
-        Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);
-        
-        BOOL didAddMethod =
-        class_addMethod(c,
-                        swizzledSelector,
-                        method_getImplementation(originalMethod),
-                        method_getTypeEncoding(originalMethod));
-        
-        if (didAddMethod) {
-            class_replaceMethod(c,
-                                originalSelector,
-                                method_getImplementation(swizzledMethod),
-                                method_getTypeEncoding(swizzledMethod));
-        }
-    }
++ (void)load {
+    observersPoolByViewClass = [NSMutableDictionary new];
 }
+
+
+#pragma mark - instantiation
+
++ (instancetype)observerForClass:(Class)c {
+    id instance = [self new];
+    [self addViewObserver:instance forClass:c];
+    return instance;
+}
+
++ (instancetype)observerForClasses:(NSArray<Class> *)classes {
+    id instance = [self new];
+    [self addViewObserver:instance forClasses:classes];
+    return instance;
+}
+
+
+#pragma mark - observers collecting
 
 + (void)addViewObserver:(id<AKViewObserver>)viewObserver forClass:(Class)c {
     NSString *className;
@@ -113,6 +48,8 @@ static NSMutableDictionary<NSString *, NSHashTable *> *observersPoolByViewClass;
     if (!viewObserversPool) {
         viewObserversPool = [NSHashTable weakObjectsHashTable];
         observersPoolByViewClass[className] = viewObserversPool;
+    } else if ([viewObserversPool containsObject:viewObserver]) {
+        return;
     }
     
     [viewObserversPool addObject:viewObserver];
@@ -157,6 +94,99 @@ static NSMutableDictionary<NSString *, NSHashTable *> *observersPoolByViewClass;
     }
 }
 
+
+#pragma mark - swizzling
+
++ (void)class:(Class)c swizzleSelector:(SEL)originalSelector withSelector:(SEL)swizzledSelector {
+    Method originalMethod = class_getInstanceMethod(c, originalSelector);
+    if (originalMethod) {
+        Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);
+        
+        BOOL didAddMethod =
+        class_addMethod(c,
+                        swizzledSelector,
+                        method_getImplementation(originalMethod),
+                        method_getTypeEncoding(originalMethod));
+        
+        if (didAddMethod) {
+            class_replaceMethod(c,
+                                originalSelector,
+                                method_getImplementation(swizzledMethod),
+                                method_getTypeEncoding(swizzledMethod));
+        }
+    }
+}
+
+#pragma mark - swizzling implementation
+
+- (void)swizzledDidLoad {
+    [AKViewDispatcher viewDidLoadViewController:(__kindof UIViewController *)self];
+    [self swizzledDidLoad];
+}
+
+- (void)swizzledWillAppear:(BOOL)animated {
+    [AKViewDispatcher viewWillAppear:animated viewController:(__kindof UIViewController *)self];
+    [self swizzledWillAppear:animated];
+}
+
+- (void)swizzledDidAppear:(BOOL)animated {
+    [AKViewDispatcher viewDidAppear:animated viewController:(__kindof UIViewController *)self];
+    [self swizzledDidAppear:animated];
+}
+
+- (void)swizzledWillDisappear:(BOOL)animated {
+    [AKViewDispatcher viewWillDisappear:animated viewController:(__kindof UIViewController *)self];
+    [self swizzledWillDisappear:animated];
+}
+
+- (void)swizzledDidDisappear:(BOOL)animated {
+    [AKViewDispatcher viewDidDisappear:animated viewController:(__kindof UIViewController *)self];
+    [self swizzledDidDisappear:animated];
+}
+
+
+#pragma mark - observers methods calling
+
++ (void)viewDidLoadViewController:(__kindof UIViewController *)viewController {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
+        if (observer && [observer respondsToSelector:@selector(viewDidLoadViewController:)])
+            [observer viewDidLoadViewController:viewController];
+    }
+}
+
++ (void)viewWillAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
+        if (observer && [observer respondsToSelector:@selector(viewWillAppear:viewController:)])
+            [observer viewWillAppear:animated viewController:viewController];
+    }
+}
+
++ (void)viewDidAppear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
+        if (observer && [observer respondsToSelector:@selector(viewDidAppear:viewController:)])
+            [observer viewDidAppear:animated viewController:viewController];
+    }
+}
+
++ (void)viewWillDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
+        if (observer && [observer respondsToSelector:@selector(viewWillDisappear:viewController:)])
+            [observer viewWillDisappear:animated viewController:viewController];
+    }
+}
+
++ (void)viewDidDisappear:(BOOL)animated viewController:(__kindof UIViewController *)viewController {
+    NSArray<id<AKViewObserver>> *observers = observersPoolByViewClass[NSStringFromClass(viewController.class)].allObjects;
+    for (id<AKViewObserver> observer in observers) {
+        if (observer && [observer respondsToSelector:@selector(viewDidDisappear:viewController:)])
+            [observer viewDidDisappear:animated viewController:viewController];
+    }
+}
+
 + (__kindof UIViewController *)visibleViewController {
     return [self visibleViewControllerFrom:UIApplication.sharedApplication.keyWindow.rootViewController];
 }
@@ -175,22 +205,6 @@ static NSMutableDictionary<NSString *, NSHashTable *> *observersPoolByViewClass;
     } else {
         return vc;
     }
-}
-
-+ (instancetype)observerForClass:(Class)c {
-    id instance = [self new];
-    [self addViewObserver:instance forClass:c];
-    return instance;
-}
-
-+ (instancetype)observerForClasses:(NSArray<Class> *)classes {
-    id instance = [self new];
-    [self addViewObserver:instance forClasses:classes];
-    return instance;
-}
-
-+ (void)load {
-    observersPoolByViewClass = [NSMutableDictionary new];
 }
 
 @end

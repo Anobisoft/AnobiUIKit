@@ -1,15 +1,14 @@
 //
-//  UIViewController+AK.m
+//  UIViewController+AnobiKit.m
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 16.02.2018.
 //  Copyright © 2018 Anobisoft. All rights reserved.
 //
 
-#import "UIViewController+AK.h"
-#import <AnobiKit/AnobiKit.h>
+#import "UIViewController+AnobiKit.h"
 
-@implementation UIViewController (AK)
+@implementation UIViewController (AnobiKit)
 
 + (UIImage *)imageNamed:(NSString *)name {
     return [UIImage imageNamed:name inBundle:[NSBundle bundleForClass:self] compatibleWithTraitCollection:nil];
@@ -20,7 +19,7 @@
 }
 
 + (NSString *)localized:(NSString *)key {
-    return [[NSBundle bundleForClass:self] localizedStringForKey:key];
+    return [[NSBundle bundleForClass:self] localizedStringForKey:key value:nil table:nil];
 }
 
 - (NSString *)localized:(NSString *)key {
@@ -28,4 +27,3 @@
 }
 
 @end
-

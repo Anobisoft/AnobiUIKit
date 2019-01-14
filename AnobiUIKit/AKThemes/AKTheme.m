@@ -7,11 +7,12 @@
 //
 
 #import "AKTheme.h"
-#import "UIColor+Hex.h"
+#import <AnobiKit/UIColor+Hex.h>
+#import <AnobiKit/AKStrings.h>
 
 @interface AKTheme ()
 
-@property (readonly) NSDictionary<NSString *, NSDictionary *> *appearanceSchema;
+@property (readonly) NSDictionary<NSString *, NSDictionary *> *appearanceSchema __WATCHOS_UNAVAILABLE;
 
 @end
 
@@ -45,14 +46,14 @@
         }
         _indexedColors = indexedColorsM.copy;
         
-        _appearanceSchema = config[AKThemeConfigAppearanceSchemaKey];
-        
         NSString *barStyleString = config[AKThemeConfigBarStyleKey];
         BOOL black = [barStyleString isEqualToString:@"Black"] || [barStyleString isEqualToString:@"Dark"];
         _barStyle = black ? UIBarStyleBlack : UIBarStyleDefault;
         _statusBarStyle = black ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
         
-        if (!barStyleString && !_keyedColors.count && !_indexedColors.count) {
+        _appearanceSchema = config[AKThemeConfigAppearanceSchemaKey];
+        
+        if (!_keyedColors.count && !_indexedColors.count && !barStyleString && !_appearanceSchema) {
             @throw [NSException exceptionWithName:@"AKThemeEmptyConfig" reason:@"theme config is empty" userInfo:@{@"name" : name, @"config" : config}];
             return nil;
         }
@@ -85,7 +86,7 @@
                 UIColor *color = [UIColor colorWithHexString:obj];
                 NSString *firstSymbol = [property substringToIndex:1].uppercaseString;
                 NSString *other = [property substringFromIndex:1];
-                NSString *setter = [@[@"set", firstSymbol, other, @":"] componentsJoinedByString:@""];
+                NSString *setter = [@"set" : firstSymbol : other : @":"];
                 SEL selector = NSSelectorFromString(setter);
                 NSMethodSignature *methodSignature = [appearanceInstance methodSignatureForSelector:selector];
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
@@ -100,7 +101,7 @@
 }
 
 - (void)reloadAppearance {
-    NSArray * windows = [UIApplication sharedApplication].windows;
+    NSArray *windows = UIApplication.sharedApplication.windows;
     for (UIWindow *window in windows) {
         for (UIView *view in window.subviews) {
             [view removeFromSuperview];

@@ -8,7 +8,7 @@
 
 #import "AKFormattedField.h"
 
-@interface AKFormattedField()<UITextFieldDelegate>
+@interface AKFormattedField() <UITextFieldDelegate>
 
 @end
 

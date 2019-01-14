@@ -7,6 +7,7 @@
 //
 
 #import "AKViewObserver.h"
+#import <AnobiKit/UIColor+Hex.h>
 
 @implementation AKViewObserver
 

@@ -20,8 +20,8 @@
 
 @interface AKViewDispatcher : NSObject <AKViewObserver>
 
-+ (__kindof UIViewController *)visibleViewController;
-+ (__kindof UIViewController *)visibleViewControllerFrom:(__kindof UIViewController *)vc;
++ (__kindof UIViewController *)visibleViewController __IOS_EXTENSION_UNAVAILABLE("Use view controller based solutions where appropriate instead.");
++ (__kindof UIViewController *)visibleViewControllerFrom:(__kindof UIViewController *)vc __IOS_EXTENSION_UNAVAILABLE("Use view controller based solutions where appropriate instead.");
 
 + (void)addViewObserver:(id<AKViewObserver>)viewObserver forClass:(Class)c;
 + (void)removeViewObserver:(id<AKViewObserver>)viewObserver fromClass:(Class)c;

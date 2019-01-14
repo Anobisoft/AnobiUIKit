@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'AnobiUIKit'
-  s.version          = '0.5.0'
+  s.version          = '0.6.0'
   s.summary          = 'AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.'
 
   s.description      = <<-DESC
@@ -22,7 +22,6 @@ AKGrainbomatedView
 AKGridView
 ---
 CALayer+XibConfiguration
-UIColor+Hex
 UIImage+Resize
 UINavigationBar+AK
 UIView+Autolayout
@@ -34,13 +33,13 @@ DESC
   s.author             = { "Stanislav Pletnev" => "anobisoft@gmail.com" }
   s.social_media_url   = "https://twitter.com/Anobisoft"
 
-  s.platform     = :ios, "8.3"
+  s.platform     = :ios, "9.3"
 
   s.source        = { :git => "https://github.com/Anobisoft/AnobiUIKit.git", :tag => s.version.to_s }
   s.source_files  = "AnobiUIKit/**/*.{h,m}"
   s.framework     = "UIKit"
   
-  s.dependency "AnobiKit", '~> 0.6.0'
+  s.dependency "AnobiKit", '~> 0.10.0'
   
   s.requires_arc = true
 

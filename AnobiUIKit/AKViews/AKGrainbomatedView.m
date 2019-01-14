@@ -72,6 +72,4 @@
     [self.gradientLayer removeAnimationForKey:@"gradientAnimation"];
 }
 
-
-
 @end

@@ -18,6 +18,7 @@ AK3DVector AK3DVectorMake(CGFloat x, CGFloat y, CGFloat z);
 AK3DVector AK3DVectorReverse(AK3DVector vector);
 
 extern CFTimeInterval const AKAnimationDefaultDuration;
+extern double const AKAnimationDefaultFrameFrequency;
 
 @interface CAAnimation (AnobiAnimation)
 
@@ -27,7 +28,6 @@ extern CFTimeInterval const AKAnimationDefaultDuration;
 + (instancetype)shakeVector:(AK3DVector)vector dutation:(CFTimeInterval)duration;
 
 @end
-
 
 @interface CALayer (AnobiAnimation)
 

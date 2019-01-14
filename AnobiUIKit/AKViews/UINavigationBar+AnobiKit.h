@@ -1,5 +1,5 @@
 //
-//  UINavigationBar+AK.h
+//  UINavigationBar+AnobiKit.h
 //  AnobiUIKit
 //
 //  Created by Stanislav Pletnev on 27.12.2017.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationBar (AK)
+@interface UINavigationBar (AnobiKit)
 
 @property (assign) UIColor *titleTextColor;
 
