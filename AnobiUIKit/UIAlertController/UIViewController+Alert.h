@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIAlertConfigurator.h"
+#import <AnobiUIKit/UIAlertConfigurator.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

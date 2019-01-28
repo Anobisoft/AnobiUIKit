@@ -8,4 +8,4 @@
 
 #import <AnobiUIKit/UIAlertAction+AnobiKit.h>
 #import <AnobiUIKit/UIViewController+Alert.h>
-#import <AnobiUIKit/UIAlertAction+AnobiKit.h>
+#import <AnobiUIKit/UIAlertConfigurator.h>
