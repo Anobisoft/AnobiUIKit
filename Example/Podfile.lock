@@ -1,0 +1,39 @@
+PODS:
+  - AnobiKit (0.10.1):
+    - AnobiKit/AKCoding (= 0.10.1)
+    - AnobiKit/AKCoreData (= 0.10.1)
+    - AnobiKit/AKFormatters (= 0.10.1)
+    - AnobiKit/AKFoundation (= 0.10.1)
+    - AnobiKit/AKLocation (= 0.10.1)
+    - AnobiKit/AKReachability (= 0.10.1)
+    - AnobiKit/AKStrings (= 0.10.1)
+  - AnobiKit/AKCoding (0.10.1):
+    - AnobiKit/AKFoundation
+  - AnobiKit/AKCoreData (0.10.1)
+  - AnobiKit/AKFormatters (0.10.1)
+  - AnobiKit/AKFoundation (0.10.1)
+  - AnobiKit/AKLocation (0.10.1):
+    - AnobiKit/AKFoundation
+  - AnobiKit/AKReachability (0.10.1)
+  - AnobiKit/AKStrings (0.10.1)
+  - AnobiUIKit (0.6.2):
+    - AnobiKit (~> 0.10.0)
+
+DEPENDENCIES:
+  - AnobiUIKit (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AnobiKit
+
+EXTERNAL SOURCES:
+  AnobiUIKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AnobiKit: 97f5f788ca9dcd255f6a38b46d4a36980785dcee
+  AnobiUIKit: 9f3f9f86561ff977e5098fee465b73824be3893b
+
+PODFILE CHECKSUM: 49654b27d63c5e69538c6c3ae4adc62a78ea8d00
+
+COCOAPODS: 1.5.3
