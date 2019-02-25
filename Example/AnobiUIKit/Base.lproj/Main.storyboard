@@ -21,12 +21,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTK-Ls-KaL" customClass="AKGrainbomatedView">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTK-Ls-KaL" customClass="ASGrainbomatedView">
                                 <rect key="frame" x="20" y="72" width="335" height="133.5"/>
                                 <color key="backgroundColor" red="0.88816352740000004" green="0.21960784310000001" blue="0.16724636130000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="0.47058823529999999" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-C8-dFD" customClass="AKGridView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-C8-dFD" customClass="ASGridView">
                                 <rect key="frame" x="40" y="102" width="295" height="73.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXh-QT-f9L">
@@ -173,7 +173,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4I-7h-Xpj" customClass="AKGradientView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4I-7h-Xpj" customClass="ASGradientView">
                                 <rect key="frame" x="16" y="155" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.58853474130000005" green="0.55785883359999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.88816352739726023" green="0.2196078431372549" blue="0.16724636130136986" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -22,13 +22,17 @@ PODS:
     - AnobiKit/AKFoundation
   - AnobiUIKit (0.7.0):
     - AnobiKit (~> 0.13.0)
+  - AnobiView (0.3.0)
 
 DEPENDENCIES:
+  - AnobiKit
   - AnobiUIKit (from `../`)
+  - AnobiView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AnobiKit
+    - AnobiView
 
 EXTERNAL SOURCES:
   AnobiUIKit:
@@ -37,7 +41,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AnobiKit: ce0251cd9c68c3faf03c3d1ee985c7c1031ba687
   AnobiUIKit: 4c369df8592c1c4b63892532994e7953e45e9f1d
+  AnobiView: 0f7cc71f05a68c650ae715f49a9c8ddd61abb565
 
-PODFILE CHECKSUM: dea53a07bf6c91bd59aecbfa250d979c13b6a6eb
+PODFILE CHECKSUM: f259d0b7b3acb518ae03b30390b00f7ce728cad8
 
 COCOAPODS: 1.6.1

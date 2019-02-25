@@ -9,6 +9,7 @@
 #import "AKMainViewController.h"
 #import <AnobiKit/AnobiKit.h>
 #import <AnobiUIKit/AnobiUIKit.h>
+#import <AnobiView/AnobiView.h>
 
 @interface AKMainViewController() <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

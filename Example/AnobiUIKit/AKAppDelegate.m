@@ -7,8 +7,11 @@
 //
 
 #import "AKAppDelegate.h"
+
 #import <AnobiKit/AnobiKit.h>
 #import <AnobiUIKit/AnobiUIKit.h>
+#import <AnobiView/AnobiView.h>
+
 #import "AKMainViewController.h"
 #import "AKViewObserver.h"
 
@@ -20,13 +23,13 @@
     
     NSLog(@"%@", [NSBundle UIKitBundle].localizationTable.allKeys);
     
-    [AKGradientView appearance].startPoint = CGPointMake(0, 0);
-    [AKGradientView appearance].endPoint = CGPointMake(1, 1);
+    [ASGradientView appearance].startPoint = CGPointMake(0, 0);
+    [ASGradientView appearance].endPoint = CGPointMake(1, 1);
     
     UIButton *button = [UIButton appearance];
     button.tintColor = [UIColor greenColor];
     
-    observer = [AKViewObserver observerForClass:NSClassFromString(@"AKMainViewController")];
+    observer = [AKViewObserver observerForClass:AKMainViewController.class];
     static int i = 0;
     NSArray *colors = @[@"#FF0055", @"#33FF55", @"#0022FF"];
     observer.callback = ^NSString *{
