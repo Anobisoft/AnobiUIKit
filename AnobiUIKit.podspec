@@ -2,13 +2,13 @@
 Pod::Spec.new do |s|
 
   s.name             = 'AnobiUIKit'
-  s.version          = '0.6.2'
+  s.version          = '0.7.0'
   s.summary          = 'AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.'
 
   s.description      = <<-DESC
 AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.
 
-Main features
+## Main features
 AKAlert
 AKAnimation
 AKFormattedField
@@ -17,12 +17,6 @@ AKTableViewController
 AKViewDispatcher
 
 AKThemeManager
-
-AKGradientView
-AKGrainbomatedView
-AKGridView
-
-CALayer+XibConfiguration
 UIImage+Resize
 UINavigationBar+AnobiKit
 UIView+Autolayout
@@ -40,7 +34,7 @@ DESC
   s.source_files  = "AnobiUIKit/**/*.{h,m}"
   s.framework     = "UIKit"
   
-  s.dependency "AnobiKit", '~> 0.10.0'
+  s.dependency "AnobiKit", '~> 0.13.0'
   
   s.requires_arc = true
 

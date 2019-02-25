@@ -23,7 +23,8 @@
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTK-Ls-KaL" customClass="AKGrainbomatedView">
                                 <rect key="frame" x="20" y="72" width="335" height="133.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.88816352740000004" green="0.21960784310000001" blue="0.16724636130000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="1" green="0.47058823529999999" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-C8-dFD" customClass="AKGridView">
                                 <rect key="frame" x="40" y="102" width="295" height="73.5"/>

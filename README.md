@@ -23,18 +23,11 @@ $ gem install cocoapods
 To integrate **AnobiUIKit** into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```
-platform :ios, '8.3'
+platform :ios, '9.3'
 use_frameworks!
 
 target 'TargetName' do
   pod 'AnobiUIKit'
-end
-
-post_install do |installer|
-  installer.pods_project.build_configurations.each do |config|
-    config.build_settings.delete('CODE_SIGNING_ALLOWED')
-    config.build_settings.delete('CODE_SIGNING_REQUIRED')
-  end
 end
 ```
 Then, run the following command:
@@ -42,7 +35,7 @@ Then, run the following command:
 $ pod install
 ```
 ## Requirements
-Minimum iOS Target is ios **8.3**.
+Minimum iOS Target is ios **9.3**.
 
 ## License
 AnobiUIKit is released under the MIT license. See LICENSE for details.

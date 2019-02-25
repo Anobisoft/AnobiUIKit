@@ -20,6 +20,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		6A98CC0C200F9CBE00485711 /* AKViewObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A98CC0B200F9CBE00485711 /* AKViewObserver.m */; };
 		6AA3B68C1F38AEFB001D70DD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA3B68B1F38AEFB001D70DD /* XCTest.framework */; };
+		6AB71DC5222426A4008D24E6 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6AB71DC4222426A4008D24E6 /* .travis.yml */; };
 		6AC5EBB01F56F411009D8D02 /* AKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC5EBAF1F56F411009D8D02 /* AKMainViewController.m */; };
 		6AFBA68D1F34B05C00343DE1 /* AKThemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AFBA68C1F34B05C00343DE1 /* AKThemes.plist */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
@@ -62,6 +63,7 @@
 		6A98CC0A200F9CBE00485711 /* AKViewObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKViewObserver.h; sourceTree = "<group>"; };
 		6A98CC0B200F9CBE00485711 /* AKViewObserver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKViewObserver.m; sourceTree = "<group>"; };
 		6AA3B68B1F38AEFB001D70DD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6AB71DC4222426A4008D24E6 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		6AC5EBAE1F56F411009D8D02 /* AKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainViewController.h; sourceTree = "<group>"; };
 		6AC5EBAF1F56F411009D8D02 /* AKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainViewController.m; sourceTree = "<group>"; };
 		6AFBA68C1F34B05C00343DE1 /* AKThemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AKThemes.plist; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				6AB71DC4222426A4008D24E6 /* .travis.yml */,
 				FF6FB57BE3D9EE40D7FD2E6F /* AnobiUIKit.podspec */,
 				E39F22E1CC7E38091066249F /* README.md */,
 				AAB32140E5F2541820504F40 /* LICENSE */,
@@ -288,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AB71DC5222426A4008D24E6 /* .travis.yml in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -351,7 +355,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AnobiKit/AnobiKit.framework",
 				"${BUILT_PRODUCTS_DIR}/AnobiUIKit/AnobiUIKit.framework",
 			);
@@ -364,7 +368,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -473,7 +477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -519,7 +523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

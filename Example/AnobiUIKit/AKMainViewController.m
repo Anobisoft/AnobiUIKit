@@ -28,7 +28,7 @@
     [AKThemeManager managerWithConfig:config];
     self.tableView.tableFooterView = [UIView new];
     [self updateUIWithCurrentTheme];
-    flipAnimation = [CAAnimation flipAngle:2.0 * M_PI vector:AK3DVectorMake(0.3, 0.5, 0)];
+    flipAnimation = [CAAnimation flipAngle:4.0 * M_PI vector:AK3DVectorMake(0.3, 0.1, 0.5) dutation:1.2];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
