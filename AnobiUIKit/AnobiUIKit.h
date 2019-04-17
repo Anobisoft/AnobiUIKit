@@ -16,3 +16,6 @@
 #import <AnobiUIKit/UIImage+Resize.h>
 #import <AnobiUIKit/UIViewController+AnobiKit.h>
 #import <AnobiUIKit/AKTableViewController.h>
+
+#import <AnobiKit/UIColor+Hex.h>
+#import <AnobiKit/NSBundle+UIKit.h>

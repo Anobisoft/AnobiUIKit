@@ -8,6 +8,7 @@
 
 #import "UIAlertAction+AnobiKit.h"
 #import <AnobiKit/AKFoundation.h>
+#import <AnobiKit/NSBundle+UIKit.h>
 
 UIAlertAction *UIAlertActionMake(NSString *title, UIAlertActionStyle style, dispatch_block_t handler) {
     return [UIAlertAction actionWithTitle:AKLocalizedString(title)

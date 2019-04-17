@@ -2,14 +2,12 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode10.1
+osx_image: xcode10.2
 language: objective-c
 cache: cocoapods
 podfile: Example/Podfile
 before_install:
-- rvm install ruby-2.5.3
-- rvm use ruby-2.5.3 --default
-- gem install cocoapods -v '1.5.3'
+- gem install cocoapods -v '1.6.1'
 - pod repo update master
 - pod install --project-directory=Example
 script:

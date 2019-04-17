@@ -1,27 +1,30 @@
 PODS:
-  - AnobiKit (0.13.2):
-    - AnobiKit/AKCoding (= 0.13.2)
-    - AnobiKit/AKCoreData (= 0.13.2)
-    - AnobiKit/AKFormatters (= 0.13.2)
-    - AnobiKit/AKFoundation (= 0.13.2)
-    - AnobiKit/AKList (= 0.13.2)
-    - AnobiKit/AKLocation (= 0.13.2)
-    - AnobiKit/AKReachability (= 0.13.2)
-    - AnobiKit/AKStrings (= 0.13.2)
-  - AnobiKit/AKCoding (0.13.2):
+  - AnobiKit (0.14.0):
+    - AnobiKit/AKCoding (= 0.14.0)
+    - AnobiKit/AKCoreData (= 0.14.0)
+    - AnobiKit/AKFormatters (= 0.14.0)
+    - AnobiKit/AKFoundation (= 0.14.0)
+    - AnobiKit/AKList (= 0.14.0)
+    - AnobiKit/AKLocation (= 0.14.0)
+    - AnobiKit/AKReachability (= 0.14.0)
+    - AnobiKit/AKStrings (= 0.14.0)
+    - AnobiKit/UIKit (= 0.14.0)
+  - AnobiKit/AKCoding (0.14.0):
     - AnobiKit/AKFoundation
-  - AnobiKit/AKCoreData (0.13.2)
-  - AnobiKit/AKFormatters (0.13.2)
-  - AnobiKit/AKFoundation (0.13.2)
-  - AnobiKit/AKList (0.13.2):
+  - AnobiKit/AKCoreData (0.14.0)
+  - AnobiKit/AKFormatters (0.14.0)
+  - AnobiKit/AKFoundation (0.14.0)
+  - AnobiKit/AKList (0.14.0):
     - AnobiKit/AKFoundation
-  - AnobiKit/AKLocation (0.13.2):
+  - AnobiKit/AKLocation (0.14.0):
     - AnobiKit/AKFoundation
-  - AnobiKit/AKReachability (0.13.2)
-  - AnobiKit/AKStrings (0.13.2):
+  - AnobiKit/AKReachability (0.14.0)
+  - AnobiKit/AKStrings (0.14.0):
     - AnobiKit/AKFoundation
-  - AnobiUIKit (0.7.0):
-    - AnobiKit (~> 0.13.0)
+  - AnobiKit/UIKit (0.14.0):
+    - AnobiKit/AKFoundation
+  - AnobiUIKit (0.8.0):
+    - AnobiKit (~> 0.14.0)
   - AnobiView (0.3.0)
 
 DEPENDENCIES:
@@ -39,8 +42,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AnobiKit: ce0251cd9c68c3faf03c3d1ee985c7c1031ba687
-  AnobiUIKit: 4c369df8592c1c4b63892532994e7953e45e9f1d
+  AnobiKit: 99a8f828636f7fbeeb25c04323e030a50defcccc
+  AnobiUIKit: 67d28eec0d4eafc6db8433235f20470c0b82ae5e
   AnobiView: 0f7cc71f05a68c650ae715f49a9c8ddd61abb565
 
 PODFILE CHECKSUM: f259d0b7b3acb518ae03b30390b00f7ce728cad8
