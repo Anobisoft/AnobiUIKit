@@ -3,24 +3,24 @@ Pod::Spec.new do |s|
 
   s.name             = 'AnobiUIKit'
   s.version          = '0.9.0'
-  s.summary          = 'AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.'
+  s.summary          = 'AnobiUIKit - iOS Developer helpers collection.'
 
   s.description      = <<-DESC
-AnobiUIKit - collection of various UIKit-dependent classes and categories useful to Objective-C iOS Developer.
+AnobiUIKit - iOS Developer helpers collection.
 
 ## Main features
 AKAlert
-AKAnimation
-AKFormattedField
 AKImagePicker
-AKTableViewController
-AKViewDispatcher
 
 AKThemeManager
+AKViewDispatcher
+
+## Main helpers
+AKFormattedField
+AKAnimation
 UIImage+Resize
-UINavigationBar+AnobiKit
-UIView+Autolayout
 UIViewController+AnobiKit
+AKTableViewController
 DESC
 
   s.homepage     = "https://github.com/Anobisoft/AnobiUIKit"

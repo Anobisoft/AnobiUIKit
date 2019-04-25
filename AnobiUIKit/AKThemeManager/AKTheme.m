@@ -44,32 +44,46 @@
 @implementation AKTheme
 
 + (instancetype)themeNamed:(NSString *)name withConfig:(NSDictionary *)config {
+    if (![config isKindOfClass:NSDictionary.class]) {
+        @throw [NSException exceptionWithName:@"AKThemeInvalidConfig" reason:@"theme config must be Dictionary type" userInfo:@{@"name" : name, @"config" : config}];
+        return nil;
+    }
     return [[self alloc] initWithName:name withConfig:config];
+}
+
+- (NSArray<UIColor *> *)colorsWithHexStrings:(NSArray<NSString *> *)hexStrings {
+    NSMutableArray<UIColor *> *colors = [NSMutableArray new];
+    for (NSString *hexColor in hexStrings) {
+        UIColor *color = [UIColor colorWithHexString:hexColor];
+        if (color) [colors addObject:color];
+    }
+    return colors.copy;
 }
 
 - (instancetype)initWithName:(NSString *)name withConfig:(NSDictionary *)config {
     if (self = [super init]) {
-        if (![config isKindOfClass:NSDictionary.class]) {
-            @throw [NSException exceptionWithName:@"AKThemeInvalidConfig" reason:@"theme config must be Dictionary type" userInfo:@{@"name" : name, @"config" : config}];
-            return nil;
-        }
+
         _name = name;
         
         NSDictionary<NSString *, NSString *> *keyedColorsRepresentation = config[AKThemeConfigKeyedColorsKey];
         NSMutableDictionary<NSString *, UIColor *> *keyedColorsM = [NSMutableDictionary new];
+        NSMutableDictionary<NSString *, NSArray<UIColor *> *> *keyedColorCollectionsM = [NSMutableDictionary new];
         for (NSString *key in keyedColorsRepresentation) {
-            UIColor *color = [UIColor colorWithHexString:keyedColorsRepresentation[key]];
-            if (color) keyedColorsM[key] = color;
+            id value = keyedColorsRepresentation[key];
+            if ([value isKindOfClass:NSString.class]) {
+                UIColor *color = [UIColor colorWithHexString:value];
+                if (color) keyedColorsM[key] = color;
+            } else if ([value isKindOfClass:NSArray.class]) {
+                keyedColorCollectionsM[key] = [self colorsWithHexStrings:value];
+            } else {
+                @throw NSInvalidArgumentException;
+            }
         }
         _keyedColors = keyedColorsM.copy;
+        _keyedColorCollections = keyedColorCollectionsM.copy;
         
         NSArray<NSString *> *indexedColorsRepresentation = config[AKThemeConfigIndexedColorsKey];
-        NSMutableArray<UIColor *> *indexedColorsM = [NSMutableArray new];
-        for (NSString *colorHexRepresentation in indexedColorsRepresentation) {
-            UIColor *color = [UIColor colorWithHexString:colorHexRepresentation];
-            if (color) [indexedColorsM addObject:color];
-        }
-        _indexedColors = indexedColorsM.copy;
+        _indexedColors = [self colorsWithHexStrings:indexedColorsRepresentation];
         
         NSString *barStyleString = config[AKThemeConfigStatusBarStyleKey];
         BOOL black = [barStyleString isEqualToString:@"Black"] || [barStyleString isEqualToString:@"Dark"];

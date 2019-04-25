@@ -13,7 +13,6 @@ static NSString * const AKThemeConfigAppearanceContainedInInstancesOfClassesKey 
 static NSString * const AKThemeConfigAppearanceColorSchemaKey = @"ColorSchema";
 static NSString * const AKThemeConfigAppearanceBarStyleSchemaKey = @"BarStyleSchema";
 
-
 static NSString * const AKThemeConfigKeyedColorsKey = @"KeyedColors";
 static NSString * const AKThemeConfigIndexedColorsKey = @"IndexedColors";
 static NSString * const AKThemeConfigStatusBarStyleKey = @"StatusBarStyle";
@@ -24,6 +23,7 @@ static NSString * const AKThemeConfigStatusBarStyleKey = @"StatusBarStyle";
 
 @property (readonly) NSString *name;
 @property (readonly) NSDictionary<NSString *, UIColor *> *keyedColors;
+@property (readonly) NSDictionary<NSString *, NSArray<UIColor *> *> *keyedColorCollections;
 @property (readonly) NSArray<UIColor *> *indexedColors;
 @property (readonly) UIStatusBarStyle statusBarStyle;
 

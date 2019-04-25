@@ -23,7 +23,7 @@ PODS:
     - AnobiKit/AKFoundation
   - AnobiKit/UIKit (0.14.0):
     - AnobiKit/AKFoundation
-  - AnobiUIKit (0.8.1):
+  - AnobiUIKit (0.9.0):
     - AnobiKit (~> 0.14.0)
   - AnobiView (0.3.1)
 
@@ -43,7 +43,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AnobiKit: 99a8f828636f7fbeeb25c04323e030a50defcccc
-  AnobiUIKit: 48e3aa2899f7326125b018fcec7d1f9653a1db32
+  AnobiUIKit: 2e0f4115318d7edc1202497597484c3802333817
   AnobiView: 4a09db8d89130a7ff232cef1645bac1fe44c1dec
 
 PODFILE CHECKSUM: 4aeec9f5beecd4a4261e4b2171adaf0ba775527b
