@@ -23,13 +23,13 @@ PODS:
     - AnobiKit/AKFoundation
   - AnobiKit/UIKit (0.14.0):
     - AnobiKit/AKFoundation
-  - AnobiUIKit (0.8.0):
+  - AnobiUIKit (0.8.1):
     - AnobiKit (~> 0.14.0)
-  - AnobiView (0.3.0)
+  - AnobiView (0.3.1)
 
 DEPENDENCIES:
   - AnobiKit
-  - AnobiUIKit (from `../`)
+  - AnobiUIKit (from `./`)
   - AnobiView
 
 SPEC REPOS:
@@ -39,13 +39,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   AnobiUIKit:
-    :path: "../"
+    :path: "./"
 
 SPEC CHECKSUMS:
   AnobiKit: 99a8f828636f7fbeeb25c04323e030a50defcccc
-  AnobiUIKit: 67d28eec0d4eafc6db8433235f20470c0b82ae5e
-  AnobiView: 0f7cc71f05a68c650ae715f49a9c8ddd61abb565
+  AnobiUIKit: 48e3aa2899f7326125b018fcec7d1f9653a1db32
+  AnobiView: 4a09db8d89130a7ff232cef1645bac1fe44c1dec
 
-PODFILE CHECKSUM: f259d0b7b3acb518ae03b30390b00f7ce728cad8
+PODFILE CHECKSUM: 4aeec9f5beecd4a4261e4b2171adaf0ba775527b
 
 COCOAPODS: 1.6.1

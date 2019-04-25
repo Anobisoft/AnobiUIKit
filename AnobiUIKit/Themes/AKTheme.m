@@ -10,6 +10,31 @@
 #import <AnobiKit/UIColor+Hex.h>
 #import <AnobiKit/AKStrings.h>
 
+@interface NSObject (UIAppearance)
+
+- (void)setColor:(UIColor *)color forProperty:(NSString *)property;
+
+@end
+
+@implementation NSObject (UIAppearance)
+
+- (void)setColor:(UIColor *)color forProperty:(NSString *)property {
+    NSString *firstSymbol = [property substringToIndex:1].uppercaseString;
+    NSString *other = [property substringFromIndex:1];
+    NSString *setter = [@"set" : firstSymbol : other : @":"];
+    SEL selector = NSSelectorFromString(setter);
+    NSMethodSignature *methodSignature = [self methodSignatureForSelector:selector];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+    invocation.target = self;
+    invocation.selector = selector;
+    [invocation setArgument:&color atIndex:2];
+    [invocation invoke];
+}
+
+@end
+
+#pragma mark -
+
 @interface AKTheme ()
 
 @property (readonly) NSDictionary<NSString *, NSDictionary *> *appearanceSchema __WATCHOS_UNAVAILABLE;
@@ -46,9 +71,8 @@
         }
         _indexedColors = indexedColorsM.copy;
         
-        NSString *barStyleString = config[AKThemeConfigBarStyleKey];
+        NSString *barStyleString = config[AKThemeConfigStatusBarStyleKey];
         BOOL black = [barStyleString isEqualToString:@"Black"] || [barStyleString isEqualToString:@"Dark"];
-        _barStyle = black ? UIBarStyleBlack : UIBarStyleDefault;
         _statusBarStyle = black ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
         
         _appearanceSchema = config[AKThemeConfigAppearanceSchemaKey];
@@ -69,35 +93,33 @@
     return _indexedColors[idx];
 }
 
-- (void)applyAppearanceSchema {    
+- (void)applyAppearanceSchema {
     Protocol *appearanceProtocol = @protocol(UIAppearance);
     [self.appearanceSchema enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary * _Nonnull obj, BOOL * _Nonnull stop) {
         Class<UIAppearance> viewClass = NSClassFromString(key);
         if ([viewClass conformsToProtocol:appearanceProtocol]) {
-            NSArray *containedIn = obj[AKThemeConfigAppearanceContainedInInstancesOfClassesKey];
-            id appearanceInstance;
-            if (containedIn.count) {
-                appearanceInstance = [viewClass appearanceWhenContainedInInstancesOfClasses:containedIn];
-            } else {
-                appearanceInstance = [viewClass appearance];
-            }
-            NSDictionary<NSString *, NSString *> *colorSchema = obj[AKThemeConfigAppearanceColorSchemaKey];
-            [colorSchema enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull property, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
-                UIColor *color = [UIColor colorWithHexString:obj];
-                NSString *firstSymbol = [property substringToIndex:1].uppercaseString;
-                NSString *other = [property substringFromIndex:1];
-                NSString *setter = [@"set" : firstSymbol : other : @":"];
-                SEL selector = NSSelectorFromString(setter);
-                NSMethodSignature *methodSignature = [appearanceInstance methodSignatureForSelector:selector];
-                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-                invocation.target = appearanceInstance;
-                invocation.selector = selector;
-                [invocation setArgument:&color atIndex:2];
-                [invocation invoke];
-            }];
+            [self resetAppearanceConfig:obj forClass:viewClass];
         }
     }];
+    
+    UINavigationBar.appearance.barStyle = (UIBarStyle)self.statusBarStyle;
+    
     [self reloadAppearance];
+}
+
+- (void)resetAppearanceConfig:(NSDictionary *)config forClass:(Class<UIAppearance>)viewClass {
+    NSArray *containedIn = config[AKThemeConfigAppearanceContainedInInstancesOfClassesKey];
+    id appearanceInstance;
+    if (containedIn.count) {
+        appearanceInstance = [viewClass appearanceWhenContainedInInstancesOfClasses:containedIn];
+    } else {
+        appearanceInstance = [viewClass appearance];
+    }
+    NSDictionary<NSString *, NSString *> *colorSchema = config[AKThemeConfigAppearanceColorSchemaKey];
+    [colorSchema enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull property, NSString * _Nonnull hexColor, BOOL * _Nonnull stop) {
+        UIColor *color = [UIColor colorWithHexString:hexColor];
+        [appearanceInstance setColor:color forProperty:property];
+    }];
 }
 
 - (void)reloadAppearance {
@@ -111,3 +133,5 @@
 }
 
 @end
+
+

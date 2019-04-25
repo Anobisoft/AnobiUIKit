@@ -29,7 +29,10 @@
     [AKThemeManager managerWithConfig:config];
     self.tableView.tableFooterView = [UIView new];
     [self updateUIWithCurrentTheme];
-    flipAnimation = [CAAnimation flipAngle:4.0 * M_PI vector:AK3DVectorMake(0.3, 0.1, 0.5) dutation:1.2];
+    flipAnimation = [CAAnimation flipAngle:8.0 * M_PI vector:AK3DVectorMake(0.3, 0.1, 0.5) dutation:1.2];
+    
+    self.navigationController.toolbar.translucent = false;
+    self.navigationController.toolbar.clipsToBounds = false;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,26 +57,10 @@
     if (currentTheme != theme) {
         currentTheme = theme;
 
-        [theme applyAppearanceSchema];
-        self.navigationController.toolbar.barStyle =
-        self.navigationController.navigationBar.barStyle = theme.barStyle;
-        self.navigationController.toolbar.barTintColor =
-        self.navigationController.navigationBar.barTintColor = theme[@"naviBarTint"];
-        self.navigationController.toolbar.translucent = false;
-        self.navigationController.toolbar.clipsToBounds = false;
-        
-        self.navigationController.toolbar.tintColor =
-        self.navigationController.navigationBar.tintColor = theme[@"naviTint"];
-        self.navigationController.navigationBar.titleTextColor = theme[@"naviTitle"];
-        
-        self.view.backgroundColor = theme[@"mainBackground"];
-        self.view.tintColor = theme[@"mainTint"];
         themeNameLabel.textColor = theme[@"mainText"];
         themeNameLabel.text = [NSString stringWithFormat:@"Current Theme name: %@", theme.name];
         
         self.tableView.tableFooterView.backgroundColor = self.tableView.backgroundColor = theme[@"tableBackground"];
-        self.tableView.separatorColor = theme[@"tableSeparator"];
-        self.tableView.tintColor = theme[@"mainTint"];
         [self.tableView reloadData];
     }
 
@@ -85,7 +72,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = currentTheme[indexPath.row % 2 ? @"tableCellBackground" : @"tableSecondaryCellBackground"];
+    if (indexPath.row % 2 == 1) {
+        cell.backgroundColor = currentTheme[@"tableSecondaryCellBackground"];
+    }
     cell.textLabel.textColor = currentTheme[indexPath.row % 2 ? @"mainText" : @"mainSubtext" ];
     cell.textLabel.text = [AKThemeManager manager].allNames[indexPath.row];
     return cell;
@@ -96,9 +85,5 @@
     [self updateUIWithCurrentTheme];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

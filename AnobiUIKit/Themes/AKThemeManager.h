@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) NSArray<AKTheme *> *allThemes;
 @property (nonatomic, readonly) NSArray<NSString *> *allNames;
 @property (nonatomic) AKTheme *currentTheme;
+
 - (AKTheme *)themeWithName:(NSString *)name;
 - (AKTheme *)objectForKeyedSubscript:(NSString *)name;
 

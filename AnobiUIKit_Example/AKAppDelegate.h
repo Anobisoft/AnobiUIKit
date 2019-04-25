@@ -8,6 +8,9 @@
 
 @import UIKit;
 
+@interface UIMainView : UIView
+@end
+
 @interface AKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

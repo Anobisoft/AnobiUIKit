@@ -10,10 +10,14 @@
 
 static NSString * const UDKey_AKTheme_CurrentThemeName = @"AKThemeManager.currentThemeName";
 
-@implementation AKThemeManager {
-    NSDictionary<NSString *, AKTheme *> *themes;
-    NSString *currentThemeName;
-}
+@interface AKThemeManager ()
+
+@property (nonatomic) NSDictionary<NSString *, AKTheme *> *themes;
+@property (nonatomic) NSString *currentThemeName;
+
+@end
+
+@implementation AKThemeManager
 
 static id instance;
 + (instancetype)managerWithConfig:(NSDictionary *)config {
@@ -45,26 +49,27 @@ static id instance;
             @throw [NSException exceptionWithName:@"AKThemeManagerEmptyConfigException" reason:@"no themes configured" userInfo:nil];
             return nil;
         }
-        themes = tmp.copy;
+        _themes = tmp.copy;
         
-        currentThemeName = [[NSUserDefaults standardUserDefaults] objectForKey:UDKey_AKTheme_CurrentThemeName];
-        if (!(currentThemeName && [allKeys containsObject:currentThemeName])) {
-            currentThemeName = allKeys.firstObject;
+        _currentThemeName = [[NSUserDefaults standardUserDefaults] objectForKey:UDKey_AKTheme_CurrentThemeName];
+        if (!(_currentThemeName && [allKeys containsObject:_currentThemeName])) {
+            _currentThemeName = allKeys.firstObject;
         }
+        self.currentTheme = self.currentTheme;
     }
     return self;
 }
 
 - (NSArray<AKTheme *> *)allThemes {
-    return themes.allValues;
+    return self.themes.allValues;
 }
 
 - (NSArray<NSString *> *)allNames {
-    return themes.allKeys;
+    return self.themes.allKeys;
 }
 
 - (AKTheme *)themeWithName:(NSString *)name {
-    return themes[name];
+    return self.themes[name];
 }
 
 - (AKTheme *)objectForKeyedSubscript:(NSString *)name {
@@ -74,19 +79,20 @@ static id instance;
 - (void)setCurrentThemeName:(NSString *)name {
     NSArray<NSString *> *allNames = self.allNames;
     if ([allNames containsObject:name]) {
-        currentThemeName = name;
-        [[NSUserDefaults standardUserDefaults] setObject:currentThemeName forKey:UDKey_AKTheme_CurrentThemeName];
+        _currentThemeName = name;
+        [[NSUserDefaults standardUserDefaults] setObject:name forKey:UDKey_AKTheme_CurrentThemeName];
     } else {
         @throw [NSException exceptionWithName:@"AKThemeManagerInvalidConfigName" reason:@"" userInfo:nil];
     }
 }
 
 - (AKTheme *)currentTheme {
-    return [self themeWithName:currentThemeName];
+    return [self themeWithName:self.currentThemeName];
 }
 
 - (void)setCurrentTheme:(AKTheme *)currentTheme {
-    currentThemeName = currentTheme.name;
+    self.currentThemeName = currentTheme.name;
+    [currentTheme applyAppearanceSchema];
 }
 
 @end

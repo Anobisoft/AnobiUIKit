@@ -10,23 +10,25 @@
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
-		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
-		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
-		6003F59E195388D20070C39A /* AKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* AKAppDelegate.m */; };
-		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		6A98CC0C200F9CBE00485711 /* AKViewObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A98CC0B200F9CBE00485711 /* AKViewObserver.m */; };
 		6AA3B68C1F38AEFB001D70DD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA3B68B1F38AEFB001D70DD /* XCTest.framework */; };
-		6AB71DC5222426A4008D24E6 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6AB71DC4222426A4008D24E6 /* .travis.yml */; };
-		6AC5EBB01F56F411009D8D02 /* AKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC5EBAF1F56F411009D8D02 /* AKMainViewController.m */; };
-		6AFBA68D1F34B05C00343DE1 /* AKThemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AFBA68C1F34B05C00343DE1 /* AKThemes.plist */; };
-		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		6AD7263522717E6300C0F365 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7262422717E6300C0F365 /* InfoPlist.strings */; };
+		6AD7263622717E6300C0F365 /* AKThemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7262622717E6300C0F365 /* AKThemes.plist */; };
+		6AD7263722717E6300C0F365 /* AnobiUIKit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7262722717E6300C0F365 /* AnobiUIKit-Info.plist */; };
+		6AD7263822717E6300C0F365 /* AKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7262922717E6300C0F365 /* AKAppDelegate.m */; };
+		6AD7263922717E6300C0F365 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7262B22717E6300C0F365 /* LaunchScreen.storyboard */; };
+		6AD7263A22717E6300C0F365 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7262D22717E6300C0F365 /* Main.storyboard */; };
+		6AD7263B22717E6300C0F365 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7262F22717E6300C0F365 /* main.m */; };
+		6AD7263D22717E6300C0F365 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7263122717E6300C0F365 /* Images.xcassets */; };
+		6AD7263E22717E6300C0F365 /* AKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7263422717E6300C0F365 /* AKMainViewController.m */; };
+		6AD7264222717E6E00C0F365 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7263F22717E6D00C0F365 /* README.md */; };
+		6AD7264322717E6E00C0F365 /* AnobiUIKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7264022717E6D00C0F365 /* AnobiUIKit.podspec */; };
+		6AD7264422717E6E00C0F365 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7264122717E6E00C0F365 /* LICENSE */; };
 		72B7821029A525B69D5D0AD0 /* Pods_AnobiUIKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328DED9D7D60818A47292CA0 /* Pods_AnobiUIKit_Example.framework */; };
 		843C138B52072CFB9A9B9CC5 /* Pods_AnobiUIKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA3B2C25994497C13871B3C /* Pods_AnobiUIKit_Tests.framework */; };
-		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,33 +49,30 @@
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6003F595195388D20070C39A /* AnobiUIKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnobiUIKit-Info.plist"; sourceTree = "<group>"; };
-		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59B195388D20070C39A /* AnobiUIKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnobiUIKit-Prefix.pch"; sourceTree = "<group>"; };
-		6003F59C195388D20070C39A /* AKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKAppDelegate.h; sourceTree = "<group>"; };
-		6003F59D195388D20070C39A /* AKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* AnobiUIKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnobiUIKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		63142E5C9523AC112F4684DA /* Pods-AnobiUIKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnobiUIKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnobiUIKit_Tests/Pods-AnobiUIKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		6A98CC0A200F9CBE00485711 /* AKViewObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKViewObserver.h; sourceTree = "<group>"; };
-		6A98CC0B200F9CBE00485711 /* AKViewObserver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKViewObserver.m; sourceTree = "<group>"; };
 		6AA3B68B1F38AEFB001D70DD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		6AB71DC4222426A4008D24E6 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
-		6AC5EBAE1F56F411009D8D02 /* AKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainViewController.h; sourceTree = "<group>"; };
-		6AC5EBAF1F56F411009D8D02 /* AKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainViewController.m; sourceTree = "<group>"; };
-		6AFBA68C1F34B05C00343DE1 /* AKThemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AKThemes.plist; sourceTree = "<group>"; };
-		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AAB32140E5F2541820504F40 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		6AD7262522717E6300C0F365 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6AD7262622717E6300C0F365 /* AKThemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AKThemes.plist; sourceTree = "<group>"; };
+		6AD7262722717E6300C0F365 /* AnobiUIKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AnobiUIKit-Info.plist"; sourceTree = "<group>"; };
+		6AD7262922717E6300C0F365 /* AKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKAppDelegate.m; sourceTree = "<group>"; };
+		6AD7262A22717E6300C0F365 /* AKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainViewController.h; sourceTree = "<group>"; };
+		6AD7262C22717E6300C0F365 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6AD7262E22717E6300C0F365 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6AD7262F22717E6300C0F365 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6AD7263122717E6300C0F365 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6AD7263222717E6300C0F365 /* AnobiUIKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AnobiUIKit-Prefix.pch"; sourceTree = "<group>"; };
+		6AD7263322717E6300C0F365 /* AKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKAppDelegate.h; sourceTree = "<group>"; };
+		6AD7263422717E6300C0F365 /* AKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainViewController.m; sourceTree = "<group>"; };
+		6AD7263F22717E6D00C0F365 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6AD7264022717E6D00C0F365 /* AnobiUIKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AnobiUIKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		6AD7264122717E6E00C0F365 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D444B4AE0DC96771BFA86FF9 /* Pods-AnobiUIKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnobiUIKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnobiUIKit_Example/Pods-AnobiUIKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D6DCF70DDD885358887892C0 /* Pods-AnobiUIKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnobiUIKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnobiUIKit_Tests/Pods-AnobiUIKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E39F22E1CC7E38091066249F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		FF6FB57BE3D9EE40D7FD2E6F /* AnobiUIKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AnobiUIKit.podspec; path = ../AnobiUIKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +104,10 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
-				6003F593195388D20070C39A /* Example for AnobiUIKit */,
+				6AD7264022717E6D00C0F365 /* AnobiUIKit.podspec */,
+				6AD7263F22717E6D00C0F365 /* README.md */,
+				6AD7264122717E6E00C0F365 /* LICENSE */,
+				6AD7262322717E6300C0F365 /* AnobiUIKit_Example */,
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
@@ -136,64 +137,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6003F593195388D20070C39A /* Example for AnobiUIKit */ = {
-			isa = PBXGroup;
-			children = (
-				6AFBA68C1F34B05C00343DE1 /* AKThemes.plist */,
-				6003F59C195388D20070C39A /* AKAppDelegate.h */,
-				6003F59D195388D20070C39A /* AKAppDelegate.m */,
-				6A98CC0A200F9CBE00485711 /* AKViewObserver.h */,
-				6A98CC0B200F9CBE00485711 /* AKViewObserver.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
-				6AC5EBAE1F56F411009D8D02 /* AKMainViewController.h */,
-				6AC5EBAF1F56F411009D8D02 /* AKMainViewController.m */,
-				6003F5A8195388D20070C39A /* Images.xcassets */,
-				6003F594195388D20070C39A /* Supporting Files */,
-			);
-			name = "Example for AnobiUIKit";
-			path = AnobiUIKit;
-			sourceTree = "<group>";
-		};
-		6003F594195388D20070C39A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6003F595195388D20070C39A /* AnobiUIKit-Info.plist */,
-				6003F596195388D20070C39A /* InfoPlist.strings */,
-				6003F599195388D20070C39A /* main.m */,
-				6003F59B195388D20070C39A /* AnobiUIKit-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				6003F5BB195388D20070C39A /* Tests.m */,
-				6003F5B6195388D20070C39A /* Supporting Files */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		6003F5B6195388D20070C39A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				6003F5B7195388D20070C39A /* Tests-Info.plist */,
 				6003F5B8195388D20070C39A /* InfoPlist.strings */,
 				606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
+		6AD7262322717E6300C0F365 /* AnobiUIKit_Example */ = {
 			isa = PBXGroup;
 			children = (
-				6AB71DC4222426A4008D24E6 /* .travis.yml */,
-				FF6FB57BE3D9EE40D7FD2E6F /* AnobiUIKit.podspec */,
-				E39F22E1CC7E38091066249F /* README.md */,
-				AAB32140E5F2541820504F40 /* LICENSE */,
+				6AD7263322717E6300C0F365 /* AKAppDelegate.h */,
+				6AD7262922717E6300C0F365 /* AKAppDelegate.m */,
+				6AD7262A22717E6300C0F365 /* AKMainViewController.h */,
+				6AD7263422717E6300C0F365 /* AKMainViewController.m */,
+				6AD7262622717E6300C0F365 /* AKThemes.plist */,
+				6AD7262B22717E6300C0F365 /* LaunchScreen.storyboard */,
+				6AD7262D22717E6300C0F365 /* Main.storyboard */,
+				6AD7262F22717E6300C0F365 /* main.m */,
+				6AD7263222717E6300C0F365 /* AnobiUIKit-Prefix.pch */,
+				6AD7263122717E6300C0F365 /* Images.xcassets */,
+				6AD7262722717E6300C0F365 /* AnobiUIKit-Info.plist */,
+				6AD7262422717E6300C0F365 /* InfoPlist.strings */,
 			);
-			name = "Podspec Metadata";
+			path = AnobiUIKit_Example;
 			sourceTree = "<group>";
 		};
 		8DBCACB3F18D98302CDD33E5 /* Pods */ = {
@@ -292,12 +263,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AB71DC5222426A4008D24E6 /* .travis.yml in Resources */,
-				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
-				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
-				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				6AFBA68D1F34B05C00343DE1 /* AKThemes.plist in Resources */,
-				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				6AD7263622717E6300C0F365 /* AKThemes.plist in Resources */,
+				6AD7263A22717E6300C0F365 /* Main.storyboard in Resources */,
+				6AD7263922717E6300C0F365 /* LaunchScreen.storyboard in Resources */,
+				6AD7264222717E6E00C0F365 /* README.md in Resources */,
+				6AD7263D22717E6300C0F365 /* Images.xcassets in Resources */,
+				6AD7264322717E6E00C0F365 /* AnobiUIKit.podspec in Resources */,
+				6AD7264422717E6E00C0F365 /* LICENSE in Resources */,
+				6AD7263522717E6300C0F365 /* InfoPlist.strings in Resources */,
+				6AD7263722717E6300C0F365 /* AnobiUIKit-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,10 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F59E195388D20070C39A /* AKAppDelegate.m in Sources */,
-				6003F59A195388D20070C39A /* main.m in Sources */,
-				6A98CC0C200F9CBE00485711 /* AKViewObserver.m in Sources */,
-				6AC5EBB01F56F411009D8D02 /* AKMainViewController.m in Sources */,
+				6AD7263E22717E6300C0F365 /* AKMainViewController.m in Sources */,
+				6AD7263B22717E6300C0F365 /* main.m in Sources */,
+				6AD7263822717E6300C0F365 /* AKAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,14 +380,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6003F596195388D20070C39A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6003F597195388D20070C39A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		6003F5B8195388D20070C39A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -423,12 +388,28 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */ = {
+		6AD7262422717E6300C0F365 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				71719F9E1E33DC2100824A3D /* Base */,
+				6AD7262522717E6300C0F365 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6AD7262B22717E6300C0F365 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AD7262C22717E6300C0F365 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		6AD7262D22717E6300C0F365 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AD7262E22717E6300C0F365 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -543,10 +524,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AnobiUIKit/AnobiUIKit-Prefix.pch";
-				INFOPLIST_FILE = "AnobiUIKit/AnobiUIKit-Info.plist";
+				GCC_PREFIX_HEADER = "AnobiUIKit_Example/AnobiUIKit-Prefix.pch";
+				INFOPLIST_FILE = "AnobiUIKit_Example/AnobiUIKit-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anobisoft.AnobiUIKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
@@ -560,10 +541,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AnobiUIKit/AnobiUIKit-Prefix.pch";
-				INFOPLIST_FILE = "AnobiUIKit/AnobiUIKit-Info.plist";
+				GCC_PREFIX_HEADER = "AnobiUIKit_Example/AnobiUIKit-Prefix.pch";
+				INFOPLIST_FILE = "AnobiUIKit_Example/AnobiUIKit-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anobisoft.AnobiUIKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;

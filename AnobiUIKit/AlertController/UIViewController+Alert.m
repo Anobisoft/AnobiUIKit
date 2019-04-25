@@ -20,8 +20,8 @@
     }
     
     BOOL iPadDevice = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
-    UIAlertControllerStyle preferredStyle = iPadDevice ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet;
     
+    UIAlertControllerStyle preferredStyle = iPadDevice ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet;
     if ([configurator respondsToSelector:@selector(alertControllerPreferredStyle)]) {
         preferredStyle = [configurator alertControllerPreferredStyle];
     }

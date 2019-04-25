@@ -11,10 +11,12 @@
 static NSString * const AKThemeConfigAppearanceSchemaKey = @"AppearanceSchema";
 static NSString * const AKThemeConfigAppearanceContainedInInstancesOfClassesKey = @"ContainedInInstancesOfClasses";
 static NSString * const AKThemeConfigAppearanceColorSchemaKey = @"ColorSchema";
+static NSString * const AKThemeConfigAppearanceBarStyleSchemaKey = @"BarStyleSchema";
+
 
 static NSString * const AKThemeConfigKeyedColorsKey = @"KeyedColors";
 static NSString * const AKThemeConfigIndexedColorsKey = @"IndexedColors";
-static NSString * const AKThemeConfigBarStyleKey = @"BarStyle";
+static NSString * const AKThemeConfigStatusBarStyleKey = @"StatusBarStyle";
 
 @interface AKTheme : NSObject
 
@@ -23,12 +25,10 @@ static NSString * const AKThemeConfigBarStyleKey = @"BarStyle";
 @property (readonly) NSString *name;
 @property (readonly) NSDictionary<NSString *, UIColor *> *keyedColors;
 @property (readonly) NSArray<UIColor *> *indexedColors;
+@property (readonly) UIStatusBarStyle statusBarStyle;
 
 - (UIColor *)objectForKeyedSubscript:(NSString *)key;
 - (UIColor *)objectAtIndexedSubscript:(NSUInteger)idx;
-
-@property (readonly) UIBarStyle barStyle;
-@property (readonly) UIStatusBarStyle statusBarStyle;
 
 - (void)applyAppearanceSchema;
 

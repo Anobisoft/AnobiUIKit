@@ -3,7 +3,7 @@ platform :ios, '9.3'
 use_frameworks!
 
 target 'AnobiUIKit_Example' do
-  pod 'AnobiUIKit', :path => '../'
+  pod 'AnobiUIKit', :path => './'
   pod 'AnobiKit'
   pod 'AnobiView'
   
