@@ -5,10 +5,10 @@
 osx_image: xcode10.2
 language: objective-c
 cache: cocoapods
-podfile: Example/Podfile
+podfile: Podfile
 before_install:
 - gem install cocoapods -v '1.6.1'
 - pod repo update master
-- pod install --project-directory=Example
+- pod install
 script:
 - pod lib lint
