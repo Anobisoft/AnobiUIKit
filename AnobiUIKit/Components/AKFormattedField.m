@@ -145,7 +145,11 @@
     }
     if (should) {
         NSString *chtext = [textField.text stringByReplacingCharactersInRange:range withString:string];
+//		__auto_type selectedTextRange = self.selectedTextRange;
+//		__auto_type position = [self positionFromPosition:selectedTextRange.start offset:string.length+1];
+//		__auto_type range = [self textRangeFromPosition:position toPosition:position];
         self.text = chtext;
+//		[self setSelectedTextRange:range];
     }
     return false;
 }
